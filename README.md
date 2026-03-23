@@ -6,31 +6,75 @@ Breve descrição do que o seu projeto faz.
 
 ## :technologist: Membros da equipe
 
-Matrícula, nome e curso dos participantes.
+FRANCISCO MATEUS ALVES FREIRES - 565916
+DOUGLAS TEOFILO CAVALCANTE DA SILVA - 564625
+JOAO VITOR RODRIGUES SANTOS - 567428
+JONATHAN ALVES DA SILVA - 564730
+MATEUS SOUSA DODO - 567288
+NARCISO ROBERTO DE SOUZA - 565288
 
 ## :bulb: Objetivo Geral
-Descrever o objetivo de geral do projeto
+Desenvolver um sistema web para gerenciar o transporte universitário de Ocara, permitindo o controle da quantidade de alunos por dia, distribuição de ônibus, definição de rotas e acompanhamento da frequência dos estudantes.
 
 ## :eyes: Público-Alvo
-Público-alvo do projeto
+- Estudantes universitários de Ocara
+- Coordenação/gestores do transporte universitário
+- Prefeitura ou responsáveis pela logística do transporte
 
 ## :star2: Impacto Esperado
-Descreva o impacto esperado do projeto em relação ao público alvo
+- Melhor organização do transporte universitário
+- Redução de superlotação ou ociosidade dos ônibus
+- Maior controle da frequência dos alunos
+- Otimização das rotas dentro da cidade
+- Tomada de decisão baseada em dados (quantidade de alunos por faculdade/dia)
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
+Administrador
+- Gerencia alunos, ônibus, rotas e faculdades
+- Visualiza relatórios e frequência
 
-> Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
+Aluno
+- Realiza cadastro
+- Confirma presença no transporte (frequência)
+- Visualiza rota e ônibus designado
+
+Usuário não logado
+- Visualiza informações básicas (ex: rotas e faculdades atendidas)
+
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
-Descreva ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessíveis a todos os usuários e aquelas restritas a usuários logados.
+Funcionalidades públicas:
+- Visualizar faculdades atendidas
+- Visualizar rotas dos ônibus
+- Ver pontos de parada
+
+Funcionalidades para usuários logados (alunos):
+- Cadastro e login
+- Confirmação de presença diária
+- Visualização do ônibus e rota atribuída
+
+Funcionalidades administrativas:
+- Cadastro de alunos
+- Cadastro de ônibus
+- Cadastro de faculdades
+- Definição de rotas por bairros
+- Controle de frequência diária
+- Distribuição automática ou manual de alunos por ônibus
+- Relatórios (quantidade de alunos por dia/faculdade)
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
 Liste as principais entidades do sistema.
 
+Aluno
+Ônibus
+Faculdade
+Rota
+Bairro
+Frequência
+Usuário (autenticação)
 
 ----
 
