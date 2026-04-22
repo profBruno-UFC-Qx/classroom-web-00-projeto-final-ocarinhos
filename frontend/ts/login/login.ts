@@ -6,7 +6,7 @@ if (form instanceof HTMLFormElement) {
 
   const onSubmit = (event: SubmitEvent) => {
     if (name && password) {
-      // logica
+      // logicacdcdcd
     }
   };
 
