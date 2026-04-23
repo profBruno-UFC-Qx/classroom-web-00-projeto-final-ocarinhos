@@ -1,14 +1,25 @@
-const form = document.querySelector(".login-form");
+const form = document.querySelector(".form");
 
 if (form instanceof HTMLFormElement) {
-  const name = document.getElementById("username");
-  const password = document.getElementById("password");
+  const email = document.getElementById("email");
+  const senha = document.getElementById("senha");
 
   const onSubmit = (event: SubmitEvent) => {
-    if (name && password) {
-      // logicacdcdcd
+    event.preventDefault();
+
+    if (
+      email instanceof HTMLInputElement &&
+      senha instanceof HTMLInputElement
+    ) {
+      const objLogin = {
+        name: email.value,
+        senha: senha.value,
+      };
+      console.log(objLogin);
     }
   };
 
   form.addEventListener("submit", onSubmit);
 }
+
+export {};

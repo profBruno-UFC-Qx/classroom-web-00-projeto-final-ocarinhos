@@ -1,6 +1,4 @@
-body {
-  font-family: Arial, sans-serif;
-}
+
 
 .login-bg {
   height: 100vh;
@@ -41,7 +39,7 @@ body {
 
 .sub-text {
   font-size: 14px;
-  color: #6b7280;
+  color: #424752;
   margin-bottom: 20px;
 }
 
@@ -57,11 +55,10 @@ body {
 
 .input-group label {
   font-size: 13px;
-  color: #374151;
+  color: #424752;
 }
 
-.input-group input,
-select {
+.input-group input {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -81,6 +78,26 @@ button {
 
 button:hover {
   background: #1e40af;
+}
+
+.acoes-extra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  color: #424752;
+}
+
+.acoes-extra .lembrar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.acoes-extra a {
+  color: #00458E;
+  font-weight: 500;
 }
 
 .footer {

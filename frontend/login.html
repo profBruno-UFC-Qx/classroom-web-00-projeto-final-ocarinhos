@@ -20,20 +20,32 @@
 
         <form class="form">
           <div class="input-group">
-            <label>Nome</label>
-            <input type="text" placeholder="" />
+            <label>E-mail</label>
+            <input id="email" type="text" placeholder="aluno@gmail.com" />
           </div>
 
           <div class="input-group">
-            <label>E-mail</label>
-            <input type="email" placeholder="aluno@gmail.com" />
+            <label>Senha</label>
+            <input id="senha" type="password" placeholder="••••••••" />
           </div>
 
-          <button type="submit">Entrar →</button>
+          <div class="acoes-extra">
+            <div class="lembrar">
+              <input type="checkbox" />
+              <label>Lembrar de mim</label>
+            </div>
+            <div>
+              <a href="./" class="esqueci-senha">Esqueci minha senha</a>
+            </div>
+          </div>
+
+          <button type="submit">Entrar</button>
         </form>
         <footer class="footer">
           Primeiro acesso? <a href="./register.html">Cadastre-se</a>
         </footer>
+
+        <script type="module" src="./dist/login/login.js"></script>
       </div>
     </div>
   </body>

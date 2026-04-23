@@ -19,12 +19,12 @@
         <form class="form">
           <div class="input-group">
             <label>Nome</label>
-            <input type="text" placeholder="" />
+            <input id="nome" type="text" placeholder="Digite seu nome aqui" />
           </div>
 
           <div class="input-group">
             <label>E-mail</label>
-            <input type="email" placeholder="aluno@gmail.com" />
+            <input id="email" type="email" placeholder="aluno@gmail.com" />
           </div>
 
           <div class="input-group">
@@ -49,27 +49,33 @@
 
           <div class="input-group">
             <label>Curso</label>
-            <input type="text" placeholder="Qual o seu curso?" />
+            <input id="curso" type="text" placeholder="Qual o seu curso?" />
           </div>
 
           <div class="group-password">
             <div class="input-group">
               <label>SENHA</label>
-              <input type="password" placeholder="••••••••" />
+              <input id="senha" type="password" placeholder="••••••••" />
             </div>
 
             <div class="input-group">
               <label>CONFIRMAR SENHA</label>
-              <input type="password" placeholder="••••••••" />
+              <input
+                id="confirmar-senha"
+                type="password"
+                placeholder="••••••••"
+              />
             </div>
           </div>
 
-          <button type="submit">Entrar →</button>
+          <button type="submit">Entrar</button>
         </form>
         <footer class="footer">
           Ja tem uma conta? <a href="./login.html">Entrar</a>
         </footer>
       </div>
     </div>
+
+    <script type="module" src="./dist/register/register.js"></script>
   </body>
 </html>
