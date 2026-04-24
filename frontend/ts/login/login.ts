@@ -1,3 +1,12 @@
+import { supabase } from "../supabase/supabase.js";
+
+
+const { data, error } = await supabase
+  .from('teste')
+  .select()
+
+console.log(data)
+
 const form = document.querySelector(".form");
 
 if (form instanceof HTMLFormElement) {
