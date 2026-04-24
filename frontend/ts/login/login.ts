@@ -1,6 +1,5 @@
 import { supabase } from "../supabase/supabase.js";
 
-
 const { data, error } = await supabase
   .from('teste')
   .select()
