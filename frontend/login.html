@@ -7,23 +7,46 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <div class="bg">
-      <div class="login-container">
-        <form class="login-form">
-          <h2>Entrar</h2>
+    <div class="login-bg">
+      <div class="login">
+        <div class="icon">
+          <img src="./assets/Login/Margin.svg" alt="" />
+        </div>
+
+        <h2>Acesso Institucional</h2>
+        <p class="sub-text">
+          Insira suas credenciais para gerenciar a logística.
+        </p>
+
+        <form class="form">
           <div class="input-group">
-            <label for="username">Usuário</label>
-            <input type="text" id="username" name="username" required />
+            <label>E-mail</label>
+            <input id="email" type="text" placeholder="aluno@gmail.com" />
           </div>
+
           <div class="input-group">
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" required />
+            <label>Senha</label>
+            <input id="senha" type="password" placeholder="••••••••" />
           </div>
-          <button type="submit">Login</button>
+
+          <div class="acoes-extra">
+            <div class="lembrar">
+              <input type="checkbox" />
+              <label>Lembrar de mim</label>
+            </div>
+            <div>
+              <a href="./" class="esqueci-senha">Esqueci minha senha</a>
+            </div>
+          </div>
+
+          <button type="submit">Entrar</button>
         </form>
+        <footer class="footer">
+          Primeiro acesso? <a href="./register.html">Cadastre-se</a>
+        </footer>
+
+        <script type="module" src="./dist/login/login.js"></script>
       </div>
     </div>
-
-    <script type="module" src="./dist/login/login.js"></script>
   </body>
 </html>

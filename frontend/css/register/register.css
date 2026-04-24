@@ -1,7 +1,9 @@
+body {
+  font-family: Arial, sans-serif;
+}
 
-
-.login-bg {
-  height: 100vh;
+.register-bg {
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +12,7 @@
   padding: 10px 0;
 }
 
-.login {
+.register {
   background: #f9fafb;
   padding: 30px;
   width: 100%;
@@ -33,17 +35,17 @@
   font-size: 24px;
 }
 
-.login h2 {
+.register h2 {
   margin-bottom: 8px;
 }
 
 .sub-text {
   font-size: 14px;
-  color: #424752;
+  color: #6b7280;
   margin-bottom: 20px;
 }
 
-.group-password {
+.group-password{
   display: flex;
   gap: 20px;
 }
@@ -55,10 +57,11 @@
 
 .input-group label {
   font-size: 13px;
-  color: #424752;
+  color: #374151;
 }
 
-.input-group input {
+.input-group input,
+select {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -80,31 +83,22 @@ button:hover {
   background: #1e40af;
 }
 
-.acoes-extra {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-  color: #424752;
-}
-
-.acoes-extra .lembrar {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.acoes-extra a {
-  color: #00458E;
-  font-weight: 500;
-}
-
 .footer {
   margin-top: 40px;
   font-size: 13px;
+  position: relative;
 }
 
 .footer a {
   color: #1d4ed8;
+}
+
+.footer::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #C2C6D3;
+  left: 0;
+  top: -10px;
 }
