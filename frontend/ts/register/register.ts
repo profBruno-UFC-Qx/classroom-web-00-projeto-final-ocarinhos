@@ -1,3 +1,6 @@
+import { AuthError } from "@supabase/supabase-js";
+import { supabase } from "../supabase/supabase.js";
+
 const form = document.querySelector(".form");
 
 if (form instanceof HTMLFormElement) {
@@ -8,7 +11,7 @@ if (form instanceof HTMLFormElement) {
   const senha = document.getElementById("senha");
   const confrmarsenha = document.getElementById("confirmar-senha");
 
-  const onSubmit = (event: SubmitEvent) => {
+  const onSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
 
     if (
@@ -27,7 +30,13 @@ if (form instanceof HTMLFormElement) {
         senha: senha.value,
         confrmarsenha: confrmarsenha.value,
       };
-      console.log(objLogin);
+
+      const { data, error } = await supabase.auth.signUp({
+        email: objLogin.email,
+        password: objLogin.senha,
+      });
+
+      console.log(error?.cause)
     }
   };
 
