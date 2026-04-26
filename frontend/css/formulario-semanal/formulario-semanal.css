@@ -1,0 +1,238 @@
+.sem-form-cabecalho {
+  padding: 20px 20px 0px 20px;
+  text-align: left;
+  margin-bottom: 8px;
+  max-width: 900px;
+}
+
+.sem-form-subtitulo {
+  padding-bottom: 10px;
+  font-size: large;
+}
+
+.sem-form-cabecalho p {
+  color: #666;
+  margin: 0;
+}
+
+.sem-form-cabecalho h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+/* Contêiner do Formulário */
+.sem-form-container {
+  padding: 30px 20px;
+  max-width: 900px;
+}
+
+.sem-form-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Seções do Formulário */
+.sem-form-secao {
+  background: #f9fafb;
+  border: 1px solid #d1caca;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0;
+}
+
+.sem-form-secao-metade {
+  flex: 1;
+}
+
+.sem-form-linha-dois {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.sem-form-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Título da Seção */
+.sem-form-titulo-secao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.sem-form-icone-secao {
+  font-size: 20px;
+}
+
+.sem-form-descricao-secao {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+  margin-top: -8px;
+}
+
+/* Grupos de Entrada */
+.sem-form-grupo-entrada {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.sem-form-grupo-entrada:last-child {
+  margin-bottom: 0;
+}
+
+.sem-form-grupo-entrada label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.sem-form-grupo-entrada input[type="text"],
+.sem-form-grupo-entrada input[type="email"],
+.sem-form-grupo-entrada select {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.sem-form-grupo-entrada input[type="text"]:focus,
+.sem-form-grupo-entrada input[type="email"]:focus,
+.sem-form-grupo-entrada select:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.sem-form-grupo-entrada select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231d4ed8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+/* Grupo de Caixa de Seleção */
+.sem-form-grupo-caixa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 6px;
+}
+
+.sem-form-etiqueta-caixa {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+  border: 1px solid  #d1d5db;
+}
+
+.sem-form-etiqueta-caixa:hover {
+  background: #e5e7eb;
+}
+
+.sem-form-etiqueta-caixa input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1d4ed8;
+  border: 3px solid #333333;
+}
+
+/* Grupo de Rádio */
+.sem-form-grupo-radio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sem-form-etiqueta-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.sem-form-etiqueta-radio:hover {
+  background: #e5e7eb;
+}
+
+.sem-form-etiqueta-radio input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1d4ed8;
+  border: 2px solid #333333;
+}
+
+.sem-form-envio {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sem-form-botao-envio {
+  border-radius: 70px;
+  width: 200px;
+  height: 50px;
+  font-size: small;
+  padding: auto;
+}
+
+
+
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .sem-form-linha,
+  .sem-form-linha-dois {
+    grid-template-columns: 1fr;
+  }
+
+  .sem-form-grupo-caixa {
+    grid-template-columns: 1fr;
+  }
+
+  .sem-form-cabecalho h1 {
+    font-size: 24px;
+  }
+
+  .sem-form-container {
+    padding: 20px 15px;
+  }
+
+  .sem-form-secao {
+    padding: 18px;
+  }
+
+  .sem-form-botao-envio {
+    width: 100%;
+  }
+}
