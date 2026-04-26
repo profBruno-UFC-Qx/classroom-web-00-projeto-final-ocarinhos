@@ -1,10 +1,8 @@
 import { supabase } from "../supabase/supabase.js";
 
-const { data, error } = await supabase
-  .from('teste')
-  .select()
+const { data, error } = await supabase.from("teste").select();
 
-console.log(data)
+console.log(data);
 
 const form = document.querySelector(".form");
 
