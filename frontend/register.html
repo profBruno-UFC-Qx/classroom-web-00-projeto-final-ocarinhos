@@ -18,18 +18,30 @@
 
         <form class="form">
           <div class="input-group">
-            <label>Nome</label>
-            <input id="nome" type="text" placeholder="Digite seu nome aqui" />
+            <label for="nome">Nome</label>
+            <input
+              name="nome"
+              id="nome"
+              type="text"
+              placeholder="Digite seu nome aqui"
+            />
+            <p class="nome"></p>
           </div>
 
           <div class="input-group">
-            <label>E-mail</label>
-            <input id="email" type="email" placeholder="aluno@gmail.com" />
+            <label for="email">E-mail</label>
+            <input
+              name="email"
+              id="email"
+              type="email"
+              placeholder="aluno@gmail.com"
+            />
+            <p class="email"></p>
           </div>
 
           <div class="input-group">
-            <label>Faculdade</label>
-            <select name="IES" id="ies">
+            <label for="ies">Faculdade</label>
+            <select name="ies" id="ies">
               <option value="">Selecione sua instituição</option>
               <option value="cep">CEP</option>
               <option value="epp">EPP</option>
@@ -45,26 +57,41 @@
               <option value="uniplan">UNIPLAN</option>
               <option value="unopar">UNOPAR</option>
             </select>
+            <p class="ies"></p>
           </div>
 
           <div class="input-group">
-            <label>Curso</label>
-            <input id="curso" type="text" placeholder="Qual o seu curso?" />
+            <label for="curso">Curso</label>
+            <input
+              name="curso"
+              id="curso"
+              type="text"
+              placeholder="Qual o seu curso?"
+            />
+            <p class="curso"></p>
           </div>
 
           <div class="group-password">
             <div class="input-group">
-              <label>SENHA</label>
-              <input id="senha" type="password" placeholder="••••••••" />
+              <label for="senha">SENHA</label>
+              <input
+                name="senha"
+                id="senha"
+                type="password"
+                placeholder="••••••••"
+              />
+              <p class="senha"></p>
             </div>
 
             <div class="input-group">
-              <label>CONFIRMAR SENHA</label>
+              <label for="confirmar-senha">CONFIRMAR SENHA</label>
               <input
+                name="confirmar-senha"
                 id="confirmar-senha"
                 type="password"
                 placeholder="••••••••"
               />
+              <p class="confirmar-senha"></p>
             </div>
           </div>
 
