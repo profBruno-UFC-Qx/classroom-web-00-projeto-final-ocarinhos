@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Semanal</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+    
+    <header class="header-bg">
+      <div class="header container">
+        <div class="logo">
+          <img
+            src="./assets/Header/AUO Logo.svg"
+            alt="Logo da associaçao dos onibus"
+          />
+          <h1>Transporte Universitário Ocara</h1>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="nav">
+          <a href="index.html">Inicio</a>
+          <a href="#">Rotas</a>
+          <a href="#">Faculdades</a>
+        </nav>
+
+        <nav class="nav-login">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main>
+        <article class="container sem-form-cabecalho">
+            <h1>Formulário Semanal de Transporte</h1>
+            <p>
+                Confirme sua intenção de uso do transporte universitário para a próxima semana para garantir sua vaga.
+            </p>
+        </article>
+
+        <section class="container sem-form-container">
+            <form class="sem-form-corpo">
+                <fieldset class="sem-form-secao">
+                    
+                    <h2 class="sem-form-subtitulo">Dados do Aluno<h2>
+
+                    <div class="sem-form-linha">
+                        <div class="sem-form-grupo-entrada">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" placeholder="Lucas Fernandes" required />
+                        </div>
+                        <div class="sem-form-grupo-entrada">
+                            <label for="email">E-mail Institucional</label>
+                            <input type="email" id="email" name="email" placeholder="lucas@email.com" required />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="sem-form-secao">
+                    
+                    <h2 class="sem-form-subtitulo">Dias da semana<h2>
+                        
+                    <p class="sem-form-descricao-secao">Selecione os dias que você utilizará o transporte.</p>
+                    <div class="sem-form-grupo-caixa">
+                        <label class="sem-form-etiqueta-caixa">
+                            <input type="checkbox" name="dias" value="segunda" />
+                            Segunda-feira
+                        </label>
+                        <label class="sem-form-etiqueta-caixa">
+                            <input type="checkbox" name="dias" value="terca" />
+                            Terça-feira
+                        </label>
+                        <label class="sem-form-etiqueta-caixa">
+                            <input type="checkbox" name="dias" value="quarta" />
+                            Quarta-feira
+                        </label>
+                        <label class="sem-form-etiqueta-caixa">
+                            <input type="checkbox" name="dias" value="quinta" />
+                            Quinta-feira
+                        </label>
+                        <label class="sem-form-etiqueta-caixa">
+                            <input type="checkbox" name="dias" value="sexta" />
+                            Sexta-feira
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="sem-form-linha-dois">
+                    <fieldset class="sem-form-secao sem-form-secao-metade">
+                        <h2 class="sem-form-subtitulo">Tipo de Uso</h2>
+                        <div class="sem-form-grupo-radio">
+                            <label class="sem-form-etiqueta-radio">
+                                <input type="radio" name="tipoUso" value="ida-volta" checked />
+                                Ida e Volta
+                            </label>
+                            <label class="sem-form-etiqueta-radio">
+                                <input type="radio" name="tipoUso" value="apenas-ida" />
+                                Apenas Ida
+                            </label>
+                            <label class="sem-form-etiqueta-radio">
+                                <input type="radio" name="tipoUso" value="apenas-volta" />
+                                Apenas Volta
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="sem-form-secao sem-form-secao-metade">
+                        <h2 class="sem-form-subtitulo">Parada de Saída</h2>
+                        <div class="sem-form-grupo-entrada">
+                            <select name="paradaSaida" required>
+                                <option value="">Selecione sua parada</option>
+                                <option value="centro">Centro</option>
+                                <option value="bairro-a">Bairro A</option>
+                                <option value="bairro-b">Bairro B</option>
+                            </select>
+                        </div>
+
+                        <h2 class="sem-form-subtitulo">Faculdade Destino</h2>
+                        <div class="sem-form-grupo-entrada">
+                            <select name="faculdadeDestino" required>
+                                <option value="">Selecione sua Faculdade</option>
+                                <option value="centro">Centro</option>
+                                <option value="bairro-a">Bairro A</option>
+                                <option value="bairro-b">Bairro B</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <fieldset class="sem-form-secao">
+                    <h2 class="sem-form-subtitulo">Rota Complementar</h2>
+                    <p class="sem-form-descricao-secao">Você precisará usar a rota complementar?</p>
+                    <div class="sem-form-grupo-radio">
+                        <label class="sem-form-etiqueta-radio">
+                            <input type="radio" name="rotaComplementar" value="sim" />
+                            Sim
+                        </label>
+                        <label class="sem-form-etiqueta-radio">
+                            <input type="radio" name="rotaComplementar" value="nao" checked />
+                            Não
+                        </label>
+                    </div>
+                    <div class="sem-form-grupo-entrada">
+                        <select name="rotaDestino" id="rotaDestino" disabled>
+                            <option value="">Selecione o segundo destino</option>
+                            <option value="fac-01">Faculdade 01</option>
+                            <option value="fac-02">Faculdade 02</option>
+                            <option value="fac-03">Faculdade 03</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <div class="sem-form-envio">
+                    <button type="submit" class="sem-form-botao-envio">Salvar formulário semanal</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script type="module" src="./dist/formulario-semanal/formulario-semanal.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/workspaces/classroom-web-00-projeto-final-ocarinhos/frontend/css/styles.css">
+</head>
+
+<body class="esquecisenha-body d-flex flex-column min-vh-100 bg-light">
+    <main class="esquecisenha-main flex-grow-1 d-flex align-items-center justify-content-center px-3">
+        <div class="card esquecisenha-card border-0  p-4 p-md-5">
+            <div class="text-center mb-4">
+                <div
+                    class="esquecisenha-icon-circle mb-3 mx-auto d-flex align-items-center justify-content-center text-white bg-primary">
+                    
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+                <h2 class="esquecisenha-title fw-bold mb-2">Recuperar Senha</h2>
+                <p class="esquecisenha-subtitle text-muted small px-2">Insira o seu endereço de e-mail institucional e
+                    enviaremos um código redefinir sua senha.</p>
+            </div>
+            <form id="esquecisenha-form">
+                <div class="mb-4">
+                    <label for="email" class="esquecisenha-label form-label fw-semibold small text-dark">E-mail
+                        Institucional</label>
+                    <div class="input-group esquecisenha-input-group">
+                        <span class="input-group-text esquecisenha-input-icon bg-white border-end-0 text-muted"><i
+                                class="fa-regular fa-envelope"></i></span>
+                        <input type="email" class="form-control esquecisenha-input border-start-0 ps-0 shadow-none"
+                            id="email" placeholder="aluno@gmail.com" required>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="btn btn-primary esquecisenha-btn-submit w-100 py-2 d-flex justify-content-center align-items-center gap-2 mb-4">
+                    Enviar Link de Recuperação <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+            <hr class="esquecisenha-divider mb-4 border-secondary opacity-25">
+            <div class="text-center">
+                <a href="#"
+                    class="esquecisenha-link-voltar text-decoration-none fw-medium text-primary small d-flex align-items-center justify-content-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar para o Login
+                </a>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <footer class="esquecisenha-footer text-center py-3 text-muted small">
+        <i class="fa-solid fa-shield-halved"></i> Acesso seguro e criptografado
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script >
+ const formRecuperacao = document.getElementById('esquecisenha-form');
+
+formRecuperacao.addEventListener('submit', function(event) {
+event.preventDefault();
+const inputEmail = document.getElementById('email').value;
+
+if(inputEmail) {
+
+alert("Link de recuperação enviado para: " + inputEmail);
+
+}
+}); 
+
+
+
+
+</script>
+</body>
+
+</html>
