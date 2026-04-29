@@ -1,9 +1,9 @@
 import { supabase } from "../supabase/supabase.js";
 
 interface LoginData {
-  name: string;
+  nome: string;
   email: string;
-  IES: string;
+  ies: string;
   curso: string;
   senha: string;
   confrmarsenha: string;
@@ -90,7 +90,24 @@ if (form instanceof HTMLFormElement) {
       const { data, error } = await supabase.auth.signUp({
         email: objLogin.email,
         password: objLogin.senha,
+        options: {
+          data: {
+            nome: objLogin.nome,
+            curso: objLogin.curso,
+            ies: objLogin.ies,
+          },
+        },
       });
+
+      if (!error) {
+        window.location.href = "/index.html";
+      }
+
+      console.log(data);
+
+      if (error) {
+        console.log(error);
+      }
     }
   };
 
