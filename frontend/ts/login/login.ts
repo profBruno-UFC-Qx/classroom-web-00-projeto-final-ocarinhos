@@ -1,13 +1,14 @@
 import { supabase } from "../supabase/supabase.js";
 
 interface LoginData {
-  name: string;
+  nome: string;
   email: string;
-  IES: string;
+  ies: string;
   curso: string;
   senha: string;
   confrmarsenha: string;
 }
+
 
 const form = document.querySelector(".form");
 
@@ -17,7 +18,21 @@ if (form instanceof HTMLFormElement) {
 
   const elements = [email, senha];
 
-  function showError(selector: string, msg: string) {
+  function showApiError(msg: string) {
+    const erro = document.querySelector(".api-error");
+
+    if (erro instanceof HTMLElement) {
+      erro.innerText = msg;
+      erro.classList.add("show");
+
+      setTimeout(() => {
+        erro.classList.remove("show");
+        erro.innerText = "";
+      }, 3000);
+    }
+  }
+
+  function showInputError(selector: string, msg: string) {
     const erroBox = document.querySelector(`.input-group .${selector}`);
     if (erroBox) {
       erroBox.innerHTML = msg;
@@ -31,10 +46,10 @@ if (form instanceof HTMLFormElement) {
 
     const existeElementosVazios = elements.filter((element) => {
       if (!element.value) {
-        showError(element.name, "Digite um valor");
+        showInputError(element.name, "Digite um valor");
         return true;
       } else {
-        showError(element.name, "");
+        showInputError(element.name, "");
       }
     });
 
@@ -45,7 +60,7 @@ if (form instanceof HTMLFormElement) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (typeof obj.email == "string" && !emailRegex.test(obj.email)) {
-      showError("email", "Email inválido");
+      showInputError("email", "Email inválido");
       return false;
     }
 
@@ -57,10 +72,25 @@ if (form instanceof HTMLFormElement) {
 
     const formData = new FormData(form);
     const objLogin = Object.fromEntries(formData.entries());
-    console.log(objLogin);
 
     if (checkLogin(objLogin)) {
-      // logica de login
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: objLogin.email,
+        password: objLogin.senha,
+      });
+
+      if (!error) {
+        window.location.href = "/index.html";
+      }
+
+      if (error && error.code == "invalid_credentials") {
+        showApiError("Login ou senha incorretos");
+      } else if (error) {
+        showApiError("Alguma coisa deu errado");
+      }
+
+      console.log(data);
+      console.log(error);
     }
   };
 

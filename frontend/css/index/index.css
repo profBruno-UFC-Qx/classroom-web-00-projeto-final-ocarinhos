@@ -87,7 +87,7 @@
 
 .nav a:hover {
   color: #1d4ed8;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .nav a::after {
@@ -113,7 +113,12 @@
 .herobanner {
   position: relative;
   background-image:
-    linear-gradient(100deg, rgba(16, 84, 176, 0.92) 10%, rgba(29, 78, 216, 0.72) 58%, rgba(29, 78, 216, 0.45) 100%),
+    linear-gradient(
+      100deg,
+      rgba(16, 84, 176, 0.92) 10%,
+      rgba(29, 78, 216, 0.72) 58%,
+      rgba(29, 78, 216, 0.45) 100%
+    ),
     url("../../assets/Index/onebos.png");
   background-size: cover;
   background-position: center;
@@ -159,7 +164,9 @@
   border-radius: 10px;
   font-size: 16px;
   border: 1px solid transparent;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .herobanner a:first-child {
@@ -352,7 +359,9 @@
   border-radius: 12px;
   padding: 14px 16px;
   background: #f3f7ff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .quick-item:hover {
@@ -409,6 +418,16 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #6e7f9b;
+}
+
+.hello-msg {
+  font-size: 1rem !important;
+  background-color: #0b5cb931;
+  padding: 8px 14px;
+  border-radius: 12px;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 900px) {

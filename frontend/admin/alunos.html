@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUO Sistema</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+    <link rel="stylesheet" href="/css/AdminAlunos/AdminAlunos.css">
+</head>
+<body>
+    <header class="alunosHeader">
+        <h2>Gestão de Logística</h2>
+        <div class="alunosProfile">
+            <div class="alunosProfileInfo">
+                <p>Gestor Ocara</p>
+                <p>Administrador</p>
+            </div>
+            <div class="alunosProfileImage">
+                <img src="/assets/Admin/adminprofile.png" alt="Imagem de administrador">
+            </div>
+        </div>
+    </header>
+    <main class="alunosMain">
+        <h1>Listagem de Alunos</h1>
+        <p class="alunosSubtitle">Gerencie o registro e as informações acadêmicas dos estudantes da instituição.</p>
+        <div class="alunosSearch">
+            <form action="">
+                <input type="text" placeholder="Buscar por nome do aluno">
+                <button type="submit" aria-label="Buscar"><i class="bi bi-search"></i></button>
+            </form>
+            <div class="alunosFiltro">
+                <select name="filtro" id="filtro">
+                    <option value="default" selected>Filtrar por Faculdade</option>
+                    <option value="f1">Filtro 1</option>
+                    <option value="f2">Filtro 2</option>
+                </select>
+            </div>
+        </div>
+
+        <table class="alunosTable">
+            <tr class="thead">
+                <th>NOME DO ALUNO</th>
+                <th>E-MAIL</th>
+                <th>FACULDADE</th>
+                <th>CURSO</th>
+                <th class="status">STATUS</th>
+                <th class="buttons">AÇÕES</th>
+            </tr>
+            <tr>
+                <td class="name"><i class="bi bi-person-circle" aria-hidden="true"></i> Alice Silva Olveira</td>
+                <td>aluno@gmail.com</td>
+                <td>UFC</td>
+                <td>Sistemas de Informação</td>
+                <td><span class="ativo">ATIVO</span></td>
+                <td class="buttons">
+                    <button aria-label="Editar" class="edit"><i class="bi bi-pencil"></i></button>
+                    <button aria-label="Excluir" class="delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="name"><i class="bi bi-person-circle" aria-hidden="true"></i> Alice Silva Olveira</td>
+                <td>aluno@gmail.com</td>
+                <td>UFC</td>
+                <td>Sistemas de Informação</td>
+                <td><span class="inativo">INATIVO</span></td>
+                <td class="buttons">
+                    <button aria-label="Editar" class="edit"><i class="bi bi-pencil"></i></button>
+                    <button aria-label="Excluir" class="delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td class="name"><i class="bi bi-person-circle" aria-hidden="true"></i> Alice Silva Olveira</td>
+                <td>aluno@gmail.com</td>
+                <td>UFC</td>
+                <td>Sistemas de Informação</td>
+                <td><span class="ativo">ATIVO</span></td>
+                <td class="buttons">
+                    <button aria-label="Editar" class="edit"><i class="bi bi-pencil"></i></button>
+                    <button aria-label="Excluir" class="delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tfoot>
+                <tr class="tfoot">
+                    <td class="tfoot-info" colspan="4">Mostrando 1 a 5 de 156 alunos</td>
+                    <td class="tfoot-pager" colspan="2">
+                        <nav class="alunosFooter-pagination" aria-label="Paginação">
+                            <ul>
+                                <li class="prev"><button aria-label="Anterior"><i class="bi bi-chevron-left"></i></button></li>
+                                <li><button class="page active" aria-current="page">1</button></li>
+                                <li><button class="page">2</button></li>
+                                <li><button class="page">3</button></li>
+                                <li class="dots">…</li>
+                                <li><button class="page">26</button></li>
+                                <li class="next"><button aria-label="Próximo"><i class="bi bi-chevron-right"></i></button></li>
+                            </ul>
+                        </nav>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+</body>
+</html>
