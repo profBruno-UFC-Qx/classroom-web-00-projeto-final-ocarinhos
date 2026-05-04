@@ -129,6 +129,12 @@
   padding-right: 36px;
 }
 
+.header-info p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1D4ED8;
+  margin: 0;
+}
 /* Grupo de Caixa de Seleção */
 .sem-form-grupo-caixa {
   display: grid;
