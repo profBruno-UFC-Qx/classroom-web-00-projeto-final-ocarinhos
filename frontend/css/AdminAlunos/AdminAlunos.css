@@ -232,3 +232,123 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 1024px) {
+    .alunosMain {
+        padding: 20px 30px;
+    }
+
+    .alunosSearch {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .alunosSearch form {
+        width: 100%;
+    }
+
+    .alunosSearch input {
+        width: 100%;
+    }
+
+    .alunosFiltro {
+        width: 100%;
+    }
+
+    .alunosTable {
+        width: 95%;
+        font-size: 0.95rem;
+    }
+
+    .alunosTable td, th {
+        padding: 12px 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .alunosHeader {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .alunosMain {
+        padding: 15px 15px;
+    }
+
+    .alunosSearch {
+        flex-direction: column;
+    }
+
+    .alunosSearch input {
+        width: 100%;
+    }
+
+    .alunosFiltro {
+        width: 100%;
+    }
+
+    .alunosTable {
+        width: 100%;
+        font-size: 0.85rem;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .alunosTable tbody {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .alunosTable tr {
+        white-space: nowrap;
+    }
+
+    .alunosTable td, .alunosTable th {
+        padding: 12px 8px;
+        min-width: 80px;
+    }
+
+    .alunosTable tfoot {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .alunosTable tfoot tr {
+        white-space: nowrap;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .alunosHeader h2 {
+        font-size: 1.2rem;
+    }
+
+    .alunosMain {
+        padding: 10px 10px;
+    }
+
+    .alunosTable {
+        font-size: 0.75rem;
+    }
+
+    .alunosTable td, .alunosTable th {
+        padding: 8px;
+        min-width: 70px;
+    }
+
+    .buttons {
+        gap: 6px;
+    }
+
+    .edit, .delete {
+        font-size: 0.8rem;
+        padding: 4px 6px;
+    }
+}
