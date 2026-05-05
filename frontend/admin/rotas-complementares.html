@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Rotas Complementares</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    
+    <header class="header-bg">
+      <div class="header container">
+        <div class="logo">
+          <img
+            src="../assets/Header/AUO Logo.svg"
+            alt="Logo da associaçao dos onibus"
+          />
+          <h1>Transporte Universitário Ocara</h1>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="nav">
+          <a href="index.html">Inicio</a>
+          <a href="#">Rotas</a>
+          <a href="#">Faculdades</a>
+        </nav>
+
+        <nav class="nav-login">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main>
+        <article class="container rota-com-cabecalho">
+          <div class="rota-com-cabecalho-texto">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Gestão de rotas complementares</h1>
+                    <p>
+                        Visualize e gerencie as rotas complementares cadastradas no sistema.
+                    </p>
+                </div>
+        </div>
+            
+        </div>
+    </article>
+
+        <section class="container sem-form-container rota-com-container">
+           <form class="sem-form-corpo rota-com-corpo">
+            <fieldset class="sem-form-secao rota-com-secao">
+                    <div class="row g-3">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" placeholder="Busca por nome" aria-label="City">
+                        </div>
+                        <div class="col-sm">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Filtros
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Maior KM</a></li>
+                                    <li><a class="dropdown-item" href="#">Menor KM</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <button type="button" class="btn btn-secondary">Exportar</button>
+                        </div>
+                        <div class="col-sm">
+                            <button type="button" class="btn btn-primary">Cadastrar Rota</button>
+                        </div>
+                    </div>
+                </fieldset>
+             </form>
+        </section>
+
+        <section class="container rota-com-tabela-container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">NOME DA ROTA</th>
+                        <th scope="col">BAIRRO</th>
+                        <th scope="col">KM</th>
+                        <th scope="col">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CE464</td>
+                        <td>Sereno</td>
+                        <td><span class="badge bg-light text-primary">+3 KM</span></td>
+                        <td><i class="bi bi-pencil"></i> <i class="bi bi-trash"></i></td>
+                    </tr>
+                    <tr>
+                        <td>SERRAGEM</td>
+                        <td>Serragem</td>
+                        <td><span class="badge bg-light text-primary">+10 KM</span></td>
+                        <td><i class="bi bi-pencil"></i> <i class="bi bi-trash"></i></td>
+                    </tr>
+                    <tr>
+                        <td>PLACA OCARA</td>
+                        <td>Centro</td>
+                        <td><span class="badge bg-light text-primary">+2 KM</span></td>
+                        <td><i class="bi bi-pencil"></i> <i class="bi bi-trash"></i></td>
+                    </tr>
+                    <tr>
+                        <td>CURUPIRA</td>
+                        <td>Serragem</td>
+                        <td><span class="badge bg-light text-primary">+7 KM</span></td>
+                        <td><i class="bi bi-pencil"></i> <i class="bi bi-trash"></i></td>
+                    </tr>
+                    <tr>
+                        <td>SERENO</td>
+                        <td>Sereno</td>
+                        <td><span class="badge bg-light text-primary">+5 KM</span></td>
+                        <td><i class="bi bi-pencil"></i> <i class="bi bi-trash"></i></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            Mostrando 1-5 rotas de 15
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+
+
+    </main>
+
+    <script type="module" src="./dist/formulario-semanal/formulario-semanal.js"></script>
+</body>
+</html>
