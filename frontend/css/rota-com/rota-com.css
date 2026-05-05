@@ -1,0 +1,316 @@
+@import "../global.css";
+
+body {
+  background-color: #f8f9ff;
+  color: #0b1c30;
+}
+
+.rota-com-cabecalho {
+  padding: 20px 20px 0px 20px;
+  text-align: left;
+  margin-bottom: 8px;
+  max-width: 900px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.rota-com-cabecalho-texto {
+  min-width: 0;
+}
+
+.rota-com-subtitulo {
+  padding-bottom: 10px;
+  font-size: large;
+}
+
+.rota-com-cabecalho-texto p,
+.rota-com-cabecalho p {
+  color: #666;
+  margin: 0;
+}
+
+.rota-com-cabecalho-texto h1,
+.rota-com-cabecalho h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.rota-com-botao-cadastrar {
+  background-color: #0d5bb3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  min-width: 100%;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.rota-com-botao-cadastrar:hover {
+  background-color: #0a4b98;
+}
+
+/* Contêiner do Formulário */
+.rota-com-container {
+  padding: 30px 20px;
+  max-width: 900px;
+}
+
+.rota-com-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Seções do Formulário */
+.rota-com-secao {
+  background: #f9fafb;
+  border: 1px solid #d1caca;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0;
+}
+
+.rota-com-secao-metade {
+  flex: 1;
+}
+
+.rota-com-linha-dois {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.rota-com-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Título da Seção */
+.rota-com-titulo-secao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.rota-com-icone-secao {
+  font-size: 20px;
+}
+
+.rota-com-descricao-secao {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+  margin-top: -8px;
+}
+
+/* Grupos de Entrada */
+.rota-com-grupo-entrada {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.rota-com-grupo-entrada:last-child {
+  margin-bottom: 0;
+}
+
+.rota-com-grupo-entrada label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.rota-com-grupo-entrada input[type="text"],
+.rota-com-grupo-entrada input[type="email"],
+.rota-com-grupo-entrada select {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.rota-com-grupo-entrada input[type="text"]:focus,
+.rota-com-grupo-entrada input[type="email"]:focus,
+.rota-com-grupo-entrada select:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.rota-com-grupo-entrada select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231d4ed8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+/* Grupo de Caixa de Seleção */
+.rota-com-grupo-caixa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 6px;
+}
+
+.rota-com-etiqueta-caixa {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+  border: 1px solid #d1d5db;
+}
+
+.rota-com-etiqueta-caixa:hover {
+  background: #e5e7eb;
+}
+
+.rota-com-etiqueta-caixa input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1d4ed8;
+  border: 3px solid #333333;
+}
+
+/* Grupo de Rádio */
+.rota-com-grupo-radio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rota-com-etiqueta-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.rota-com-etiqueta-radio:hover {
+  background: #e5e7eb;
+}
+
+.rota-com-etiqueta-radio input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1d4ed8;
+  border: 2px solid #333333;
+}
+
+.rota-com-envio {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rota-com-botao-envio {
+  border-radius: 70px;
+  width: 200px;
+  height: 50px;
+  font-size: small;
+  padding: auto;
+}
+
+.rota-com-secao .row {
+  align-items: center;
+}
+
+.rota-com-secao .btn {
+  min-height: 40px;
+  border-radius: 8px;
+}
+
+/* Tabela centralizada */
+.rota-com-tabela-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rota-com-tabela-container .table {
+  margin-bottom: 0;
+}
+
+.rota-com-tabela-container .table thead th {
+  text-align: center;
+}
+
+.rota-com-tabela-container .table tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.rota-com-tabela-container .table tbody td:first-child {
+  text-align: left;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .rota-com-linha,
+  .rota-com-linha-dois {
+    grid-template-columns: 1fr;
+  }
+
+  .rota-com-grupo-caixa {
+    grid-template-columns: 1fr;
+  }
+
+  .rota-com-cabecalho h1 {
+    font-size: 24px;
+  }
+
+  .rota-com-cabecalho {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rota-com-container {
+    padding: 20px 15px;
+  }
+
+  .rota-com-secao {
+    padding: 18px;
+  }
+
+  .rota-com-botao-envio {
+    width: 100%;
+  }
+
+  .rota-com-botao-cadastrar {
+    width: 100%;
+  }
+}
