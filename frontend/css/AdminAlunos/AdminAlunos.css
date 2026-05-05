@@ -1,4 +1,4 @@
-@import url('/css/global.css');
+@import url('./../global.css');
 
 body {
     background-color: #F8F9FF;
@@ -233,6 +233,160 @@ body {
     justify-content: center;
 }
 
+.alunosModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 28, 48, 0.6);
+    backdrop-filter: blur(6px);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    z-index: 50;
+}
+
+.alunosModal {
+    width: min(760px, 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid #d9e3f4;
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(11, 28, 48, 0.25);
+    padding: 28px;
+}
+
+.alunosModalHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.alunosModalEyebrow {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #e7efff;
+    color: #0d4a99;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.alunosModalHeader h2 {
+    font-size: 1.7rem;
+    margin-bottom: 6px;
+}
+
+.alunosModalHeader p {
+    color: #64748b;
+}
+
+.alunosModalClose {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid #d9e3f4;
+    background: #fff;
+    color: #0b1c30;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.alunosModalForm {
+    display: grid;
+    gap: 24px;
+}
+
+.alunosModalGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.alunosModalGrid label {
+    display: grid;
+    gap: 8px;
+}
+
+.alunosModalGrid span {
+    color: #0b1c30;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.alunosModalGrid input,
+.alunosModalGrid select {
+    width: 100%;
+    min-height: 46px;
+    border: 1px solid #cfd8e8;
+    border-radius: 12px;
+    padding: 0 14px;
+    background: #fff;
+    color: #0b1c30;
+    box-shadow: inset 0 1px 2px rgba(11, 28, 48, 0.04);
+}
+
+.alunosModalGrid input:focus,
+.alunosModalGrid select:focus {
+    outline: 2px solid #0d4a99;
+    outline-offset: 2px;
+    border-color: transparent;
+}
+
+.alunosModalStatusField {
+    grid-column: 1 / -1;
+}
+
+.alunosModalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.alunosModalButton {
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.alunosModalButton.secondary {
+    background: #fff;
+    border: 1px solid #cfd8e8;
+    color: #0b1c30;
+}
+
+.alunosModalButton.primary {
+    background: linear-gradient(135deg, #0d4a99 0%, #1667c8 100%);
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(13, 74, 153, 0.28);
+}
+
+.alunosModalOverlay[hidden] {
+    display: none;
+}
+
+.edit:hover,
+.delete:hover,
+.alunosModalClose:hover,
+.alunosModalButton:hover {
+    filter: brightness(0.97);
+}
+
+.edit:focus-visible,
+.delete:focus-visible,
+.alunosModalClose:focus-visible,
+.alunosModalButton:focus-visible {
+    outline: 3px solid rgba(13, 74, 153, 0.25);
+    outline-offset: 2px;
+}
+
 @media (max-width: 1024px) {
     .alunosMain {
         padding: 20px 30px;
@@ -350,5 +504,21 @@ body {
     .edit, .delete {
         font-size: 0.8rem;
         padding: 4px 6px;
+    }
+
+    .alunosModal {
+        padding: 20px;
+    }
+
+    .alunosModalGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .alunosModalActions {
+        justify-content: stretch;
+    }
+
+    .alunosModalButton {
+        width: 100%;
     }
 }
