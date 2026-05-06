@@ -1,0 +1,66 @@
+.esquecisenha-body {
+background-color: #f8f9fa;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.esquecisenha-card {
+max-width: 450px;
+width: 100%;
+border-radius: 12px;
+}
+.esquecisenha-icon-circle {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background-color: #2159a6 ;
+font-size: 1.2rem;
+}
+.esquecisenha-title {
+color: #0b1a30;
+font-size: 1.5rem;
+}
+.esquecisenha-subtitle,
+.esquecisenha-input-icon {
+color: #6b7280 ;
+}
+.esquecisenha-label {
+font-size: 0.85rem;
+}
+.esquecisenha-input-icon {
+padding-top: 0.3rem;
+padding-bottom: 0.3rem;
+}
+.esquecisenha-input {
+border-color: #d1d5db;
+border-radius: 4px;
+padding-top: 0.6rem;
+padding-bottom: 0.6rem;
+}
+.esquecisenha-input:focus {
+border-color: #d1d5db;
+box-shadow: none;
+}
+.esquecisenha-input-icon {
+border-top-right-radius: 0;
+border-bottom-right-radius: 0;
+}
+.esquecisenha-input {
+border-top-left-radius: 0;
+border-bottom-left-radius: 0;
+}
+.esquecisenha-btn-submit {
+background-color: #0d4a96;
+border-color: #0d4a96;
+border-radius: 8px;
+font-weight: 500;
+font-size: 0.9rem;
+}
+.esquecisenha-btn-submit:hover {
+background-color: #0a3a75;
+border-color: #0a3a75;
+}
+.esquecisenha-link-voltar {
+color: #2159a6;
+}
+.esquecisenha-link-voltar:hover {
+color: #0a3a75 ;
+}

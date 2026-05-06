@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="login-bg">
+      <div class="login">
+        <div class="icon">
+          <img src="./assets/Login/Margin.svg" alt="" />
+        </div>
+
+        <h2>Acesso Institucional</h2>
+        <p class="sub-text">
+          Insira suas credenciais para gerenciar a logística.
+        </p>
+
+        <form class="form">
+          <div class="input-group">
+            <label>E-mail</label>
+            <input
+              name="email"
+              id="email"
+              type="text"
+              placeholder="aluno@gmail.com"
+            />
+            <p class="email"></p>
+          </div>
+
+          <div class="input-group">
+            <label>Senha</label>
+            <input
+              name="senha"
+              id="senha"
+              type="password"
+              placeholder="••••••••"
+            />
+            <p class="senha"></p>
+          </div>
+
+          <div class="acoes-extra">
+            <div class="lembrar">
+              <input type="checkbox" />
+              <label>Lembrar de mim</label>
+            </div>
+            <div>
+              <a href="./" class="esqueci-senha">Esqueci minha senha</a>
+            </div>
+          </div>
+
+          <button type="submit">Entrar</button>
+        </form>
+        <footer class="footer">
+          Primeiro acesso? <a href="./register.html">Cadastre-se</a>
+        </footer>
+      </div>
+      <div class="api-error">
+        
+      </div>
+    </div>
+
+    <script type="module" src="./dist/login/login.js"></script>
+  </body>
+</html>

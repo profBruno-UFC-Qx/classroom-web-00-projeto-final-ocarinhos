@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUO Sistema</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="header-bg">
+      <div class="header container">
+        <div class="logo">
+          <img
+            src="./assets/Header/AUO Logo.svg"
+            alt="Logo da associaçao dos onibus"
+          />
+          <h1>Transporte Universitário Ocara</h1>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="nav">
+          <a href="#">Inicio</a>
+          <a href="#">Rotas</a>
+          <a href="#">Faculdades</a>
+        </nav>
+
+        <nav class="nav-login">
+          <a href="login.html" class="login-btn">Entrar</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="hero-bg">
+      <div class="herobanner">
+        <h2>Gestão Inteligente do Transporte Universitário</h2>
+        <p>Acompanhe rotas, consulte horários e fique por dentro de todos os avisos da frota de Ocara em tempo real.</p>
+        <div>
+          <a href="#">Ver Rotas de Hoje</a>
+          <a href="#">Painel do Aluno</a>
+        </div>
+      </div>
+      
+      <div class="herostats">
+        <article class="stat-card">
+          <div class="stat-icon stat-icon-frota">
+            <img src="./assets/Index/frotaativaicon.png" alt="Icone frota ativa" />
+          </div>
+          <div class="stat-content">
+            <span>FROTA ATIVA</span>
+            <strong>12 Ônibus rodando</strong>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon stat-icon-atendimento">
+            <img src="./assets/Index/atendimentoicon.png" alt="Icone de atendimentos" />
+          </div>
+          <div class="stat-content">
+            <span>ATENDIMENTOS</span>
+            <strong>450 Alunos</strong>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon stat-icon-equipe">
+            <img src="./assets/Index/equipeicon.png" alt="Icone da equipe" />
+          </div>
+          <div class="stat-content">
+            <span>EQUIPE</span>
+            <strong>15 Motoristas</strong>
+          </div>
+        </article>
+      </div>
+
+      <section class="home-panels">
+        <div class="alerts-panel">
+          <header class="panel-header">
+            <h3><i class="bi bi-megaphone"></i> Avisos Importantes</h3>
+            <a href="#">Ver Todos</a>
+          </header>
+
+          <div class="alerts-grid">
+            <article class="alert-card alert-card-urgent">
+              <span class="alert-tag">URGENTE</span>
+              <p class="alert-type alert-type-danger"><i class="bi bi-exclamation-triangle"></i> Manutenção na Via</p>
+              <h4>Rota 3 (Noturno) Alterada</h4>
+              <p>
+                Devido a obras na CE-060, o ônibus da Rota 3 fará um desvio pelo centro hoje à noite.
+                Atrasos de até 15 min previstos.
+              </p>
+              <time datetime="2026-04-26T14:30">Hoje, 14:30</time>
+            </article>
+
+            <article class="alert-card">
+              <p class="alert-type alert-type-info"><i class="bi bi-info-circle"></i> Informativo</p>
+              <h4>Renovação de Carteirinhas</h4>
+              <p>
+                O prazo para entrega da documentação de renovação do semestre 2024.1 se encerra nesta sexta-feira.
+              </p>
+              <time datetime="2026-04-25T09:00">Ontem, 09:00</time>
+            </article>
+          </div>
+        </div>
+
+        <aside class="quick-panel">
+          <header class="panel-header">
+            <h3><i class="bi bi-grid-3x3-gap-fill"></i> Acesso Rápido</h3>
+          </header>
+
+          <div class="quick-list">
+            <a href="#" class="quick-item">
+              <span class="quick-icon"><i class="bi bi-map"></i></span>
+              <span class="quick-content">
+                <strong>Consultar Rotas</strong>
+                <small>Mapas e itinerários</small>
+              </span>
+              <i class="bi bi-chevron-right quick-arrow"></i>
+            </a>
+
+            <a href="#" class="quick-item">
+              <span class="quick-icon"><i class="bi bi-clock"></i></span>
+              <span class="quick-content">
+                <strong>Horários</strong>
+                <small>Saídas e previsões</small>
+              </span>
+              <i class="bi bi-chevron-right quick-arrow"></i>
+            </a>
+
+            <a href="#" class="quick-item">
+              <span class="quick-icon"><i class="bi bi-person-badge"></i></span>
+              <span class="quick-content">
+                <strong>Área do Aluno</strong>
+                <small>Carteirinha digital e dados</small>
+              </span>
+              <i class="bi bi-chevron-right quick-arrow"></i>
+            </a>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>SISTEMA DESENVOLVIDO PARA GERENCIAMENTO DO TRANSPORTE UNIVERSITÁRIO DE OCARA</p>
+    </footer>
+
+    <script type="module" src="./dist/index/index.js"></script>
+  </body>
+</html>

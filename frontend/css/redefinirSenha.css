@@ -1,0 +1,73 @@
+.redefinirsenha-body {
+    background-color: #eef4ff; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.redefinirsenha-card {
+    max-width: 420px;
+    width: 100%;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Linha azul no topo do card */
+.top-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-color: #004a99;
+}
+
+.redefinirsenha-icon-circle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #2159a6;
+    font-size: 1.8rem;
+}
+
+.redefinirsenha-title {
+    color: #0b1a30;
+    font-size: 1.6rem;
+}
+
+.redefinirsenha-subtitle {
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+.redefinirsenha-input-group {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.redefinirsenha-input-icon,
+.redefinirsenha-input {
+    border-color: #d1d5db;
+    padding: 0.7rem;
+}
+
+.redefinirsenha-btn-submit {
+    background-color: #00458d; 
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.redefinirsenha-btn-submit:hover {
+    background-color: #003366;
+}
+
+.redefinirsenha-link-voltar {
+    color: #2159a6;
+}
+
+/* Ajuste nos placeholders */
+::placeholder {
+    color: #a0aec0 !important;
+    letter-spacing: 1px;
+}
