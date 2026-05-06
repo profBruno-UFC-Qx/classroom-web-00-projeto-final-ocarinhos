@@ -25,10 +25,13 @@ color: #6b7280 ;
 .esquecisenha-label {
 font-size: 0.85rem;
 }
-.esquecisenha-input-icon,
+.esquecisenha-input-icon {
+padding-top: 0.3rem;
+padding-bottom: 0.3rem;
+}
 .esquecisenha-input {
 border-color: #d1d5db;
-border-radius: 8px;
+border-radius: 4px;
 padding-top: 0.6rem;
 padding-bottom: 0.6rem;
 }
