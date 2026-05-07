@@ -65,7 +65,7 @@
   border: 1px solid #d1d5db;
 }
 
-button {
+.form button {
   width: 100%;
   padding: 12px;
   border-radius: 6px;
@@ -75,7 +75,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.form button:hover {
   background: #1e40af;
 }
 
