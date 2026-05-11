@@ -84,7 +84,6 @@ if (form instanceof HTMLFormElement) {
 
     const formData = new FormData(form);
     const objLogin = Object.fromEntries(formData.entries());
-    console.log(objLogin);
 
     if (checkLogin(objLogin)) {
       const { data, error } = await supabase.auth.signUp({
