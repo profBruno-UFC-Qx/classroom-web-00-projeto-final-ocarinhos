@@ -1,0 +1,541 @@
+@import url("./../global.css");
+
+body {
+  background-color: #f8f9ff;
+  color: #0b1c30;
+}
+
+.faculdadesHeader {
+  background-color: #fff;
+  display: flex;
+  padding: 15px 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faculdadesProfile {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.faculdadesProfileInfo > p:nth-child(1) {
+  font-weight: bold;
+}
+
+.faculdadesProfileInfo > p:nth-child(2) {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: -5px;
+}
+
+.faculdadesProfileImage img {
+  width: 100%;
+  border-radius: 50%;
+  padding: 1px;
+  border: 2px solid blue;
+}
+
+.faculdadesMain {
+  padding: 30px 50px;
+}
+
+.faculdadesSubtitle {
+  margin-top: -5px;
+  color: #424752;
+}
+
+.faculdadesSearch {
+  background-color: #fff;
+  border: 1px solid #c2c6d3;
+  border-radius: 12px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.faculdadesSearch form {
+  display: flex;
+  align-items: center;
+}
+
+.faculdadesSearch input {
+  width: 70vw;
+  height: 40px;
+  border: 1px solid #6b7280;
+  border-radius: 8px 0px 0px 8px;
+  padding-left: 10px;
+}
+
+.faculdadesSearch button {
+  background-color: #6b7280;
+  height: 40px;
+  margin-left: -5px;
+  border-radius: 0px 8px 8px 0px;
+  color: #fff;
+  padding: 0px 10px;
+}
+
+.faculdadesFiltro {
+  width: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faculdadesFiltro select {
+  border: 1px solid #c2c6d3;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0px 20px;
+}
+
+.faculdadesFiltro select,
+.faculdadesSearch button {
+  cursor: pointer;
+}
+
+.faculdadesTable {
+  border-collapse: separate;
+}
+
+.faculdadesTable td,
+th {
+  border-bottom: 1px solid #c2c6d3;
+  padding: 15px 10px;
+}
+
+.faculdadesTable tr {
+  border: 2px solid #c2c6d3;
+}
+
+.faculdadesTable tr.thead {
+  background-color: #eff4ff;
+  color: #424752;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.faculdadesTable td {
+  color: #424752;
+}
+
+.faculdadesTable td.name {
+  font-weight: 700;
+  color: #0b1c30;
+}
+
+.faculdadesTable td > span {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-radius: 12px;
+  font-weight: bold;
+  display: block;
+  max-width: 90px;
+  text-align: center;
+}
+
+.faculdadesTable td > span.inativo {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.edit,
+.delete {
+  background-color: rgb(75, 54, 181);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+.delete {
+  background-color: rgb(215, 68, 68);
+}
+
+.buttons {
+  display: flex;
+  column-gap: 15px;
+  justify-content: center;
+}
+
+.status {
+  text-align: center;
+}
+
+.faculdadesTable {
+  margin: 20px auto;
+  width: 100%;
+  border: 1px solid #c2c6d3;
+  border-radius: 12px;
+  overflow: hidden;
+  border-spacing: 0;
+  background: #fff;
+}
+
+.faculdadesTable tr.thead {
+  background-color: #eff4ff;
+  color: #424752;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.faculdadesTable tfoot tr.tfoot {
+  background-color: #eff4ff;
+  color: #424752;
+}
+
+.faculdadesTable tfoot td {
+  padding: 12px 16px;
+  border-top: 1px solid #e6e9f2;
+}
+
+.faculdadesTable tfoot .tfoot-info {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.faculdadesTable tfoot .faculdadesFooter-pagination ul {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.faculdadesTable tfoot .faculdadesFooter-pagination button {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #0b1c30;
+}
+
+.faculdadesTable tfoot .faculdadesFooter-pagination button:hover {
+  background: #f1f5f9;
+}
+
+.faculdadesTable tfoot .faculdadesFooter-pagination .page.active {
+  background: #0d4a99;
+  color: #fff;
+  border-color: #0d4a99;
+}
+
+.faculdadesTable tfoot .faculdadesFooter-pagination .dots {
+  padding: 6px 4px;
+  color: #94a3b8;
+}
+
+.faculdadesTable tfoot .faculdadesFooter-pagination .prev button,
+.faculdadesTable tfoot .faculdadesFooter-pagination .next button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faculdadesModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 28, 48, 0.6);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 50;
+}
+
+.faculdadesModal {
+  width: min(760px, 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid #d9e3f4;
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(11, 28, 48, 0.25);
+  padding: 28px;
+}
+
+.faculdadesModalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.faculdadesModalEyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #e7efff;
+  color: #0d4a99;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.faculdadesModalHeader h2 {
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+}
+
+.faculdadesModalHeader p {
+  color: #64748b;
+}
+
+.faculdadesModalClose {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #d9e3f4;
+  background: #fff;
+  color: #0b1c30;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.faculdadesModalForm {
+  display: grid;
+  gap: 24px;
+}
+
+.faculdadesModalGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.faculdadesModalGrid label {
+  display: grid;
+  gap: 8px;
+}
+
+.faculdadesModalGrid span {
+  color: #0b1c30;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.faculdadesModalGrid input,
+.faculdadesModalGrid select {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid #cfd8e8;
+  border-radius: 12px;
+  padding: 0 14px;
+  background: #fff;
+  color: #0b1c30;
+  box-shadow: inset 0 1px 2px rgba(11, 28, 48, 0.04);
+}
+
+.faculdadesModalGrid input:focus,
+.faculdadesModalGrid select:focus {
+  outline: 2px solid #0d4a99;
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+.faculdadesModalStatusField {
+  grid-column: 1 / -1;
+}
+
+.faculdadesModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.faculdadesModalButton {
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.faculdadesModalButton.secondary {
+  background: #fff;
+  border: 1px solid #cfd8e8;
+  color: #0b1c30;
+}
+
+.faculdadesModalButton.primary {
+  background: linear-gradient(135deg, #0d4a99 0%, #1667c8 100%);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(13, 74, 153, 0.28);
+}
+
+.faculdadesModalOverlay[hidden] {
+  display: none;
+}
+
+.bi-mortarboard::before {
+  content: "\f6fe";
+  background-color: #e5eeff;
+  padding: 5px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  color: #00458e;
+}
+
+.edit:hover,
+.delete:hover,
+.faculdadesModalClose:hover,
+.faculdadesModalButton:hover {
+  filter: brightness(0.97);
+}
+
+.edit:focus-visible,
+.delete:focus-visible,
+.faculdadesModalClose:focus-visible,
+.faculdadesModalButton:focus-visible {
+  outline: 3px solid rgba(13, 74, 153, 0.25);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+  .faculdadesMain {
+    padding: 20px 30px;
+  }
+
+  .faculdadesSearch {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .faculdadesSearch form {
+    width: 100%;
+  }
+
+  .faculdadesSearch input {
+    width: 100%;
+  }
+
+  .faculdadesFiltro {
+    width: 100%;
+  }
+
+  .faculdadesTable {
+    width: 95%;
+    font-size: 0.95rem;
+  }
+
+  .faculdadesTable td,
+  th {
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .faculdadesHeader {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .faculdadesMain {
+    padding: 15px 15px;
+  }
+
+  .faculdadesSearch {
+    flex-direction: column;
+  }
+
+  .faculdadesSearch input {
+    width: 100%;
+  }
+
+  .faculdadesFiltro {
+    width: 100%;
+  }
+
+  .faculdadesTable {
+    width: 100%;
+    font-size: 0.85rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .faculdadesTable tbody {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .faculdadesTable tr {
+    white-space: nowrap;
+  }
+
+  .faculdadesTable td,
+  .faculdadesTable th {
+    padding: 12px 8px;
+    min-width: 80px;
+  }
+
+  .faculdadesTable tfoot {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .faculdadesTable tfoot tr {
+    white-space: nowrap;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faculdadesHeader h2 {
+    font-size: 1.2rem;
+  }
+
+  .faculdadesMain {
+    padding: 10px 10px;
+  }
+
+  .faculdadesTable {
+    font-size: 0.75rem;
+  }
+
+  .faculdadesTable td,
+  .faculdadesTable th {
+    padding: 8px;
+    min-width: 70px;
+  }
+
+  .buttons {
+    gap: 6px;
+  }
+
+  .edit,
+  .delete {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+  }
+
+  .faculdadesModal {
+    padding: 20px;
+  }
+
+  .faculdadesModalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculdadesModalActions {
+    justify-content: stretch;
+  }
+
+  .faculdadesModalButton {
+    width: 100%;
+  }
+}
