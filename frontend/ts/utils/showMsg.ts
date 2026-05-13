@@ -1,10 +1,20 @@
 let div: HTMLDivElement | null = null;
 let timer: number;
 
-export default function showTopMessage(text: string): void {
+export default function showTopMessage(
+  text: string,
+  type: "error" | "alert"
+): void {
   if (div) {
     div.remove();
     clearTimeout(timer);
+  }
+
+  let color = "";
+  if (type == "error") {
+    color = "#dc2626";
+  } else if (type == "alert") {
+    color = "#2159a6";
   }
 
   div = document.createElement("div");
@@ -16,7 +26,7 @@ export default function showTopMessage(text: string): void {
     top: "12px",
     left: "50%",
     transform: "translateX(-50%)",
-    background: "#dc2626",
+    background: color,
     color: "#fff",
     padding: "10px 16px",
     borderRadius: "8px",
