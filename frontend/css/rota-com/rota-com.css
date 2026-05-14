@@ -5,6 +5,10 @@ body {
   color: #0b1c30;
 }
 
+.alignRight {
+  text-align: right;
+}
+
 .rota-com-secao {
   background: #f9fafb;
   border: 1px solid #d1caca;
@@ -13,7 +17,6 @@ body {
   margin: 0;
 }
 
-/* Estilos da seção de pesquisa */
 .rota-com-pesquisa {
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -63,7 +66,6 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* Estilos dos botões */
 .rota-com-pesquisa button {
   padding: 10px 16px;
   border: 1px solid #6c757d;
@@ -96,7 +98,6 @@ body {
   border-color: #0056b3;
 }
 
-/* Dropdown */
 .rota-com-pesquisa .dropdown {
   position: relative;
   display: inline-block;
@@ -149,14 +150,12 @@ body {
   border-left: 0.3em solid transparent;
 }
 
-/* Fieldset */
 .rota-com-pesquisa fieldset {
   border: none;
   padding: 0;
   margin: 0;
 }
 
-/* Classes do Bootstrap para compatibilidade */
 .rota-com-pesquisa .form-control {
   width: 100%;
   padding: 10px 14px;
