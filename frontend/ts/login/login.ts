@@ -9,7 +9,6 @@ interface LoginData {
   confrmarsenha: string;
 }
 
-
 const form = document.querySelector(".form");
 
 if (form instanceof HTMLFormElement) {
