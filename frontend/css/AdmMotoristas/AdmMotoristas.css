@@ -9,7 +9,7 @@ body {
   text-align: right;
 }
 
-.faculdadesHeader {
+.motoristasHeader {
   background-color: #fff;
   display: flex;
   padding: 15px 50px;
@@ -17,30 +17,30 @@ body {
   align-items: center;
 }
 
-.faculdadesProfile {
+.motoristasProfile {
   display: flex;
   align-items: center;
   column-gap: 15px;
 }
 
-.faculdadesProfileInfo > p:nth-child(1) {
+.motoristasProfileInfo > p:nth-child(1) {
   font-weight: bold;
 }
 
-.faculdadesProfileInfo > p:nth-child(2) {
+.motoristasProfileInfo > p:nth-child(2) {
   font-size: 0.9rem;
   color: #64748b;
   margin-top: -5px;
 }
 
-.faculdadesProfileImage img {
+.motoristasProfileImage img {
   width: 100%;
   border-radius: 50%;
   padding: 1px;
   border: 2px solid blue;
 }
 
-.faculdadesMain {
+.motoristasMain {
   display: flex;
   flex-direction: column;
   margin: 0px auto;
@@ -48,12 +48,12 @@ body {
   padding: 30px 50px;
 }
 
-.faculdadesSubtitle {
+.motoristasSubtitle {
   margin-top: -5px;
   color: #424752;
 }
 
-.faculdadesSearch {
+.motoristasSearch {
   background-color: #fff;
   border: 1px solid #c2c6d3;
   border-radius: 12px;
@@ -65,13 +65,13 @@ body {
   margin-top: 20px;
 }
 
-.faculdadesSearch form {
+.motoristasSearch form {
   flex-grow: 1;
   display: flex;
   align-items: center;
 }
 
-.faculdadesSearch input {
+.motoristasSearch input {
   width: 100%;
   height: 40px;
   border: 1px solid #6b7280;
@@ -79,7 +79,7 @@ body {
   padding-left: 10px;
 }
 
-.faculdadesSearch button {
+.motoristasSearch button {
   background-color: #6b7280;
   height: 40px;
   margin-left: -5px;
@@ -88,55 +88,55 @@ body {
   padding: 0px 10px;
 }
 
-.faculdadesFiltro {
+.motoristasFiltro {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.faculdadesFiltro select {
+.motoristasFiltro select {
   border: 1px solid #c2c6d3;
   border-radius: 8px;
   height: 40px;
   padding: 0px 20px;
 }
 
-.faculdadesFiltro select,
-.faculdadesSearch button {
+.motoristasFiltro select,
+.motoristasSearch button {
   cursor: pointer;
 }
 
-.faculdadesTable {
+.motoristasTable {
   border-collapse: separate;
 }
 
-.faculdadesTable td,
+.motoristasTable td,
 th {
   border-bottom: 1px solid #c2c6d3;
   padding: 15px 10px;
 }
 
-.faculdadesTable tr {
+.motoristasTable tr {
   border: 2px solid #c2c6d3;
 }
 
-.faculdadesTable tr.thead {
+.motoristasTable tr.thead {
   background-color: #eff4ff;
   color: #424752;
   font-size: 1.2rem;
   text-align: left;
 }
 
-.faculdadesTable td {
+.motoristasTable td {
   color: #424752;
 }
 
-.faculdadesTable td.name {
+.motoristasTable td.name {
   font-weight: 700;
   color: #0b1c30;
 }
 
-.faculdadesTable td > span {
+.motoristasTable td > span {
   background-color: #dbeafe;
   color: #1e40af;
   border-radius: 12px;
@@ -146,7 +146,7 @@ th {
   text-align: center;
 }
 
-.faculdadesTable td > span.inativo {
+.motoristasTable td > span.inativo {
   background-color: #f1f5f9;
   color: #64748b;
 }
@@ -166,7 +166,6 @@ th {
 .buttons {
   display: flex;
   column-gap: 15px;
-  justify-content: center;
   justify-content: end;
 }
 
@@ -174,7 +173,7 @@ th {
   text-align: center;
 }
 
-.faculdadesTable {
+.motoristasTable {
   margin: 20px auto;
   width: 100%;
   border: 1px solid #c2c6d3;
@@ -184,29 +183,29 @@ th {
   background: #fff;
 }
 
-.faculdadesTable tr.thead {
+.motoristasTable tr.thead {
   background-color: #eff4ff;
   color: #424752;
   font-size: 1rem;
   text-align: left;
 }
 
-.faculdadesTable tfoot tr.tfoot {
+.motoristasTable tfoot tr.tfoot {
   background-color: #eff4ff;
   color: #424752;
 }
 
-.faculdadesTable tfoot td {
+.motoristasTable tfoot td {
   padding: 12px 16px;
   border-top: 1px solid #e6e9f2;
 }
 
-.faculdadesTable tfoot .tfoot-info {
+.motoristasTable tfoot .tfoot-info {
   color: #64748b;
   font-size: 0.95rem;
 }
 
-.faculdadesTable tfoot .faculdadesFooter-pagination ul {
+.motoristasTable tfoot .motoristasFooter-pagination ul {
   list-style: none;
   display: flex;
   gap: 8px;
@@ -215,7 +214,7 @@ th {
   padding: 0;
 }
 
-.faculdadesTable tfoot .faculdadesFooter-pagination button {
+.motoristasTable tfoot .motoristasFooter-pagination button {
   background: transparent;
   border: 1px solid transparent;
   padding: 6px 10px;
@@ -224,29 +223,29 @@ th {
   color: #0b1c30;
 }
 
-.faculdadesTable tfoot .faculdadesFooter-pagination button:hover {
+.motoristasTable tfoot .motoristasFooter-pagination button:hover {
   background: #f1f5f9;
 }
 
-.faculdadesTable tfoot .faculdadesFooter-pagination .page.active {
+.motoristasTable tfoot .motoristasFooter-pagination .page.active {
   background: #0d4a99;
   color: #fff;
   border-color: #0d4a99;
 }
 
-.faculdadesTable tfoot .faculdadesFooter-pagination .dots {
+.motoristasTable tfoot .motoristasFooter-pagination .dots {
   padding: 6px 4px;
   color: #94a3b8;
 }
 
-.faculdadesTable tfoot .faculdadesFooter-pagination .prev button,
-.faculdadesTable tfoot .faculdadesFooter-pagination .next button {
+.motoristasTable tfoot .motoristasFooter-pagination .prev button,
+.motoristasTable tfoot .motoristasFooter-pagination .next button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.faculdadesModalOverlay {
+.motoristasModalOverlay {
   position: fixed;
   inset: 0;
   background: rgba(11, 28, 48, 0.6);
@@ -257,7 +256,7 @@ th {
   z-index: 50;
 }
 
-.faculdadesModal {
+.motoristasModal {
   width: min(760px, 100%);
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid #d9e3f4;
@@ -266,7 +265,7 @@ th {
   padding: 28px;
 }
 
-.faculdadesModalHeader {
+.motoristasModalHeader {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -274,7 +273,7 @@ th {
   margin-bottom: 24px;
 }
 
-.faculdadesModalEyebrow {
+.motoristasModalEyebrow {
   display: inline-flex;
   align-items: center;
   padding: 6px 12px;
@@ -288,16 +287,16 @@ th {
   margin-bottom: 10px;
 }
 
-.faculdadesModalHeader h2 {
+.motoristasModalHeader h2 {
   font-size: 1.7rem;
   margin-bottom: 6px;
 }
 
-.faculdadesModalHeader p {
+.motoristasModalHeader p {
   color: #64748b;
 }
 
-.faculdadesModalClose {
+.motoristasModalClose {
   width: 42px;
   height: 42px;
   border-radius: 12px;
@@ -310,30 +309,30 @@ th {
   flex: 0 0 auto;
 }
 
-.faculdadesModalForm {
+.motoristasModalForm {
   display: grid;
   gap: 24px;
 }
 
-.faculdadesModalGrid {
+.motoristasModalGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
-.faculdadesModalGrid label {
+.motoristasModalGrid label {
   display: grid;
   gap: 8px;
 }
 
-.faculdadesModalGrid span {
+.motoristasModalGrid span {
   color: #0b1c30;
   font-weight: 600;
   font-size: 0.95rem;
 }
 
-.faculdadesModalGrid input,
-.faculdadesModalGrid select {
+.motoristasModalGrid input,
+.motoristasModalGrid select {
   width: 100%;
   min-height: 46px;
   border: 1px solid #cfd8e8;
@@ -344,44 +343,44 @@ th {
   box-shadow: inset 0 1px 2px rgba(11, 28, 48, 0.04);
 }
 
-.faculdadesModalGrid input:focus,
-.faculdadesModalGrid select:focus {
+.motoristasModalGrid input:focus,
+.motoristasModalGrid select:focus {
   outline: 2px solid #0d4a99;
   outline-offset: 2px;
   border-color: transparent;
 }
 
-.faculdadesModalStatusField {
+.motoristasModalStatusField {
   grid-column: 1 / -1;
 }
 
-.faculdadesModalActions {
+.motoristasModalActions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-.faculdadesModalButton {
+.motoristasModalButton {
   min-height: 46px;
   padding: 0 18px;
   border-radius: 12px;
   font-weight: 700;
 }
 
-.faculdadesModalButton.secondary {
+.motoristasModalButton.secondary {
   background: #fff;
   border: 1px solid #cfd8e8;
   color: #0b1c30;
 }
 
-.faculdadesModalButton.primary {
+.motoristasModalButton.primary {
   background: linear-gradient(135deg, #0d4a99 0%, #1667c8 100%);
   color: #fff;
   box-shadow: 0 12px 24px rgba(13, 74, 153, 0.28);
 }
 
-.faculdadesModalOverlay[hidden] {
+.motoristasModalOverlay[hidden] {
   display: none;
 }
 
@@ -396,77 +395,77 @@ th {
 
 .edit:hover,
 .delete:hover,
-.faculdadesModalClose:hover,
-.faculdadesModalButton:hover {
+.motoristasModalClose:hover,
+.motoristasModalButton:hover {
   filter: brightness(0.97);
 }
 
 .edit:focus-visible,
 .delete:focus-visible,
-.faculdadesModalClose:focus-visible,
-.faculdadesModalButton:focus-visible {
+.motoristasModalClose:focus-visible,
+.motoristasModalButton:focus-visible {
   outline: 3px solid rgba(13, 74, 153, 0.25);
   outline-offset: 2px;
 }
 
 @media (max-width: 1024px) {
-  .faculdadesMain {
+  .motoristasMain {
     padding: 20px 30px;
   }
 
-  .faculdadesSearch {
+  .motoristasSearch {
     flex-direction: column;
     gap: 15px;
   }
 
-  .faculdadesSearch form {
+  .motoristasSearch form {
     width: 100%;
   }
 
-  .faculdadesSearch input {
+  .motoristasSearch input {
     width: 100%;
   }
 
-  .faculdadesFiltro {
+  .motoristasFiltro {
     width: 100%;
   }
 
-  .faculdadesTable {
+  .motoristasTable {
     width: 95%;
     font-size: 0.95rem;
   }
 
-  .faculdadesTable td,
+  .motoristasTable td,
   th {
     padding: 12px 8px;
   }
 }
 
 @media (max-width: 768px) {
-  .faculdadesHeader {
+  .motoristasHeader {
     padding: 15px 20px;
     flex-direction: column;
     gap: 15px;
     text-align: center;
   }
 
-  .faculdadesMain {
+  .motoristasMain {
     padding: 15px 15px;
   }
 
-  .faculdadesSearch {
+  .motoristasSearch {
     flex-direction: column;
   }
 
-  .faculdadesSearch input {
+  .motoristasSearch input {
     width: 100%;
   }
 
-  .faculdadesFiltro {
+  .motoristasFiltro {
     width: 100%;
   }
 
-  .faculdadesTable {
+  .motoristasTable {
     width: 100%;
     font-size: 0.85rem;
     display: block;
@@ -474,27 +473,27 @@ th {
     -webkit-overflow-scrolling: touch;
   }
 
-  .faculdadesTable tbody {
+  .motoristasTable tbody {
     display: block;
     overflow-x: auto;
   }
 
-  .faculdadesTable tr {
+  .motoristasTable tr {
     white-space: nowrap;
   }
 
-  .faculdadesTable td,
-  .faculdadesTable th {
+  .motoristasTable td,
+  .motoristasTable th {
     padding: 12px 8px;
     min-width: 80px;
   }
 
-  .faculdadesTable tfoot {
+  .motoristasTable tfoot {
     display: block;
     overflow-x: auto;
   }
 
-  .faculdadesTable tfoot tr {
+  .motoristasTable tfoot tr {
     white-space: nowrap;
   }
 
@@ -504,20 +503,20 @@ th {
 }
 
 @media (max-width: 480px) {
-  .faculdadesHeader h2 {
+  .motoristasHeader h2 {
     font-size: 1.2rem;
   }
 
-  .faculdadesMain {
+  .motoristasMain {
     padding: 10px 10px;
   }
 
-  .faculdadesTable {
+  .motoristasTable {
     font-size: 0.75rem;
   }
 
-  .faculdadesTable td,
-  .faculdadesTable th {
+  .motoristasTable td,
+  .motoristasTable th {
     padding: 8px;
     min-width: 70px;
   }
@@ -532,19 +531,19 @@ th {
     padding: 4px 6px;
   }
 
-  .faculdadesModal {
+  .motoristasModal {
     padding: 20px;
   }
 
-  .faculdadesModalGrid {
+  .motoristasModalGrid {
     grid-template-columns: 1fr;
   }
 
-  .faculdadesModalActions {
+  .motoristasModalActions {
     justify-content: stretch;
   }
 
-  .faculdadesModalButton {
+  .motoristasModalButton {
     width: 100%;
   }
 }
