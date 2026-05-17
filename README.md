@@ -132,3 +132,17 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | --- | --- |
 | GET | api/entidade1/|
 | POST | api/entidade2 |
+
+
+## USO PARA CADEIRA DE ENGENHARIA DE SOFTWARE
+
+Nome da equipe/projeto: Sistema do transporte universitário de Ocara
+
+Lista de integrantes:
+FRANCISCO MATEUS ALVES FREIRES - mateus124
+NARCISO ROBERTO DE SOUZA - narciso-roberto
+LUANA LOPES DE AMORIM - 
+
+Links para ferramentas externas:
+FIGMA (PROTÓTIPO): https://www.figma.com/design/BTbyYxhsiU1LGLmWBdmo2O/TrabWEB?node-id=0-1&t=UAGhTL9gBZjf1z6k-1
+TRELLO (TASKS): https://trello.com/invite/b/69e0e5e7662d70def342a859/ATTIdaa3e11c61b8045bc65373f649998b112A30E479/trabweb
