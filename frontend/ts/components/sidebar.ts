@@ -1,3 +1,5 @@
+
+
 export function renderizarSidebar(containerId: string, paginaAtiva: string) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -13,7 +15,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
             </div>
             
             <nav class="sidebar-nav">
-                <a href="index.html" class="menu-item ${paginaAtiva === 'dashboard' ? 'active' : ''}">
+                <a href="../../aluno/dashBoardAluno.html" class="menu-item ${paginaAtiva === 'dashboard' ? 'active' : ''}">
                     <i data-lucide="layout-dashboard"></i> Dashboard
                 </a>
                 <a href="consultar-rota.html" class="menu-item ${paginaAtiva === 'rota' ? 'active' : ''}">
@@ -22,7 +24,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
                 <a href="formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
                     <i data-lucide="calendar-check"></i> Formulário Semanal
                 </a>
-                <a href="perfil.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
+                <a href="../../perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
                     <i data-lucide="user"></i> Perfil
                 </a>
             </nav>
