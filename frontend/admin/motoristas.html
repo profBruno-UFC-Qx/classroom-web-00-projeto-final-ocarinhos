@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUO Sistema</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../css/AdmMotoristas/AdmMotoristas.css" />
+  </head>
+  <body>
+    <header class="motoristasHeader">
+      <h2>Gestão de Logística</h2>
+
+      <div class="motoristasProfile">
+        <div class="motoristasProfileInfo">
+          <p>Gestor Ocara</p>
+          <p>Administrador Master</p>
+        </div>
+
+        <div class="motoristasProfileImage">
+          <img
+            src="./../assets/Admin/adminprofile.png"
+            alt="Imagem de administrador"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main class="motoristasMain">
+      <h1>Gestão de motoristas</h1>
+
+      <p class="motoristasSubtitle">
+        Visualize e gerencie os motoristas cadastrados no sistema.
+      </p>
+
+      <div class="motoristasSearch">
+        <form action="">
+          <input
+            type="text"
+            placeholder="Buscar faculdade por nome ou bairro..."
+          />
+
+          <button type="submit" aria-label="Buscar">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+
+        <div class="listActions">
+          <div class="motoristasFiltro">
+            <select name="filtro" id="filtro">
+              <option value="default" selected>Filtros</option>
+              <option value="centro">Centro</option>
+              <option value="planalto">Bairro Planalto</option>
+              <option value="cedro">Cedro</option>
+            </select>
+          </div>
+
+          <button class="efetuarCadastro">+ Cadastrar onibus</button>
+        </div>
+      </div>
+
+      <table class="motoristasTable">
+        <tr class="thead">
+          <th>NOME DO MOTORISTA</th>
+          <th>ONIBUS</th>
+          <th>KM ATUAL DO MES</th>
+          <th class="alignRight">AÇÕES</th>
+        </tr>
+
+        <!-- <tr>
+          <td class="name">
+            <i class="bi bi-mortarboard" aria-hidden="true"></i>
+            NETO
+          </td>
+
+          <td>AMALERO</td>
+
+          <td>
+            <span class="qtdAlunos">200 KM</span>
+          </td>
+
+          <td class="buttons">
+            <button type="button" aria-label="Editar" class="edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+
+            <button type="button" aria-label="Excluir" class="delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr> -->
+
+        <tfoot>
+          <tr class="tfoot">
+            <td class="tfoot-info" colspan="2">
+              Mostrando 1-5 de 12 motoristas
+            </td>
+
+            <td class="tfoot-pager" colspan="2">
+              <nav class="motoristasFooter-pagination" aria-label="Paginação">
+                <ul>
+                  <li class="prev">
+                    <button aria-label="Anterior">
+                      <i class="bi bi-chevron-left"></i>
+                    </button>
+                  </li>
+
+                  <li>
+                    <button class="page active" aria-current="page">1</button>
+                  </li>
+
+                  <li><button class="page">2</button></li>
+
+                  <li><button class="page">3</button></li>
+
+                  <li class="next">
+                    <button aria-label="Próximo">
+                      <i class="bi bi-chevron-right"></i>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </main>
+
+    <div class="motoristasModalOverlay" hidden>
+      <section
+        class="motoristasModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="motoristasModalTitle"
+      >
+        <header class="motoristasModalHeader">
+          <div>
+            <span class="motoristasModalEyebrow"> Edição de faculdade </span>
+
+            <h2 id="motoristasModalTitle">Editar faculdade</h2>
+
+            <p>Atualize as informações da instituição cadastrada.</p>
+          </div>
+
+          <button
+            type="button"
+            class="motoristasModalClose"
+            aria-label="Fechar modal"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </header>
+
+        <form class="motoristasModalForm">
+          <div class="motoristasModalGrid">
+            <label>
+              <span>Nome da faculdade</span>
+
+              <input type="text" name="nome" maxlength="45" required />
+            </label>
+
+            <label>
+              <span>Bairro</span>
+
+              <input type="text" name="bairro" maxlength="45" required />
+            </label>
+
+            <label>
+              <span>Quantidade de Alunos</span>
+
+              <input type="number" name="quantidade" required />
+            </label>
+          </div>
+
+          <footer class="motoristasModalActions">
+            <button
+              type="button"
+              class="motoristasModalButton secondary motoristasModalCancel"
+            >
+              Cancelar
+            </button>
+
+            <button type="submit" class="motoristasModalButton primary">
+              Salvar alterações
+            </button>
+          </footer>
+        </form>
+      </section>
+    </div>
+
+    <script type="module" src="../dist/admMotoristas/admMotoristas.js"></script>
+  </body>
+</html>
