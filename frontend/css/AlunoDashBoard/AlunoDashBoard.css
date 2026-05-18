@@ -1,0 +1,90 @@
+.mainDasboard {
+  margin: 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.mainHead h1 {
+  font-size: 2rem;
+}
+
+.mainHead p {
+  font-size: 1.2rem;
+  color: #424752;
+}
+
+.cards {
+  display: flex;
+  gap: 16px;
+  align-items: start;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #c2c6d3;
+  border-radius: 10px;
+  padding: 16px;
+  flex: 1;
+}
+
+.title {
+  display: flex;
+  gap: 10px;
+}
+
+.title h1 {
+  font-size: 0.8rem;
+  color: #424752;
+}
+
+.card p {
+  font-weight: bold;
+}
+
+.card.tempo {
+  color: #c7d9ff;
+  background-color: #1e5db0;
+  font-size: 2rem;
+}
+
+.card.tempo h1 {
+  color: #c7d9ff;
+}
+
+.informacoes {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 3fr;
+}
+
+.embarque ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.embarqueCard {
+  padding: 16px;
+  border: 1px solid #c2c6d3;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardInfo {
+  font-size: 1rem;
+}
+
+.cardInfo h1 {
+  font-weight: 900;
+  font-size: 0.8rem;
+  color: #424752;
+}
+
+.embarqueCard img {
+  width: 25px;
+}
