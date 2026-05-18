@@ -9,6 +9,7 @@ body {
   align-items: center;
   background: #e5e7eb;
   padding: 10px 0;
+  height: 100vh;
 }
 
 .register {

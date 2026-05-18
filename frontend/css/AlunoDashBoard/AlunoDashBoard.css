@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  flex: 1;
+}
+
+.mainBg {
+  display: flex;
 }
 
 .mainHead h1 {
@@ -110,8 +115,4 @@
 
 .muralInfo p {
   color: #424752;
-}
-
-.site-footer {
-  margin-top: 16px;
 }
