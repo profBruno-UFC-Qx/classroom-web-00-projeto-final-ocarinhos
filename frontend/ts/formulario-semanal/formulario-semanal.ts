@@ -1,3 +1,5 @@
+import { renderizarSidebar } from '../components/sidebar.js';
+renderizarSidebar('sidebar-container', 'formulario');
 const form = document.querySelector(".sem-form-corpo");
 
 if (form instanceof HTMLFormElement) {
