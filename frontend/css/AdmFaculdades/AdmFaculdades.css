@@ -1,4 +1,4 @@
-@import url('../global.css');
+@import url("./../global.css");
 
 body {
   background-color: #f8f9ff;
@@ -9,7 +9,7 @@ body {
   text-align: right;
 }
 
-.alunosHeader {
+.faculdadesHeader {
   background-color: #fff;
   display: flex;
   padding: 15px 50px;
@@ -17,30 +17,30 @@ body {
   align-items: center;
 }
 
-.alunosProfile {
+.faculdadesProfile {
   display: flex;
   align-items: center;
   column-gap: 15px;
 }
 
-.alunosProfileInfo > p:nth-child(1) {
+.faculdadesProfileInfo > p:nth-child(1) {
   font-weight: bold;
 }
 
-.alunosProfileInfo > p:nth-child(2) {
+.faculdadesProfileInfo > p:nth-child(2) {
   font-size: 0.9rem;
   color: #64748b;
   margin-top: -5px;
 }
 
-.alunosProfileImage img {
+.faculdadesProfileImage img {
   width: 100%;
   border-radius: 50%;
   padding: 1px;
   border: 2px solid blue;
 }
 
-.alunosMain {
+.faculdadesMain {
   display: flex;
   flex-direction: column;
   margin: 0px auto;
@@ -48,12 +48,12 @@ body {
   padding: 30px 50px;
 }
 
-.alunosSubtitle {
+.faculdadesSubtitle {
   margin-top: -5px;
   color: #424752;
 }
 
-.alunosSearch {
+.faculdadesSearch {
   background-color: #fff;
   border: 1px solid #c2c6d3;
   border-radius: 12px;
@@ -65,13 +65,13 @@ body {
   margin-top: 20px;
 }
 
-.alunosSearch form {
+.faculdadesSearch form {
   flex-grow: 1;
   display: flex;
   align-items: center;
 }
 
-.alunosSearch input {
+.faculdadesSearch input {
   width: 100%;
   height: 40px;
   border: 1px solid #6b7280;
@@ -79,7 +79,7 @@ body {
   padding-left: 10px;
 }
 
-.alunosSearch button {
+.faculdadesSearch button {
   background-color: #6b7280;
   height: 40px;
   margin-left: -5px;
@@ -88,63 +88,65 @@ body {
   padding: 0px 10px;
 }
 
-.alunosFiltro {
+.faculdadesFiltro {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.alunosFiltro select {
+.faculdadesFiltro select {
   border: 1px solid #c2c6d3;
   border-radius: 8px;
   height: 40px;
   padding: 0px 20px;
 }
 
-.alunosFiltro select,
-.alunosSearch button {
+.faculdadesFiltro select,
+.faculdadesSearch button {
   cursor: pointer;
 }
 
-.alunosTable td,
+.faculdadesTable {
+  border-collapse: separate;
+}
+
+.faculdadesTable td,
 th {
+  border-bottom: 1px solid #c2c6d3;
   padding: 15px 10px;
 }
 
-.alunosTable tr {
-  border-bottom: 1px solid #c2c6d3;
+.faculdadesTable tr {
+  border: 2px solid #c2c6d3;
 }
 
-.alunosTable tr.thead {
+.faculdadesTable tr.thead {
   background-color: #eff4ff;
   color: #424752;
   font-size: 1.2rem;
   text-align: left;
 }
 
-.alunosTable td {
+.faculdadesTable td {
   color: #424752;
 }
 
-.alunosTable td.name {
+.faculdadesTable td.name {
   font-weight: 700;
   color: #0b1c30;
-  display: flex;
-  column-gap: 7px;
 }
 
-.alunosTable td > span {
-  background-color: #dcfce7;
-  color: #15803d;
+.faculdadesTable td > span {
+  background-color: #dbeafe;
+  color: #1e40af;
   border-radius: 12px;
   font-weight: bold;
   display: block;
   max-width: 90px;
   text-align: center;
-  margin: auto;
 }
 
-.alunosTable td > span.inativo {
+.faculdadesTable td > span.inativo {
   background-color: #f1f5f9;
   color: #64748b;
 }
@@ -164,6 +166,7 @@ th {
 .buttons {
   display: flex;
   column-gap: 15px;
+  justify-content: center;
   justify-content: end;
 }
 
@@ -171,40 +174,39 @@ th {
   text-align: center;
 }
 
-.alunosTable {
+.faculdadesTable {
   margin: 20px auto;
   width: 100%;
   border: 1px solid #c2c6d3;
   border-radius: 12px;
   overflow: hidden;
-  border-collapse: separate;
   border-spacing: 0;
   background: #fff;
 }
 
-.alunosTable tr.thead {
+.faculdadesTable tr.thead {
   background-color: #eff4ff;
   color: #424752;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: left;
 }
 
-.alunosTable tfoot tr.tfoot {
+.faculdadesTable tfoot tr.tfoot {
   background-color: #eff4ff;
   color: #424752;
 }
 
-.alunosTable tfoot td {
+.faculdadesTable tfoot td {
   padding: 12px 16px;
   border-top: 1px solid #e6e9f2;
 }
 
-.alunosTable tfoot .tfoot-info {
+.faculdadesTable tfoot .tfoot-info {
   color: #64748b;
   font-size: 0.95rem;
 }
 
-.alunosTable tfoot .alunosFooter-pagination ul {
+.faculdadesTable tfoot .faculdadesFooter-pagination ul {
   list-style: none;
   display: flex;
   gap: 8px;
@@ -213,7 +215,7 @@ th {
   padding: 0;
 }
 
-.alunosTable tfoot .alunosFooter-pagination button {
+.faculdadesTable tfoot .faculdadesFooter-pagination button {
   background: transparent;
   border: 1px solid transparent;
   padding: 6px 10px;
@@ -222,29 +224,29 @@ th {
   color: #0b1c30;
 }
 
-.alunosTable tfoot .alunosFooter-pagination button:hover {
+.faculdadesTable tfoot .faculdadesFooter-pagination button:hover {
   background: #f1f5f9;
 }
 
-.alunosTable tfoot .alunosFooter-pagination .page.active {
+.faculdadesTable tfoot .faculdadesFooter-pagination .page.active {
   background: #0d4a99;
   color: #fff;
   border-color: #0d4a99;
 }
 
-.alunosTable tfoot .alunosFooter-pagination .dots {
+.faculdadesTable tfoot .faculdadesFooter-pagination .dots {
   padding: 6px 4px;
   color: #94a3b8;
 }
 
-.alunosTable tfoot .alunosFooter-pagination .prev button,
-.alunosTable tfoot .alunosFooter-pagination .next button {
+.faculdadesTable tfoot .faculdadesFooter-pagination .prev button,
+.faculdadesTable tfoot .faculdadesFooter-pagination .next button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.alunosModalOverlay {
+.faculdadesModalOverlay {
   position: fixed;
   inset: 0;
   background: rgba(11, 28, 48, 0.6);
@@ -255,7 +257,7 @@ th {
   z-index: 50;
 }
 
-.alunosModal {
+.faculdadesModal {
   width: min(760px, 100%);
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid #d9e3f4;
@@ -264,7 +266,7 @@ th {
   padding: 28px;
 }
 
-.alunosModalHeader {
+.faculdadesModalHeader {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -272,7 +274,7 @@ th {
   margin-bottom: 24px;
 }
 
-.alunosModalEyebrow {
+.faculdadesModalEyebrow {
   display: inline-flex;
   align-items: center;
   padding: 6px 12px;
@@ -286,16 +288,16 @@ th {
   margin-bottom: 10px;
 }
 
-.alunosModalHeader h2 {
+.faculdadesModalHeader h2 {
   font-size: 1.7rem;
   margin-bottom: 6px;
 }
 
-.alunosModalHeader p {
+.faculdadesModalHeader p {
   color: #64748b;
 }
 
-.alunosModalClose {
+.faculdadesModalClose {
   width: 42px;
   height: 42px;
   border-radius: 12px;
@@ -308,30 +310,30 @@ th {
   flex: 0 0 auto;
 }
 
-.alunosModalForm {
+.faculdadesModalForm {
   display: grid;
   gap: 24px;
 }
 
-.alunosModalGrid {
+.faculdadesModalGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
-.alunosModalGrid label {
+.faculdadesModalGrid label {
   display: grid;
   gap: 8px;
 }
 
-.alunosModalGrid span {
+.faculdadesModalGrid span {
   color: #0b1c30;
   font-weight: 600;
   font-size: 0.95rem;
 }
 
-.alunosModalGrid input,
-.alunosModalGrid select {
+.faculdadesModalGrid input,
+.faculdadesModalGrid select {
   width: 100%;
   min-height: 46px;
   border: 1px solid #cfd8e8;
@@ -342,120 +344,129 @@ th {
   box-shadow: inset 0 1px 2px rgba(11, 28, 48, 0.04);
 }
 
-.alunosModalGrid input:focus,
-.alunosModalGrid select:focus {
+.faculdadesModalGrid input:focus,
+.faculdadesModalGrid select:focus {
   outline: 2px solid #0d4a99;
   outline-offset: 2px;
   border-color: transparent;
 }
 
-.alunosModalStatusField {
+.faculdadesModalStatusField {
   grid-column: 1 / -1;
 }
 
-.alunosModalActions {
+.faculdadesModalActions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-.alunosModalButton {
+.faculdadesModalButton {
   min-height: 46px;
   padding: 0 18px;
   border-radius: 12px;
   font-weight: 700;
 }
 
-.alunosModalButton.secondary {
+.faculdadesModalButton.secondary {
   background: #fff;
   border: 1px solid #cfd8e8;
   color: #0b1c30;
 }
 
-.alunosModalButton.primary {
+.faculdadesModalButton.primary {
   background: linear-gradient(135deg, #0d4a99 0%, #1667c8 100%);
   color: #fff;
   box-shadow: 0 12px 24px rgba(13, 74, 153, 0.28);
 }
 
-.alunosModalOverlay[hidden] {
+.faculdadesModalOverlay[hidden] {
   display: none;
+}
+
+.bi-mortarboard::before {
+  content: "\f6fe";
+  background-color: #e5eeff;
+  padding: 5px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  color: #00458e;
 }
 
 .edit:hover,
 .delete:hover,
-.alunosModalClose:hover,
-.alunosModalButton:hover {
+.faculdadesModalClose:hover,
+.faculdadesModalButton:hover {
   filter: brightness(0.97);
 }
 
 .edit:focus-visible,
 .delete:focus-visible,
-.alunosModalClose:focus-visible,
-.alunosModalButton:focus-visible {
+.faculdadesModalClose:focus-visible,
+.faculdadesModalButton:focus-visible {
   outline: 3px solid rgba(13, 74, 153, 0.25);
   outline-offset: 2px;
 }
 
 @media (max-width: 1024px) {
-  .alunosMain {
+  .faculdadesMain {
     padding: 20px 30px;
   }
 
-  .alunosSearch {
+  .faculdadesSearch {
     flex-direction: column;
     gap: 15px;
   }
 
-  .alunosSearch form {
+  .faculdadesSearch form {
     width: 100%;
   }
 
-  .alunosSearch input {
+  .faculdadesSearch input {
     width: 100%;
   }
 
-  .alunosFiltro {
+  .faculdadesFiltro {
     width: 100%;
   }
 
-  .alunosTable {
+  .faculdadesTable {
     width: 95%;
     font-size: 0.95rem;
   }
 
-  .alunosTable td,
+  .faculdadesTable td,
   th {
     padding: 12px 8px;
   }
 }
 
 @media (max-width: 768px) {
-  .alunosHeader {
+  .faculdadesHeader {
     padding: 15px 20px;
     flex-direction: column;
     gap: 15px;
     text-align: center;
   }
 
-  .alunosMain {
+  .faculdadesMain {
     padding: 15px 15px;
   }
 
-  .alunosSearch {
+  .faculdadesSearch {
     flex-direction: column;
   }
 
-  .alunosSearch input {
+  .faculdadesSearch input {
     width: 100%;
   }
 
-  .alunosFiltro {
+  .faculdadesFiltro {
     width: 100%;
   }
 
-  .alunosTable {
+  .faculdadesTable {
     width: 100%;
     font-size: 0.85rem;
     display: block;
@@ -463,27 +474,27 @@ th {
     -webkit-overflow-scrolling: touch;
   }
 
-  .alunosTable tbody {
+  .faculdadesTable tbody {
     display: block;
     overflow-x: auto;
   }
 
-  .alunosTable tr {
+  .faculdadesTable tr {
     white-space: nowrap;
   }
 
-  .alunosTable td,
-  .alunosTable th {
+  .faculdadesTable td,
+  .faculdadesTable th {
     padding: 12px 8px;
     min-width: 80px;
   }
 
-  .alunosTable tfoot {
+  .faculdadesTable tfoot {
     display: block;
     overflow-x: auto;
   }
 
-  .alunosTable tfoot tr {
+  .faculdadesTable tfoot tr {
     white-space: nowrap;
   }
 
@@ -493,20 +504,20 @@ th {
 }
 
 @media (max-width: 480px) {
-  .alunosHeader h2 {
+  .faculdadesHeader h2 {
     font-size: 1.2rem;
   }
 
-  .alunosMain {
+  .faculdadesMain {
     padding: 10px 10px;
   }
 
-  .alunosTable {
+  .faculdadesTable {
     font-size: 0.75rem;
   }
 
-  .alunosTable td,
-  .alunosTable th {
+  .faculdadesTable td,
+  .faculdadesTable th {
     padding: 8px;
     min-width: 70px;
   }
@@ -521,19 +532,19 @@ th {
     padding: 4px 6px;
   }
 
-  .alunosModal {
+  .faculdadesModal {
     padding: 20px;
   }
 
-  .alunosModalGrid {
+  .faculdadesModalGrid {
     grid-template-columns: 1fr;
   }
 
-  .alunosModalActions {
+  .faculdadesModalActions {
     justify-content: stretch;
   }
 
-  .alunosModalButton {
+  .faculdadesModalButton {
     width: 100%;
   }
 }

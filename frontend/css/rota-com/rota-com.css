@@ -1,0 +1,237 @@
+@import url("./../global.css");
+
+body {
+  background-color: #f8f9ff;
+  color: #0b1c30;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.rota-com-secao {
+  background: #f9fafb;
+  border: 1px solid #d1caca;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0;
+}
+
+.rota-com-pesquisa {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.rota-com-pesquisa form {
+  margin: 0;
+}
+
+.rota-com-pesquisa .row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.rota-com-pesquisa .col-sm-5 {
+  flex: 1;
+  min-width: 250px;
+}
+
+.rota-com-pesquisa .col-sm {
+  flex: 0 1 auto;
+}
+
+.rota-com-pesquisa input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #495057;
+  background-color: #fff;
+}
+
+.rota-com-pesquisa input[type="text"]::placeholder {
+  color: #adb5bd;
+}
+
+.rota-com-pesquisa input[type="text"]:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.rota-com-pesquisa button {
+  padding: 10px 16px;
+  border: 1px solid #6c757d;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #6c757d;
+  color: #fff;
+  font-family: inherit;
+  transition: background-color 0.2s;
+}
+
+.rota-com-pesquisa button:hover {
+  background-color: #5a6268;
+}
+
+.rota-com-pesquisa button[type="button"] {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.rota-com-pesquisa button[type="button"].btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.rota-com-pesquisa button[type="button"].btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.rota-com-pesquisa .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.rota-com-pesquisa .dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 8px 0;
+  z-index: 1;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+}
+
+.rota-com-pesquisa .dropdown-menu.show {
+  display: block;
+}
+
+.rota-com-pesquisa .dropdown-menu li {
+  list-style: none;
+}
+
+.rota-com-pesquisa .dropdown-menu a {
+  color: #495057;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.rota-com-pesquisa .dropdown-menu a:hover {
+  background-color: #f8f9fa;
+  color: #0b1c30;
+}
+
+.rota-com-pesquisa .dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: 0.255em;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+
+.rota-com-pesquisa fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rota-com-pesquisa .form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #495057;
+  background-color: #fff;
+}
+
+.rota-com-pesquisa .form-control::placeholder {
+  color: #adb5bd;
+}
+
+.rota-com-pesquisa .form-control:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.rota-com-pesquisa .btn {
+  padding: 10px 16px;
+  border: 1px solid #6c757d;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #6c757d;
+  color: #fff;
+  font-family: inherit;
+  transition: background-color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rota-com-pesquisa .btn:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.rota-com-pesquisa .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+}
+
+.rota-com-pesquisa .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.rota-com-pesquisa .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.rota-com-pesquisa .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.rota-com-pesquisa .dropdown-toggle {
+  position: relative;
+}
+
+.rota-com-pesquisa .dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: 0.255em;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}

@@ -11,7 +11,8 @@ DOUGLAS TEOFILO CAVALCANTE DA SILVA - 564625 <br/>
 JOAO VITOR RODRIGUES SANTOS - 567428 <br/>
 JONATHAN ALVES DA SILVA - 564730 <br/>
 MATEUS SOUSA DODO - 567288 <br/>
-NARCISO ROBERTO DE SOUZA - 565288
+NARCISO ROBERTO DE SOUZA - 565288 <br/>
+LUANA LOPES DE AMORIM (PARTICIPANTE DEVIDO A CADEIRA DE ENGENHARIA DE SOFTWARE)
 
 ## :bulb: Objetivo Geral
 Desenvolver um sistema web para gerenciar o transporte universitário de Ocara, permitindo o controle da quantidade de alunos por dia, distribuição de ônibus, definição de rotas, cadastro de motoristas e acompanhamento da frequência dos estudantes.
@@ -132,3 +133,17 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | --- | --- |
 | GET | api/entidade1/|
 | POST | api/entidade2 |
+
+
+## USO PARA CADEIRA DE ENGENHARIA DE SOFTWARE
+
+Nome da equipe/projeto: Sistema do transporte universitário de Ocara
+
+Lista de integrantes: <br/>
+FRANCISCO MATEUS ALVES FREIRES - mateus124 <br/>
+NARCISO ROBERTO DE SOUZA - narciso-roberto <br/>
+LUANA LOPES DE AMORIM - amorim-lua <br/>
+
+Links para ferramentas externas: <br/>
+FIGMA (PROTÓTIPO): https://www.figma.com/design/BTbyYxhsiU1LGLmWBdmo2O/TrabWEB?node-id=0-1&t=UAGhTL9gBZjf1z6k-1 <br/>
+TRELLO (TASKS): https://trello.com/invite/b/69e0e5e7662d70def342a859/ATTIdaa3e11c61b8045bc65373f649998b112A30E479/trabweb

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUO Sistema</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./../css/AdmFaculdades/AdmFaculdades.css" />
+    <link rel="stylesheet" href="./../css/rota-com/rota-com.css" />
+  </head>
+  <body>
+    <header class="faculdadesHeader">
+      <h2>Gestão de Logística</h2>
+
+      <div class="faculdadesProfile">
+        <div class="faculdadesProfileInfo">
+          <p>Gestor Ocara</p>
+          <p>Administrador Master</p>
+        </div>
+
+        <div class="faculdadesProfileImage">
+          <img
+            src="./../assets/Admin/adminprofile.png"
+            alt="Imagem de administrador"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main class="faculdadesMain">
+      <h1>Gestão de rotas complementares</h1>
+
+      <p class="faculdadesSubtitle">
+        Visualize e gerencie rotas complementares cadastradas no sistema
+      </p>
+
+      <section class="rota-com-pesquisa">
+        <form class="sem-form-corpo rota-com-corpo">
+          <fieldset class="sem-form-secao rota-com-secao">
+            <div class="row g-3">
+              <div class="col-sm-5">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Busca por nome"
+                  aria-label="City"
+                />
+              </div>
+              <div class="col-sm">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Filtros
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <li><a class="dropdown-item" href="#">Maior KM</a></li>
+                    <li><a class="dropdown-item" href="#">Menor KM</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-sm">
+                <button type="button" class="btn btn-secondary">
+                  Exportar
+                </button>
+              </div>
+              <div class="col-sm">
+                <button type="button" class="btn btn-primary">
+                  Cadastrar Rota
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+
+      <table class="faculdadesTable">
+        <tr class="thead">
+          <th>NOME DA ROTA</th>
+          <th>BAIRRO</th>
+          <th>KM</th>
+          <th class="alignRight">AÇÕES</th>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <i class="bi bi-mortarboard" aria-hidden="true"></i>
+            CE464
+          </td>
+
+          <td>Sereno</td>
+
+          <td>
+            <span class="qtdAlunos">+3 KM</span>
+          </td>
+
+          <td class="buttons">
+            <button type="button" aria-label="Editar" class="edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+
+            <button type="button" aria-label="Excluir" class="delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <i class="bi bi-mortarboard" aria-hidden="true"></i>
+            SERRAGEM
+          </td>
+
+          <td>Serragem</td>
+
+          <td>
+            <span class="qtdAlunos">+10 KM</span>
+          </td>
+
+          <td class="buttons">
+            <button type="button" aria-label="Editar" class="edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+
+            <button type="button" aria-label="Excluir" class="delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <i class="bi bi-mortarboard" aria-hidden="true"></i>
+            PLACA OCARA
+          </td>
+
+          <td>Centro</td>
+
+          <td>
+            <span class="qtdAlunos">+2 KM</span>
+          </td>
+
+          <td class="buttons">
+            <button type="button" aria-label="Editar" class="edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+
+            <button type="button" aria-label="Excluir" class="delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <i class="bi bi-mortarboard" aria-hidden="true"></i>
+            CURUPIRA
+          </td>
+
+          <td>Serragem</td>
+
+          <td>
+            <span class="qtdAlunos">+7 KM</span>
+          </td>
+
+          <td class="buttons">
+            <button type="button" aria-label="Editar" class="edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+
+            <button type="button" aria-label="Excluir" class="delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="name">
+            <i class="bi bi-mortarboard" aria-hidden="true"></i>
+            SERENO
+          </td>
+
+          <td>Sereno</td>
+
+          <td>
+            <span class="qtdAlunos">+5 KM</span>
+          </td>
+
+          <td class="buttons">
+            <button type="button" aria-label="Editar" class="edit">
+              <i class="bi bi-pencil"></i>
+            </button>
+
+            <button type="button" aria-label="Excluir" class="delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tfoot>
+          <tr class="tfoot">
+            <td class="tfoot-info" colspan="2">Mostrando 1-5 de 12 rotas</td>
+
+            <td class="tfoot-pager" colspan="2">
+              <nav class="faculdadesFooter-pagination" aria-label="Paginação">
+                <ul>
+                  <li class="prev">
+                    <button aria-label="Anterior">
+                      <i class="bi bi-chevron-left"></i>
+                    </button>
+                  </li>
+
+                  <li>
+                    <button class="page active" aria-current="page">1</button>
+                  </li>
+
+                  <li><button class="page">2</button></li>
+
+                  <li><button class="page">3</button></li>
+
+                  <li class="next">
+                    <button aria-label="Próximo">
+                      <i class="bi bi-chevron-right"></i>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </main>
+
+    <div class="faculdadesModalOverlay" hidden>
+      <section
+        class="faculdadesModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="faculdadesModalTitle"
+      >
+        <header class="faculdadesModalHeader">
+          <div>
+            <span class="faculdadesModalEyebrow"> Edição de faculdade </span>
+
+            <h2 id="faculdadesModalTitle">Editar faculdade</h2>
+
+            <p>Atualize as informações da instituição cadastrada.</p>
+          </div>
+
+          <button
+            type="button"
+            class="faculdadesModalClose"
+            aria-label="Fechar modal"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </header>
+
+        <form class="faculdadesModalForm">
+          <div class="faculdadesModalGrid">
+            <label>
+              <span>Nome da faculdade</span>
+
+              <input type="text" name="nome" maxlength="45" required />
+            </label>
+
+            <label>
+              <span>Bairro</span>
+
+              <input type="text" name="bairro" maxlength="45" required />
+            </label>
+
+            <label>
+              <span>Quantidade de Alunos</span>
+
+              <input type="number" name="quantidade" required />
+            </label>
+          </div>
+
+          <footer class="faculdadesModalActions">
+            <button
+              type="button"
+              class="faculdadesModalButton secondary faculdadesModalCancel"
+            >
+              Cancelar
+            </button>
+
+            <button type="submit" class="faculdadesModalButton primary">
+              Salvar alterações
+            </button>
+          </footer>
+        </form>
+      </section>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="../dist/admin/alunos.js"></script>
+  </body>
+</html>
