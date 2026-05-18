@@ -88,3 +88,30 @@
 .embarqueCard img {
   width: 25px;
 }
+
+.mural ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.muralCard {
+  padding: 16px;
+  border: 1px solid #c2c6d3;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.muralInfo h1 {
+  font-size: 1rem;
+}
+
+.muralInfo p {
+  color: #424752;
+}
+
+.site-footer {
+  margin-top: 16px;
+}
