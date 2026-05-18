@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+
+        <style>
+
+            body {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+            
+            dialog::backdrop {
+                background-color: rgba(0, 0, 0, 0.45);
+            }
+
+            dialog {
+                border: none;
+                border-radius: 18px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+                width: min(90%, 420px);
+                padding: 32px 28px;
+                text-align: center;
+            }
+
+            h2 {
+                padding: 2px;
+                margin: 0 0 12px;
+                font-size: 24px;
+                line-height: 1.2;
+                color: #1f2937;
+
+            }
+
+            p{
+                padding: 3px;
+                margin: 0 0 24px;
+                font-size: 16px;
+                line-height: 1.5;
+                color: #4b5563;
+            }
+
+            button {
+                min-width: 110px;
+                padding: 12px 24px;
+                display: block;
+                margin: 24px auto 0;
+                border: none;
+                border-radius: 999px;
+                background-color: #366BC7;
+                font-size: 16px;
+                font-weight: 700;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-weight: bold;
+                color: white;
+                cursor: pointer;
+                box-shadow: 0 8px 18px rgba(54, 107, 199, 0.28);
+            }
+
+            button:hover {
+                background-color: rgb(24, 105, 170);
+                box-shadow: 0 6px 16px rgba(30, 126, 204, 0.4);
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <dialog open>
+
+            <h2>Hoje não teremos rotas!</h2>
+
+            <p>Devido ao feriado, hoje não teremos rotas.</p>
+
+            <button>Ok</button>
+
+        <!-- Precisa integrar esse botão a linguagem 
+            que está sendo utilizada, 
+            no caso não sei se estão usando javascript-->
+
+        </dialog>
+
+        
+    </body>
+</html>
