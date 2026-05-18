@@ -5,6 +5,7 @@
 @import "./index/index.css";
 @import "./formulario-semanal/formulario-semanal.css";
 @import "./EsqueciMinhaSenha/EsqueciSenha.css";
+@import "./sidebar.css";
 @import "./rota-com/rota-com.css";
 @import "./AlunoDashBoard/AlunoDashBoard.css"
 
