@@ -47,31 +47,40 @@
     <main class="hero-bg">
       <div class="herobanner">
         <h2>Gestão Inteligente do Transporte Universitário</h2>
-        <p>Acompanhe rotas, consulte horários e fique por dentro de todos os avisos da frota de Ocara em tempo real.</p>
+        <p>
+          Acompanhe rotas, consulte horários e fique por dentro de todos os
+          avisos da frota de Ocara em tempo real.
+        </p>
         <div>
           <a href="#">Ver Rotas de Hoje</a>
           <a href="./dashBoardAluno.html">Painel do Aluno</a>
         </div>
       </div>
-      
+
       <div class="herostats">
         <article class="stat-card">
           <div class="stat-icon stat-icon-frota">
-            <img src="../assets/Index/frotaativaicon.png" alt="Icone frota ativa" />
+            <img
+              src="../assets/Index/frotaativaicon.png"
+              alt="Icone frota ativa"
+            />
           </div>
           <div class="stat-content">
             <span>FROTA ATIVA</span>
-            <strong>12 Ônibus rodando</strong>
+            <strong id="qtd-onibus">-- Ônibus rodando</strong>
           </div>
         </article>
 
         <article class="stat-card">
           <div class="stat-icon stat-icon-atendimento">
-            <img src="../assets/Index/atendimentoicon.png" alt="Icone de atendimentos" />
+            <img
+              src="../assets/Index/atendimentoicon.png"
+              alt="Icone de atendimentos"
+            />
           </div>
           <div class="stat-content">
             <span>ATENDIMENTOS</span>
-            <strong>450 Alunos</strong>
+            <strong id="qtd-alunos">-- Alunos</strong>
           </div>
         </article>
 
@@ -81,7 +90,7 @@
           </div>
           <div class="stat-content">
             <span>EQUIPE</span>
-            <strong>15 Motoristas</strong>
+            <strong id="qtd-motoristas">-- Motoristas</strong>
           </div>
         </article>
       </div>
@@ -94,25 +103,30 @@
           </header>
 
           <div class="alerts-grid">
-            <article class="alert-card alert-card-urgent">
+            <!-- <article class="alert-card alert-card-urgent">
               <span class="alert-tag">URGENTE</span>
-              <p class="alert-type alert-type-danger"><i class="bi bi-exclamation-triangle"></i> Manutenção na Via</p>
+              <p class="alert-type alert-type-danger">
+                <i class="bi bi-exclamation-triangle"></i> Manutenção na Via
+              </p>
               <h4>Rota 3 (Noturno) Alterada</h4>
               <p>
-                Devido a obras na CE-060, o ônibus da Rota 3 fará um desvio pelo centro hoje à noite.
-                Atrasos de até 15 min previstos.
+                Devido a obras na CE-060, o ônibus da Rota 3 fará um desvio pelo
+                centro hoje à noite. Atrasos de até 15 min previstos.
               </p>
               <time datetime="2026-04-26T14:30">Hoje, 14:30</time>
             </article>
 
             <article class="alert-card">
-              <p class="alert-type alert-type-info"><i class="bi bi-info-circle"></i> Informativo</p>
+              <p class="alert-type alert-type-info">
+                <i class="bi bi-info-circle"></i> Informativo
+              </p>
               <h4>Renovação de Carteirinhas</h4>
               <p>
-                O prazo para entrega da documentação de renovação do semestre 2024.1 se encerra nesta sexta-feira.
+                O prazo para entrega da documentação de renovação do semestre
+                2024.1 se encerra nesta sexta-feira.
               </p>
               <time datetime="2026-04-25T09:00">Ontem, 09:00</time>
-            </article>
+            </article> -->
           </div>
         </div>
 
@@ -154,9 +168,12 @@
     </main>
 
     <footer class="site-footer">
-      <p>SISTEMA DESENVOLVIDO PARA GERENCIAMENTO DO TRANSPORTE UNIVERSITÁRIO DE OCARA</p>
+      <p>
+        SISTEMA DESENVOLVIDO PARA GERENCIAMENTO DO TRANSPORTE UNIVERSITÁRIO DE
+        OCARA
+      </p>
     </footer>
 
-    <script type="module" src="./dist/index/index.js"></script>
+    <script type="module" src="../dist/index/index.js"></script>
   </body>
 </html>

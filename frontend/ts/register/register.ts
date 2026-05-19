@@ -26,19 +26,19 @@ function isLoginData(obj: any): obj is LoginData {
 
 function verificarCampos(obj: LoginData): Boolean {
   if (obj.senha.length < 6) {
-    showTopMessage("Digite ate 6 caracteres na sua senha","error");
+    showTopMessage("Digite ate 6 caracteres na sua senha", "error");
     return false;
   }
 
   if (obj.senha != obj.confirmarsenha) {
-    showTopMessage("senhas diferentes","error");
+    showTopMessage("senhas diferentes", "error");
     return false;
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (typeof obj.email == "string" && !emailRegex.test(obj.email)) {
-    showTopMessage("Email inválido","error");
+    showTopMessage("Email inválido", "error");
     return false;
   }
   return true;
@@ -66,15 +66,6 @@ preencherFaculdades();
 const form = document.querySelector(".form");
 
 if (form instanceof HTMLFormElement) {
-  const nome = document.getElementById("nome") as HTMLInputElement;
-  const email = document.getElementById("email") as HTMLInputElement;
-  const IES = document.getElementById("ies") as HTMLSelectElement;
-  const curso = document.getElementById("curso") as HTMLInputElement;
-  const senha = document.getElementById("senha") as HTMLInputElement;
-  const confrmarsenha = document.getElementById(
-    "confirmarsenha"
-  ) as HTMLInputElement;
-
   const onSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
 
@@ -108,7 +99,7 @@ if (form instanceof HTMLFormElement) {
       });
 
       if (!error) {
-        window.location.href = "/index.html";
+        window.location.href = "dashBoardAluno.html";
       }
 
       if (error) {

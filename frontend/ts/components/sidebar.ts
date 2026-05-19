@@ -24,7 +24,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
                 <a href="formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
                     <i data-lucide="calendar-check"></i> Formulário Semanal
                 </a>
-                <a href="../../perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
+                <a href="../../aluno/perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
                     <i data-lucide="user"></i> Perfil
                 </a>
             </nav>

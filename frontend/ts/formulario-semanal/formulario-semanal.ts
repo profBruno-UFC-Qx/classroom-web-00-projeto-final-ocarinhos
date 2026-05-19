@@ -1,17 +1,23 @@
-import { renderizarSidebar } from '../components/sidebar.js';
-renderizarSidebar('sidebar-container', 'formulario');
+import { renderizarSidebar } from "../components/sidebar.js";
+renderizarSidebar("sidebar-container", "formulario");
 const form = document.querySelector(".sem-form-corpo");
 
 if (form instanceof HTMLFormElement) {
-  const radioSim = form.querySelector('input[value="sim"][name="rotaComplementar"]') as HTMLInputElement;
-  const radioNao = form.querySelector('input[value="nao"][name="rotaComplementar"]') as HTMLInputElement;
-  const selectRotaDestino = form.querySelector('select[name="rotaDestino"]') as HTMLSelectElement;
+  const radioSim = form.querySelector(
+    'input[value="sim"][name="rotaComplementar"]'
+  ) as HTMLInputElement;
+  const radioNao = form.querySelector(
+    'input[value="nao"][name="rotaComplementar"]'
+  ) as HTMLInputElement;
+  const selectRotaDestino = form.querySelector(
+    'select[name="rotaDestino"]'
+  ) as HTMLSelectElement;
 
   const atualizarEstadoRota = () => {
     const precisaDeRota = radioSim.checked;
     selectRotaDestino.disabled = !precisaDeRota;
     selectRotaDestino.required = precisaDeRota;
-    
+
     if (!precisaDeRota) {
       selectRotaDestino.value = "";
     }
@@ -38,7 +44,7 @@ if (form instanceof HTMLFormElement) {
     }
 
     const formData = new FormData(form);
-    
+
     if (nome && email) {
       const objAgendamento = {
         aluno: nome.value,
