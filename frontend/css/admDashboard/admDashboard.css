@@ -33,10 +33,6 @@
     transition: all 0.3s ease;
 }
 
-.dash-card-visao-geral:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
 
 .dash-card-icon {
     display: flex;
@@ -82,11 +78,6 @@
     transition: none !important;
 }
 
-.dash-informacoes *:hover {
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06) !important;
-    transform: none !important;
-}
-
 .dash-dados-alunos {
     display: flex;
     flex-direction: column;
@@ -128,6 +119,24 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 0.85rem;
+}
+
+
+.dashboard-freq-semanal .dash-card-header .filtro {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 14px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    background: #757575 !important;
+    border: 1px solid #757575 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.04) !important;
+    white-space: nowrap !important;
+    width: auto !important;
 }
 
 /* Items de Alunos por Faculdade */
@@ -221,4 +230,18 @@
     background: #e3f2fd;
     color: #1976d2;
     border: 1px solid #1976d2;
+}
+
+/* Make the three-dot menu in Mural de Avisos compact and match the small primary look */
+.mural-avisos .dash-card-header .dash-btn-menu {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 14px ;
+    font-size: 1.3rem !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+    border: 1px solid #ffffff !important;
+    border-radius: 8px !important;
+    width: auto ;
 }
