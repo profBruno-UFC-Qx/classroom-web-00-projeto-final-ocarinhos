@@ -61,8 +61,7 @@
                 text-align: left;
             }
 
-            input[type="email"],
-            input[type="password"] {
+            input {
                 width: 100%;
                 box-sizing: border-box;
                 height: 46px;
@@ -87,7 +86,7 @@
 
 
             button {
-                width: 100%;
+                width: 40%;
                 padding: 13px 24px;
                 display: block;
                 margin: 0;
@@ -106,32 +105,20 @@
                 box-shadow: 0 6px 16px rgba(30, 126, 204, 0.4);
             }
 
-            #lembrar-senha {
+            #faculdade {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 margin: 8px 0 28px;
             }
 
-            #lembrar-senha label {
+            #faculdade label {
                  font-weight: 400;
                  color: #4b5563;
                  display: flex;
                  align-items: center;
                  gap: 8px;
             }
-
-            #lembrar-senha a {
-                text-decoration: none;
-                color: var(--azul-escuro);
-                font-weight: 700;
-                font-size: 14px;
-            }
-
-            hr {
-               margin: 28px 0;
-            }
-
         
         </style>
     </head>
@@ -139,37 +126,31 @@
 
         <dialog open>
 
-            <h2>Acesso Institucional</h2>
+            <h2>Cadastrar Nova Faculdade</h2>
 
-            <p>Insira suas credenciais para gerenciar a logística.</p>
+            <p>Preencha os dados básicos da instituição.</p>
 
 
             <form>
-                <div id="login">
-                    <label for="email">E-mail</label><br>
-                    <input type="email" placeholder="aluno@gmail.com" id="email" name="email" required><br>
+               <div id="faculdade">
+                    <label for="nome">Nome da Faculdade</label><br>
+                    <input type="text" placeholder="Ex: Universidade Federal do Ceará" id="name" name="name" required><br>
                     
-                    <label for="password">Senha</label><br>
-                    <input name="senha" id="senha" type="password" placeholder="••••••••" required/>
+
+                    <label for="bairro">Bairro</label><br>
+                    <input type="text" placeholder="Ex: Cedro" id="bairro" name="bairro" required><br>
+                    
                 </div>
             
-                <div id="lembrar-senha">
-                    <label>
-                            <input type="checkbox" name="lembrar" value="checked"> 
-                            Lembrar de mim
-                    </label>
-                    <a href="link">Esqueci minha senha</a>
-                </div>
 
-                 <button type="submit">Entrar &#8594;</button>
+                 <button type="submit">Confirmar cadastro</button>
             
             </form>
 
             <hr>
-
-            <div>
-                <p>Primeiro Acesso?</p><a href="link">Cadastre-se &#8594</a>
-            </div>
+            
+            <a href="link">Cancelar</a>
+            
             
 
            
