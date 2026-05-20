@@ -85,10 +85,9 @@
             }
 
 
-            button {
+            .cadastroBotao {
                 width: 40%;
                 padding: 13px 24px;
-                align-items: right;
                 margin: 0;
                 border: none;
                 border-radius: 6px;
@@ -100,7 +99,7 @@
                 box-shadow: 0 8px 18px rgba(54, 107, 199, 0.28);
             }
 
-            button:hover {
+            .cadastroBotao:hover{
                 background-color: rgb(24, 105, 170);
                 box-shadow: 0 6px 16px rgba(30, 126, 204, 0.4);
             }
@@ -133,12 +132,27 @@
                 gap: 32px;
                 border-radius: 0 0 12px 12px;
             }
+
+            .fechar{
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                background: transparent;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: grey;
+            }
         
         </style>
     </head>
     <body>
 
         <dialog open>
+
+            <a href="coisa">
+                <button class="fechar">&times;</button>
+            </a>
 
             <h2>Cadastrar Nova Faculdade</h2>
 
@@ -160,7 +174,8 @@
                  <div id="confirmar">
                         <a href="link">Cancelar</a>
 
-                         <button type="submit">Confirmar cadastro</button>
+                        <button class="cadastroBotao" type="submit">Confirmar cadastro</button>
+                       
                 </div>
             
             </form>
