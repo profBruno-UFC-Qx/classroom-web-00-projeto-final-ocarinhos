@@ -8,6 +8,7 @@
             :root {
                 --azul-escuro: #00458E;
                 --quase-preto: #1f2937;
+                --azul-claro:  #EFF4FF;
             }
 
             body {
@@ -38,16 +39,18 @@
 
             h2 {
                 padding: 2px;
+                text-align: left;
                 margin: 0 0 12px;
-                font-size: 24px;
+                font-size: 32px;
                 line-height: 1.2;
                 color: var(--quase-preto);
 
             }
 
             p{
-                margin: 0 0 24px;
-                font-size: 15px;
+                text-align: left;
+                margin: 0 0 32px;
+                font-size: 16px;
                 color: #4b5563;
             }
             
@@ -57,28 +60,25 @@
                 color: #1f2937;
             }
 
-            #login {
-                text-align: left;
-            }
-
             input {
-                width: 100%;
+                width: 80%;
                 box-sizing: border-box;
                 height: 46px;
-                margin: 8px 0 18px;
-                padding: 0 14px;
+                margin: 0px;
+                padding: 0 20px;
                 border: 1px solid #9ca3af;
                 border-radius: 6px;
                 font-size: 15px;
                 outline: none;
+                background-color: var(--azul-claro);
             }
 
             input::placeholder {
-                color: #b6bdc9;
+                color: grey;
             }
 
             a {
-                color: var(--azul-escuro);
+                color: grey;
                 text-decoration: none;
                 font-size: 14px;
                 font-weight: 700;
@@ -88,7 +88,7 @@
             button {
                 width: 40%;
                 padding: 13px 24px;
-                display: block;
+                align-items: right;
                 margin: 0;
                 border: none;
                 border-radius: 6px;
@@ -105,19 +105,33 @@
                 box-shadow: 0 6px 16px rgba(30, 126, 204, 0.4);
             }
 
-            #faculdade {
+           #faculdade {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
+                flex-direction: column;
+                align-items: left;
+                text-align: left;
                 margin: 8px 0 28px;
-            }
+          } 
 
             #faculdade label {
                  font-weight: 400;
                  color: #4b5563;
                  display: flex;
-                 align-items: center;
+                 align-items: left;
                  gap: 8px;
+                 
+            }
+
+            #confirmar{
+                background-color: var(--azul-claro);
+                margin: 36px -36px -40px;
+                padding: 26px 32px;
+                box-sizing: border-box;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 32px;
+                border-radius: 0 0 12px 12px;
             }
         
         </style>
@@ -142,14 +156,16 @@
                     
                 </div>
             
+             
+                 <div id="confirmar">
+                        <a href="link">Cancelar</a>
 
-                 <button type="submit">Confirmar cadastro</button>
+                         <button type="submit">Confirmar cadastro</button>
+                </div>
             
             </form>
-
-            <hr>
             
-            <a href="link">Cancelar</a>
+            
             
             
 
