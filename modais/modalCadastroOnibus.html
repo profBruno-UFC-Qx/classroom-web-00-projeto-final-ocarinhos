@@ -58,6 +58,7 @@
                 font-size: 14px;
                 font-weight: 700;
                 color: #1f2937;
+                font-style: bold;
             }
 
             input {
@@ -104,20 +105,22 @@
                 box-shadow: 0 6px 16px rgba(30, 126, 204, 0.4);
             }
 
-           #faculdade {
+           #nome-onibus {
                 display: flex;
                 flex-direction: column;
                 align-items: left;
                 text-align: left;
                 margin: 8px 0 28px;
+
           } 
 
-            #faculdade label {
+            #nome-onibus label {
                  font-weight: bolder;
                  color: black;
                  display: flex;
                  align-items: left;
                  gap: 8px;
+                 
             }
 
             #confirmar{
@@ -153,19 +156,19 @@
                 <button class="fechar">&times;</button>
             </a>
 
-            <h2>Cadastrar Nova Faculdade</h2>
+            <h2>Cadastrar Novo Ônibus</h2>
 
-            <p>Preencha os dados básicos da instituição.</p>
+            <p>Preencha os dados básicos do transporte.</p>
 
 
             <form>
-               <div id="faculdade">
-                    <label for="nome">Nome da Faculdade</label><br>
-                    <input type="text" placeholder="Ex: Universidade Federal do Ceará" id="name" name="name" required><br>
+               <div id="nome-onibus">
+                    <label for="nome">Nome</label><br>
+                    <input type="text" placeholder="Ex: Expresso Vigeo" id="nome" name="nome" required><br>
                     
 
-                    <label for="bairro">Bairro</label><br>
-                    <input type="text" placeholder="Ex: Cedro" id="bairro" name="bairro" required><br>
+                    <label for="placa">Placa</label><br>
+                    <input type="text" placeholder="Ex: KM00987" id="placa" name="placa" required><br>
                     
                 </div>
             
