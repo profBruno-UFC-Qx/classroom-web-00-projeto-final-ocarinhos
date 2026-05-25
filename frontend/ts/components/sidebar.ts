@@ -7,7 +7,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
     container.innerHTML = `
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="./assets/Header/AUO Logo.svg" alt="Logo AUO" class="logo-img">
+                <img src="../assets/Header/AUO Logo.svg" alt="Logo AUO" class="logo-img">
                 <div class="logo-text">
                     <h2>A.U.O</h2>
                     <p>Portal Universitário</p>
