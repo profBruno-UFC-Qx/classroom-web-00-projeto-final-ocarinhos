@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Semanal</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="../css/styles.css"/>
 </head>
 <body>
@@ -48,7 +49,7 @@
                 </article>
 
                 <section class="container sem-form-container">
-                    <form class="sem-form-corpo">
+                    <form class="sem-form-corpo" id="formulario-semanal">
                         <fieldset class="sem-form-secao">
 
                             <h2 class="sem-form-subtitulo">Dados do Aluno</h2>
@@ -117,21 +118,18 @@
                             <fieldset class="sem-form-secao sem-form-secao-metade">
                                 <h2 class="sem-form-subtitulo">Parada de Saída</h2>
                                 <div class="sem-form-grupo-entrada">
-                                    <select name="paradaSaida" required>
+                                    <select id="paradaSaida" name="paradaSaida" required>
                                         <option value="">Selecione sua parada</option>
-                                        <option value="centro">Centro</option>
-                                        <option value="bairro-a">Bairro A</option>
-                                        <option value="bairro-b">Bairro B</option>
+                                        <option value="1">Centro</option>
+                                        <option value="2">Bairro A</option>
+                                        <option value="3">Bairro B</option>
                                     </select>
                                 </div>
 
                                 <h2 class="sem-form-subtitulo">Faculdade Destino</h2>
                                 <div class="sem-form-grupo-entrada">
-                                    <select name="faculdadeDestino" required>
-                                        <option value="">Selecione sua Faculdade</option>
-                                        <option value="centro">Centro</option>
-                                        <option value="bairro-a">Bairro A</option>
-                                        <option value="bairro-b">Bairro B</option>
+                                    <select id="faculdadeDestino" name="faculdadeDestino" required>
+                                        <option value="">Carregando faculdades...</option>
                                     </select>
                                 </div>
                             </fieldset>
@@ -151,11 +149,8 @@
                                 </label>
                             </div>
                             <div class="sem-form-grupo-entrada">
-                                <select name="rotaDestino" id="rotaDestino" disabled>
-                                    <option value="">Selecione o segundo destino</option>
-                                    <option value="fac-01">Faculdade 01</option>
-                                    <option value="fac-02">Faculdade 02</option>
-                                    <option value="fac-03">Faculdade 03</option>
+                                <select name="rotaComplementarDestino" id="rotaComplementarDestino" disabled>
+                                    <option value="">Carregando rotas complementares...</option>
                                 </select>
                             </div>
                         </fieldset>
@@ -169,7 +164,7 @@
         </div>
     </div>
 
-    <script type="module" src="./dist/formulario-semanal/formulario-semanal.js"></script>
+    <script type="module" src="../dist/formulario-semanal/formulario-semanal.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </body>
 
