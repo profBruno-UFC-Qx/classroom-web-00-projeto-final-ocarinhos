@@ -26,19 +26,19 @@ function isLoginData(obj: any): obj is LoginData {
 
 function verificarCampos(obj: LoginData): Boolean {
   if (obj.senha.length < 6) {
-    showTopMessage("Digite ate 6 caracteres na sua senha","error");
+    showTopMessage("Digite ate 6 caracteres na sua senha", "error");
     return false;
   }
 
   if (obj.senha != obj.confirmarsenha) {
-    showTopMessage("senhas diferentes","error");
+    showTopMessage("senhas diferentes", "error");
     return false;
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (typeof obj.email == "string" && !emailRegex.test(obj.email)) {
-    showTopMessage("Email inválido","error");
+    showTopMessage("Email inválido", "error");
     return false;
   }
   return true;
@@ -53,7 +53,7 @@ async function preencherFaculdades() {
     return;
   }
 
-  data?.forEach((faculdades) => {
+  data?.forEach((faculdades: { id: string; nome: string }) => {
     const options = document.createElement("option");
     options.value = faculdades.id;
     options.innerText = faculdades.nome;
