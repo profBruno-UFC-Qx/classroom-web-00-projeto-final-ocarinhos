@@ -10,6 +10,7 @@
     />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/consultar-rota/consultar-rota.css" />
   </head>
   <body>
     <main class="aluno-shell">
@@ -32,103 +33,130 @@
           </div>
         </header>
 
-        <div class="mainDasboard">
-          <section class="mainHead">
+        <div class="mainDasboard consultar-rota">
+          <div class="container">
+          <section class="page-head">
             <h1>Consultar Rota</h1>
-            <p>Veja rapidamente a rota atual, pontos de parada e horário previsto.</p>
+            <p>Visualize a escala de transporte e rotas para cada dia da semana.</p>
+
+            <nav class="weekday-tabs" role="tablist">
+              <button class="tab active">Segunda</button>
+              <button class="tab">Terça</button>
+              <button class="tab">Quarta</button>
+              <button class="tab">Quinta</button>
+              <button class="tab">Sexta</button>
+            </nav>
           </section>
 
-          <section class="mainInfo">
-            <h1>Rota Atual</h1>
-            <div class="cards">
-              <div class="card">
-                <div class="title">
-                  <img src="../assets/dashBoard/rota.svg" alt="" />
-                  <h1>TRAJETO</h1>
-                </div>
-                <p>Ocara → Unicatólica</p>
+          <section class="transporte-do-dia">
+            <header class="transporte-header">
+              <div class="transporte-title">
+                <i class="bi bi-bus-front"></i>
+                <h2>Transportes do Dia</h2>
+                <small class="muted">Visualize os horários e destinos</small>
               </div>
-              <div class="card">
-                <div class="title">
-                  <img src="../assets/dashBoard/onibus.svg" alt="" />
-                  <h1>ÔNIBUS</h1>
-                </div>
-                <p>Ônibus 08</p>
+              <div class="weekday-badge">Segunda-feira</div>
+            </header>
+
+            <div class="transporte-grid">
+              <div class="table-card">
+                <table class="transporte-table">
+                  <thead>
+                    <tr>
+                      <th>ÔNIBUS</th>
+                      <th>DESTINO/FACULDADE</th>
+                      <th>ROTA COMPLEMENTAR</th>
+                      <th>SAÍDA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Faustino</strong></td>
+                      <td>Unicatólica / IFCE</td>
+                      <td>CE 464</td>
+                      <td class="time">17:30</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Kim</strong></td>
+                      <td>UFC / FECLEARE</td>
+                      <td>CENTRO</td>
+                      <td class="time">18:00</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Balde</strong></td>
+                      <td>Unicatólica</td>
+                      <td>SERRAGEM/CURUPIRA</td>
+                      <td class="time">18:15</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="card">
-                <div class="title">
-                  <img src="../assets/dashBoard/motorista.svg" alt="" />
-                  <h1>MOTORISTA</h1>
+
+              <div class="map-card">
+                <div class="map-visual">
+                  <!-- futuro mapa desenhado :) -->
                 </div>
-                <p>Sr. João</p>
-              </div>
-              <div class="card tempo">
-                <div class="title">
-                  <img src="../assets/dashBoard/tempo.svg" alt="" />
-                  <h1>SAÍDA ESTIMADA</h1>
-                </div>
-                <p>18:30</p>
+                <div class="map-caption">Visualização da Rota Ativa<br /><span class="muted">Quixadá - Campus Integrados</span></div>
               </div>
             </div>
           </section>
 
-          <section class="informacoes">
-            <div class="embarque">
-              <h1>Pontos de Embarque</h1>
-              <ul>
-                <li>
-                  <div class="embarqueCard">
-                    <div>
-                      <img src="../assets/dashBoard/local.svg" alt="" />
-                    </div>
-                    <div class="cardInfo">
-                      <h1>POSTO SÃO MARCOS</h1>
-                      <p>Saída principal do centro</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="embarqueCard">
-                    <div>
-                      <img src="../assets/dashBoard/local.svg" alt="" />
-                    </div>
-                    <div class="cardInfo">
-                      <h1>CE 464</h1>
-                      <p>Rota complementar</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+          <section class="filters-and-list">
+            <aside class="filter-card">
+              <h3><i class="bi bi-filter"></i> Filtro por Ônibus</h3>
+              <select>
+                <option>Todos os Ônibus</option>
+                <option>Faustino</option>
+                <option>Kim</option>
+                <option>Balde</option>
+              </select>
+            </aside>
 
-            <div class="mural">
-              <h1>Atalho do Portal</h1>
-              <ul>
-                <li>
-                  <div class="muralCard">
-                    <div>
-                      <img src="../assets/dashBoard/aviso.svg" alt="" />
-                    </div>
-                    <div class="muralInfo">
-                      <h1>Formulário Semanal</h1>
-                      <p>Confirme sua presença para a próxima semana.</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="muralCard">
-                    <div>
-                      <img src="../assets/dashBoard/aviso.svg" alt="" />
-                    </div>
-                    <div class="muralInfo">
-                      <h1>Meu Perfil</h1>
-                      <p>Atualize seus dados acadêmicos e de contato.</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+            <div class="passengers-card">
+              <h3>Lista de Passageiros</h3>
+              <p class="muted small">Ônibus 01 - 32 Alunos Alocados</p>
+
+              <table class="passengers-table">
+                <thead>
+                  <tr>
+                    <th>NOME DO ALUNO</th>
+                    <th>CURSO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mariana Silva</td>
+                    <td><span class="tag">ENG. CIVIL</span></td>
+                  </tr>
+                  <tr>
+                    <td>João Pedro Santos</td>
+                    <td><span class="tag">DIREITO</span></td>
+                  </tr>
+                  <tr>
+                    <td>Ana Clara Oliveira</td>
+                    <td><span class="tag">SISTEMAS</span></td>
+                  </tr>
+                  <tr>
+                    <td>Lucas Ferreira</td>
+                    <td><span class="tag">PSICOLOGIA</span></td>
+                  </tr>
+                  <tr>
+                    <td>Beatriz Lima</td>
+                    <td><span class="tag">ARQUITETURA</span></td>
+                  </tr>
+                  <tr>
+                    <td>Ricardo Mota</td>
+                    <td><span class="tag">ADM</span></td>
+                  </tr>
+                  <tr>
+                    <td>Fernanda Costa</td>
+                    <td><span class="tag">ENFERMAGEM</span></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </section>
+          </div>
         </div>
       </div>
     </main>
