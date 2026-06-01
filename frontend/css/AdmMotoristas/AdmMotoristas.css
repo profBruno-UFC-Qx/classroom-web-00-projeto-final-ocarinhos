@@ -9,7 +9,10 @@ body {
   text-align: right;
 }
 
-
+.wrap {
+  display: flex;
+  min-height: 100vh;
+}
 
 .motoristasHeader {
   background-color: #fff;
@@ -45,7 +48,7 @@ body {
 .motoristasMain {
   display: flex;
   flex-direction: column;
-  margin: 0px auto;
+  flex-grow: 1;
   max-width: 1400px;
   padding: 30px 50px;
 }
@@ -62,7 +65,6 @@ body {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
   display: flex;
   gap: 25px;
-  flex-grow: 1;
   padding: 20px;
   margin-top: 20px;
 }
@@ -90,12 +92,12 @@ body {
   padding: 0px 10px;
 }
 
-.motoristasSearch .efetuarCadastro{
-  background-color: #01468E;
+.motoristasSearch .efetuarCadastro {
+  background-color: #01468e;
   border-radius: 8px;
 }
 
-.motoristasSearch .listActions{
+.motoristasSearch .listActions {
   display: flex;
   gap: 15px;
 }
