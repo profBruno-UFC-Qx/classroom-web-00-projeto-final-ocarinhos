@@ -5,6 +5,10 @@ body {
   color: #0b1c30;
 }
 
+.wrap {
+  display: flex;
+}
+
 .alignRight {
   text-align: right;
 }
@@ -187,7 +191,9 @@ body {
   background-color: #6c757d;
   color: #fff;
   font-family: inherit;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
