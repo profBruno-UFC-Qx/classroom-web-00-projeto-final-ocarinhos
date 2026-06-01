@@ -1,5 +1,7 @@
 import { supabase } from "../supabase/supabase.js";
 import showTopMessage from "../utils/showMsg.js";
+import { renderizarSidebar } from "../components/sidebar.js";
+renderizarSidebar("sidebar-container", "dashboard");
 
 interface motoristasInterface {
   nome: string;
