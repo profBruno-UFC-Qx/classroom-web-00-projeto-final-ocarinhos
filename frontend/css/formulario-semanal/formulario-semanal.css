@@ -1,5 +1,12 @@
+.sem-form-page-content {
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 .sem-form-cabecalho {
-  padding: 20px 20px 0px 20px;
+  padding: 0;
   text-align: left;
   margin-bottom: 8px;
   max-width: 900px;
@@ -24,7 +31,7 @@
 
 /* Contêiner do Formulário */
 .sem-form-container {
-  padding: 30px 20px;
+  padding: 0;
   max-width: 900px;
 }
 

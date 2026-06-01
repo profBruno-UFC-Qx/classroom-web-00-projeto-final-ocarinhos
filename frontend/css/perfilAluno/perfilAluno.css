@@ -1,3 +1,5 @@
+@import "../sidebar.css";
+
 :root {
     --bg-color: #f8f9fc;
     --primary-blue: #4c73df;
@@ -14,55 +16,6 @@ body {
     padding: 0;
     font-family: 'Nunito', 'Segoe UI', sans-serif;
     background-color: var(--bg-color);
-}
-
-/* Cabeçario */
-.main-header {
-    background-color: #ffffff;
-    padding: 1rem 3rem;
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.logo-title {
-    font-size: 1.35rem;
-    color: #0264b8;
-    font-weight: 800;
-    margin: 0;
-}
-
-.header-user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.header-icon {
-    color: #6f7180;
-    font-size: 1.1rem;
-    cursor: pointer;
-}
-
-.user-nickname {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #0264B8FF;
-    border-left: 1px solid #d1d3e2;
-    padding-left: 15px;
-}
-
-.mini-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
 }
 
 /* Layout */
