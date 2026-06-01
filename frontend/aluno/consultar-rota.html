@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consultar Rota - AUO</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <main class="aluno-shell">
+      <div id="sidebar-container"></div>
+
+      <div class="aluno-content">
+        <header class="main-header">
+          <div class="header-content">
+            <h1 class="logo-title">Transporte Universitário Ocara</h1>
+            <div class="header-user-info">
+              <i class="bi bi-bell header-icon"></i>
+              <i class="bi bi-gear header-icon"></i>
+              <span class="user-nickname">Painel do Aluno</span>
+              <img
+                src="../assets/profilepic.jpg"
+                alt="Avatar"
+                class="mini-avatar"
+              />
+            </div>
+          </div>
+        </header>
+
+        <div class="mainDasboard">
+          <section class="mainHead">
+            <h1>Consultar Rota</h1>
+            <p>Veja rapidamente a rota atual, pontos de parada e horário previsto.</p>
+          </section>
+
+          <section class="mainInfo">
+            <h1>Rota Atual</h1>
+            <div class="cards">
+              <div class="card">
+                <div class="title">
+                  <img src="../assets/dashBoard/rota.svg" alt="" />
+                  <h1>TRAJETO</h1>
+                </div>
+                <p>Ocara → Unicatólica</p>
+              </div>
+              <div class="card">
+                <div class="title">
+                  <img src="../assets/dashBoard/onibus.svg" alt="" />
+                  <h1>ÔNIBUS</h1>
+                </div>
+                <p>Ônibus 08</p>
+              </div>
+              <div class="card">
+                <div class="title">
+                  <img src="../assets/dashBoard/motorista.svg" alt="" />
+                  <h1>MOTORISTA</h1>
+                </div>
+                <p>Sr. João</p>
+              </div>
+              <div class="card tempo">
+                <div class="title">
+                  <img src="../assets/dashBoard/tempo.svg" alt="" />
+                  <h1>SAÍDA ESTIMADA</h1>
+                </div>
+                <p>18:30</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="informacoes">
+            <div class="embarque">
+              <h1>Pontos de Embarque</h1>
+              <ul>
+                <li>
+                  <div class="embarqueCard">
+                    <div>
+                      <img src="../assets/dashBoard/local.svg" alt="" />
+                    </div>
+                    <div class="cardInfo">
+                      <h1>POSTO SÃO MARCOS</h1>
+                      <p>Saída principal do centro</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="embarqueCard">
+                    <div>
+                      <img src="../assets/dashBoard/local.svg" alt="" />
+                    </div>
+                    <div class="cardInfo">
+                      <h1>CE 464</h1>
+                      <p>Rota complementar</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mural">
+              <h1>Atalho do Portal</h1>
+              <ul>
+                <li>
+                  <div class="muralCard">
+                    <div>
+                      <img src="../assets/dashBoard/aviso.svg" alt="" />
+                    </div>
+                    <div class="muralInfo">
+                      <h1>Formulário Semanal</h1>
+                      <p>Confirme sua presença para a próxima semana.</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="muralCard">
+                    <div>
+                      <img src="../assets/dashBoard/aviso.svg" alt="" />
+                    </div>
+                    <div class="muralInfo">
+                      <h1>Meu Perfil</h1>
+                      <p>Atualize seus dados acadêmicos e de contato.</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="../dist/consultar-rota/consultar-rota.js"></script>
+  </body>
+</html>

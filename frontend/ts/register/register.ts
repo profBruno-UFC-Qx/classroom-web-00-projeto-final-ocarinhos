@@ -99,7 +99,9 @@ if (form instanceof HTMLFormElement) {
       });
 
       if (!error) {
-        window.location.href = "dashBoardAluno.html";
+        const nomeUsuario = String(data.user?.user_metadata?.nome ?? objLogin.nome);
+        localStorage.setItem("auo-user-name", nomeUsuario);
+        window.location.href = "/index.html";
       }
 
       if (error) {

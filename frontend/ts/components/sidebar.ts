@@ -1,4 +1,4 @@
-
+import { supabase } from "../supabase/supabase.js";
 
 export function renderizarSidebar(containerId: string, paginaAtiva: string) {
     const container = document.getElementById(containerId);
@@ -15,7 +15,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
             </div>
             
             <nav class="sidebar-nav">
-                <a href="../../aluno/dashBoardAluno.html" class="menu-item ${paginaAtiva === 'dashboard' ? 'active' : ''}">
+                <a href="dashBoardAluno.html" class="menu-item ${paginaAtiva === 'dashboard' ? 'active' : ''}">
                     <i data-lucide="layout-dashboard"></i> Dashboard
                 </a>
                 <a href="consultar-rota.html" class="menu-item ${paginaAtiva === 'rota' ? 'active' : ''}">
@@ -24,7 +24,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
                 <a href="../../aluno/formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
                     <i data-lucide="calendar-check"></i> Formulário Semanal
                 </a>
-                <a href="../../aluno/perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
+                <a href="perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
                     <i data-lucide="user"></i> Perfil
                 </a>
             </nav>
@@ -37,6 +37,46 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
         </aside>
     `;
 
-    // @ts-ignore
-    if (window.lucide) { lucide.createIcons(); }
+    const renderIcons = () => {
+        // @ts-ignore
+        if (window.lucide) {
+            // @ts-ignore
+            lucide.createIcons();
+        }
+    };
+
+    supabase.auth.getSession().then((result: Awaited<ReturnType<typeof supabase.auth.getSession>>) => {
+        const user = result.data.session?.user;
+
+        if (!user) {
+            window.location.replace("login.html");
+            return;
+        }
+
+        const nomeUsuario = String(
+            user?.user_metadata?.nome ??
+                localStorage.getItem("auo-user-name") ??
+                user?.email ??
+                "Aluno"
+        );
+
+        document.querySelectorAll<HTMLElement>(".user-nickname").forEach((element) => {
+            element.textContent = nomeUsuario;
+        });
+
+        renderIcons();
+    });
+
+    const existingLoader = document.querySelector<HTMLScriptElement>(
+        'script[data-lucide-loader="true"]'
+    );
+
+    if (!existingLoader && !(window as typeof window & { lucide?: unknown }).lucide) {
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/lucide@latest";
+        script.defer = true;
+        script.dataset.lucideLoader = "true";
+        script.addEventListener("load", renderIcons, { once: true });
+        document.body.appendChild(script);
+    }
 }
