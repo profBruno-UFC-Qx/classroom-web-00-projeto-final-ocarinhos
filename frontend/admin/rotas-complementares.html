@@ -10,27 +10,13 @@
     />
     <link rel="stylesheet" href="./../css/AdmFaculdades/AdmFaculdades.css" />
     <link rel="stylesheet" href="./../css/rota-com/rota-com.css" />
+    <link rel="stylesheet" href="../css/sidebar.css">
   </head>
   <body>
-    <header class="faculdadesHeader">
-      <h2>Gestão de Logística</h2>
 
-      <div class="faculdadesProfile">
-        <div class="faculdadesProfileInfo">
-          <p>Gestor Ocara</p>
-          <p>Administrador Master</p>
-        </div>
-
-        <div class="faculdadesProfileImage">
-          <img
-            src="./../assets/Admin/adminprofile.png"
-            alt="Imagem de administrador"
-          />
-        </div>
-      </div>
-    </header>
-
-    <main class="faculdadesMain">
+    <main class="wrap">
+      <div id="sidebar-container"></div>
+          <div class="faculdadesMain">
       <h1>Gestão de rotas complementares</h1>
 
       <p class="faculdadesSubtitle">
@@ -56,9 +42,7 @@
                     type="button"
                     id="dropdownMenuButton1"
                     data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Filtros
+                    aria-expanded="false"admRotas
                   </button>
                   <ul
                     class="dropdown-menu"
@@ -118,7 +102,7 @@
         <tr>
           <td class="name">
             <i class="bi bi-mortarboard" aria-hidden="true"></i>
-            SERRAGEM
+            SERRAGEMadmRotas
           </td>
 
           <td>Serragem</td>
@@ -128,7 +112,7 @@
           </td>
 
           <td class="buttons">
-            <button type="button" aria-label="Editar" class="edit">
+            <button type="button" aria-labeadmRotasl="Editar" class="edit">
               <i class="bi bi-pencil"></i>
             </button>
 
@@ -239,75 +223,22 @@
           </tr>
         </tfoot>
       </table>
+    </div>
     </main>
 
-    <div class="faculdadesModalOverlay" hidden>
-      <section
-        class="faculdadesModal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="faculdadesModalTitle"
-      >
-        <header class="faculdadesModalHeader">
-          <div>
-            <span class="faculdadesModalEyebrow"> Edição de faculdade </span>
 
-            <h2 id="faculdadesModalTitle">Editar faculdade</h2>
 
-            <p>Atualize as informações da instituição cadastrada.</p>
-          </div>
-
-          <button
-            type="button"
-            class="faculdadesModalClose"
-            aria-label="Fechar modal"
-          >
-            <i class="bi bi-x-lg"></i>
-          </button>
-        </header>
-
-        <form class="faculdadesModalForm">
-          <div class="faculdadesModalGrid">
-            <label>
-              <span>Nome da faculdade</span>
-
-              <input type="text" name="nome" maxlength="45" required />
-            </label>
-
-            <label>
-              <span>Bairro</span>
-
-              <input type="text" name="bairro" maxlength="45" required />
-            </label>
-
-            <label>
-              <span>Quantidade de Alunos</span>
-
-              <input type="number" name="quantidade" required />
-            </label>
-          </div>
-
-          <footer class="faculdadesModalActions">
-            <button
-              type="button"
-              class="faculdadesModalButton secondary faculdadesModalCancel"
-            >
-              Cancelar
-            </button>
-
-            <button type="submit" class="faculdadesModalButton primary">
-              Salvar alterações
-            </button>
-          </footer>
-        </form>
-      </section>
-    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="../dist/admin/alunos.js"></script>
+    <script
+      type="module"
+      src="../dist/admRotasComplementar/admRotasComplementar.js"
+    ></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+
   </body>
 </html>

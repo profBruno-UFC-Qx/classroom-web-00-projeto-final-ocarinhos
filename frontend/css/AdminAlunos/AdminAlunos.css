@@ -5,6 +5,10 @@ body {
   color: #0b1c30;
 }
 
+.wrap{
+  display: flex;
+}
+
 .alignRight {
   text-align: right;
 }

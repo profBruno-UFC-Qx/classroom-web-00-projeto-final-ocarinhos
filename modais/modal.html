@@ -5,8 +5,21 @@
 
         <style>
 
+            :root {
+                --azul-escuro: #00458E;
+                --quase-preto: #1f2937;
+            }
+
             body {
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                background-color: #F8F9FF;
+                font-family: system-ui, -apple-system, 
+                    BlinkMacSystemFont, "Segoe UI", sans-serif;
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            
             }
             
             dialog::backdrop {
@@ -15,11 +28,12 @@
 
             dialog {
                 border: none;
-                border-radius: 18px;
+                border-radius: 12px;
                 box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-                width: min(90%, 420px);
-                padding: 32px 28px;
+                width: min(90%, 520px);
+                padding: 40px 36px;
                 text-align: center;
+                background-color: white;
             }
 
             h2 {
@@ -27,31 +41,61 @@
                 margin: 0 0 12px;
                 font-size: 24px;
                 line-height: 1.2;
-                color: #1f2937;
+                color: var(--quase-preto);
 
             }
 
             p{
-                padding: 3px;
                 margin: 0 0 24px;
-                font-size: 16px;
-                line-height: 1.5;
+                font-size: 15px;
                 color: #4b5563;
             }
+            
+            label {
+                font-size: 14px;
+                font-weight: 700;
+                color: #1f2937;
+            }
+
+            #login {
+                text-align: left;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                width: 100%;
+                box-sizing: border-box;
+                height: 46px;
+                margin: 8px 0 18px;
+                padding: 0 14px;
+                border: 1px solid #9ca3af;
+                border-radius: 6px;
+                font-size: 15px;
+                outline: none;
+            }
+
+            input::placeholder {
+                color: #b6bdc9;
+            }
+
+            a {
+                color: var(--azul-escuro);
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 700;
+            }
+
 
             button {
-                min-width: 110px;
-                padding: 12px 24px;
+                width: 100%;
+                padding: 13px 24px;
                 display: block;
-                margin: 24px auto 0;
+                margin: 0;
                 border: none;
-                border-radius: 999px;
-                background-color: #366BC7;
-                font-size: 16px;
+                border-radius: 6px;
+                background-color: var(--azul-escuro);
+                font-size: 14px;
                 font-weight: 700;
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, 
-                    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                font-weight: bold;
                 color: white;
                 cursor: pointer;
                 box-shadow: 0 8px 18px rgba(54, 107, 199, 0.28);
@@ -62,18 +106,73 @@
                 box-shadow: 0 6px 16px rgba(30, 126, 204, 0.4);
             }
 
+            #lembrar-senha {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 8px 0 28px;
+            }
 
+            #lembrar-senha label {
+                 font-weight: 400;
+                 color: #4b5563;
+                 display: flex;
+                 align-items: center;
+                 gap: 8px;
+            }
+
+            #lembrar-senha a {
+                text-decoration: none;
+                color: var(--azul-escuro);
+                font-weight: 700;
+                font-size: 14px;
+            }
+
+            hr {
+               margin: 28px 0;
+            }
+
+        
         </style>
     </head>
     <body>
 
         <dialog open>
 
-            <h2>Hoje não teremos rotas!</h2>
+            <h2>Acesso Institucional</h2>
 
-            <p>Devido ao feriado, hoje não teremos rotas.</p>
+            <p>Insira suas credenciais para gerenciar a logística.</p>
 
-            <button>Ok</button>
+
+            <form>
+                <div id="login">
+                    <label for="email">E-mail</label><br>
+                    <input type="email" placeholder="aluno@gmail.com" id="email" name="email" required><br>
+                    
+                    <label for="password">Senha</label><br>
+                    <input name="senha" id="senha" type="password" placeholder="••••••••" required/>
+                </div>
+            
+                <div id="lembrar-senha">
+                    <label>
+                            <input type="checkbox" name="lembrar" value="checked"> 
+                            Lembrar de mim
+                    </label>
+                    <a href="link">Esqueci minha senha</a>
+                </div>
+
+                 <button type="submit">Entrar &#8594;</button>
+            
+            </form>
+
+            <hr>
+
+            <div>
+                <p>Primeiro Acesso?</p><a href="link">Cadastre-se &#8594</a>
+            </div>
+            
+
+           
 
         <!-- Precisa integrar esse botão a linguagem 
             que está sendo utilizada, 

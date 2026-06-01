@@ -1,5 +1,7 @@
 import { supabase } from "../supabase/supabase.js";
 import showTopMessage from "../utils/showMsg.js";
+import { renderizarSidebar } from "../components/sidebar.js";
+renderizarSidebar("sidebar-container", "dashboard");
 
 interface motoristasInterface {
   nome: string;
@@ -9,20 +11,24 @@ interface motoristasInterface {
   };
 }
 
-const { data, error } = (await supabase
-  .from("motoristas")
-  .select("nome, onibus (nome), kmAtual")) as {
-  data: motoristasInterface[] | null;
-  error: any;
-};
+async function fetchMotoristas() {
+  const { data, error } = (await supabase
+    .from("motoristas")
+    .select("nome, onibus (nome), kmAtual")) as {
+    data: motoristasInterface[] | null;
+    error: any;
+  };
 
-if (error) {
-  showTopMessage("Não foi possível fazer o fetch dos motoristas.", "error");
+  if (error) {
+    showTopMessage("Não foi possível fazer o fetch dos motoristas.", "error");
+  }
+
+  if (data) {
+    inserirMotoristas(data);
+  }
 }
 
-const listaMotoristas = data;
-
-if (listaMotoristas) {
+function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
   const motoristasTable = document.querySelector(
     ".motoristasTable tbody"
   ) as HTMLTableSectionElement;
@@ -56,3 +62,5 @@ if (listaMotoristas) {
     motoristasTable.appendChild(tr);
   });
 }
+
+fetchMotoristas();

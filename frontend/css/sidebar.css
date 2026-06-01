@@ -41,27 +41,35 @@
 }
 
 .sidebar-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
 .sidebar-header .logo-img {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.logo-text h2 { color: #fff; margin: 0; font-size: 18px; }
-.logo-text p { margin: 0; font-size: 12px; opacity: 0.8; }
+.logo-text h2 {
+  color: #fff;
+  margin: 0;
+  font-size: 18px;
+}
+.logo-text p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
 
 .sidebar-nav {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .sidebar-nav a,
@@ -75,21 +83,30 @@
 }
 
 .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 16px;
-    text-decoration: none;
-    color: #94a3b8;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #94a3b8;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.2s;
 }
 
-.menu-item.active { background-color: #2563eb; color: #fff; }
-.menu-item:hover:not(.active) { background-color: #1e293b; color: #fff; }
+.menu-item.active {
+  background-color: #2563eb;
+  color: #fff;
+}
+.menu-item:hover:not(.active) {
+  background-color: #1e293b;
+  color: #fff;
+}
 
-.logout { color: #f87171; margin-top: auto; }
+.logout {
+  color: #f87171;
+  margin-top: auto;
+}
 
 /* Cabeçalho do aluno */
 .main-header {
@@ -178,15 +195,16 @@
 
 /* Ajustes do Formulário */
 .sem-form-secao {
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 20px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
 }
 
-.sem-form-linha, .sem-form-linha-dois {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+.sem-form-linha,
+.sem-form-linha-dois {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
