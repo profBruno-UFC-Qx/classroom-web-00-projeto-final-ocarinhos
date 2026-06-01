@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cadastro</title>
+    <style>
+        :root {
+            --azul-escuro: #00458E;
+            --quase-preto: #1f2937;
+            --azul-claro: #EFF4FF;
+            --cinza-borda: #9ca3af;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: #F8F9FF;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            padding: 40px 16px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: var(--quase-preto);
+            margin: 0 0 8px;
+            text-align: center;
+        }
+
+        .botoes-abrir {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn-abrir {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--azul-escuro);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,69,142,0.25);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-abrir:hover {
+            background-color: #1869aa;
+            box-shadow: 0 6px 16px rgba(30,126,204,0.4);
+        }
+
+        /* ── Tabelas de dados cadastrados ── */
+        .tabelas {
+            width: min(95%, 900px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .tabelas { grid-template-columns: 1fr; }
+        }
+
+        .card-tabela {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .card-tabela h3 {
+            margin: 0;
+            padding: 16px 20px;
+            font-size: 15px;
+            color: white;
+            background-color: var(--azul-escuro);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead th {
+            background-color: var(--azul-claro);
+            color: var(--quase-preto);
+            font-weight: 700;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.15s;
+        }
+
+        tbody tr:hover { background-color: #f8faff; }
+
+        tbody td {
+            padding: 10px 14px;
+            color: #374151;
+        }
+
+        .vazio {
+            padding: 20px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        /* ── Dialog ── */
+        dialog::backdrop {
+            background-color: rgba(0,0,0,0.45);
+        }
+
+        dialog {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+            width: min(90%, 520px);
+            padding: 40px 36px;
+            text-align: center;
+            background-color: white;
+            position: relative;
+        }
+
+        dialog h2 {
+            padding: 2px;
+            text-align: left;
+            margin: 0 0 12px;
+            font-size: 28px;
+            line-height: 1.2;
+            color: var(--quase-preto);
+        }
+
+        dialog p {
+            text-align: left;
+            margin: 0 0 32px;
+            font-size: 16px;
+            color: #4b5563;
+        }
+
+        .campos {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            margin: 8px 0 28px;
+            gap: 4px;
+        }
+
+        .campos label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-top: 14px;
+        }
+
+        .campos input,
+        .campos select {
+            width: 100%;
+            height: 46px;
+            padding: 0 16px;
+            border: 1px solid var(--cinza-borda);
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+            background-color: var(--azul-claro);
+            color: #1f2937;
+            transition: border-color 0.2s;
+        }
+
+        .campos input:focus,
+        .campos select:focus {
+            border-color: var(--azul-escuro);
+        }
+
+        .campos input::placeholder { color: #9ca3af; }
+
+        .rodape-modal {
+            background-color: var(--azul-claro);
+            margin: 36px -36px -40px;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 24px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .btn-cancelar {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 8px 0;
+        }
+
+        .btn-cancelar:hover { color: #374151; }
+
+        .btn-confirmar {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            background-color: var(--azul-escuro);
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(54,107,199,0.28);
+            transition: background 0.2s;
+        }
+
+        .btn-confirmar:hover {
+            background-color: #1869aa;
+        }
+
+        .btn-fechar {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #9ca3af;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .btn-fechar:hover { color: #374151; }
+
+        /* toast */
+        #toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #1f2937;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            white-space: nowrap;
+        }
+
+        #toast.visivel {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sistema de Cadastro</h1>
+    <p style="color:#6b7280;margin:0;text-align:center;font-size:15px;">Clique para abrir cada formulário de cadastro.</p>
+
+    <div class="botoes-abrir">
+        <button class="btn-abrir" onclick="abrirModal('modalFaculdade')">+ Faculdade</button>
+        <button class="btn-abrir" onclick="abrirModal('modalOnibus')">+ Ônibus</button>
+        <button class="btn-abrir" onclick="abrirModal('modalMotorista')">+ Motorista</button>
+        <button class="btn-abrir" onclick="abrirModal('modalRota')">+ Rota</button>
+    </div>
+
+    <!-- Tabelas de dados -->
+    <div class="tabelas">
+        <div class="card-tabela">
+            <h3>🏫 Faculdades</h3>
+            <table>
+                <thead><tr><th>Nome</th><th>Bairro</th></tr></thead>
+                <tbody id="tabelaFaculdades">
+                    <tr><td colspan="2" class="vazio">Nenhuma faculdade cadastrada.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-tabela">
+            <h3>🚌 Ônibus</h3>
+            <table>
+                <thead><tr><th>Nome</th><th>Placa</th></tr></thead>
+                <tbody id="tabelaOnibus">
+                    <tr><td colspan="2" class="vazio">Nenhum ônibus cadastrado.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-tabela">
+            <h3>👤 Motoristas</h3>
+            <table>
+                <thead><tr><th>Nome</th><th>Ônibus</th></tr></thead>
+                <tbody id="tabelaMotoristas">
+                    <tr><td colspan="2" class="vazio">Nenhum motorista cadastrado.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-tabela">
+            <h3>🗺️ Rotas</h3>
+            <table>
+                <thead><tr><th>Distrito</th><th>Bairro</th><th>Km</th></tr></thead>
+                <tbody id="tabelaRotas">
+                    <tr><td colspan="3" class="vazio">Nenhuma rota cadastrada.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ───────── MODAL FACULDADE ───────── -->
+    <dialog id="modalFaculdade">
+        <button class="btn-fechar" onclick="fecharModal('modalFaculdade')">&times;</button>
+        <h2>Cadastrar Nova Faculdade</h2>
+        <p>Preencha os dados básicos da instituição.</p>
+        <form id="formFaculdade" onsubmit="cadastrarFaculdade(event)">
+            <div class="campos">
+                <label for="fac-nome">Nome da Faculdade</label>
+                <input type="text" id="fac-nome" placeholder="Ex: Universidade Federal do Ceará" required>
+
+                <label for="fac-bairro">Bairro</label>
+                <input type="text" id="fac-bairro" placeholder="Ex: Benfica" required>
+            </div>
+            <div class="rodape-modal">
+                <button type="button" class="btn-cancelar" onclick="fecharModal('modalFaculdade')">Cancelar</button>
+                <button type="submit" class="btn-confirmar">Confirmar cadastro</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- ───────── MODAL ÔNIBUS ───────── -->
+    <dialog id="modalOnibus">
+        <button class="btn-fechar" onclick="fecharModal('modalOnibus')">&times;</button>
+        <h2>Cadastrar Novo Ônibus</h2>
+        <p>Preencha os dados básicos do transporte.</p>
+        <form id="formOnibus" onsubmit="cadastrarOnibus(event)">
+            <div class="campos">
+                <label for="oni-nome">Nome</label>
+                <input type="text" id="oni-nome" placeholder="Ex: Expresso Vigeo" required>
+
+                <label for="oni-placa">Placa</label>
+                <input type="text" id="oni-placa" placeholder="Ex: KM00987" required>
+            </div>
+            <div class="rodape-modal">
+                <button type="button" class="btn-cancelar" onclick="fecharModal('modalOnibus')">Cancelar</button>
+                <button type="submit" class="btn-confirmar">Confirmar cadastro</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- ───────── MODAL MOTORISTA ───────── -->
+    <dialog id="modalMotorista">
+        <button class="btn-fechar" onclick="fecharModal('modalMotorista')">&times;</button>
+        <h2>Cadastrar Novo Motorista</h2>
+        <p>Preencha os dados básicos do funcionário.</p>
+        <form id="formMotorista" onsubmit="cadastrarMotorista(event)">
+            <div class="campos">
+                <label for="mot-nome">Nome</label>
+                <input type="text" id="mot-nome" placeholder="Ex: Zé Faustino" required>
+
+                <label for="mot-onibus">Ônibus</label>
+                <select id="mot-onibus" required>
+                    <option value="" disabled selected>Selecione o ônibus</option>
+                </select>
+            </div>
+            <div class="rodape-modal">
+                <button type="button" class="btn-cancelar" onclick="fecharModal('modalMotorista')">Cancelar</button>
+                <button type="submit" class="btn-confirmar">Confirmar cadastro</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- ───────── MODAL ROTA ───────── -->
+    <dialog id="modalRota">
+        <button class="btn-fechar" onclick="fecharModal('modalRota')">&times;</button>
+        <h2>Cadastrar Nova Rota</h2>
+        <p>Preencha os dados básicos da rota complementar.</p>
+        <form id="formRota" onsubmit="cadastrarRota(event)">
+            <div class="campos">
+                <label for="rot-distrito">Nome do Distrito</label>
+                <input type="text" id="rot-distrito" placeholder="Ex: Croatá" required>
+
+                <label for="rot-bairro">Bairro</label>
+                <input type="text" id="rot-bairro" placeholder="Ex: Sereno de Cima" required>
+
+                <label for="rot-km">Km</label>
+                <input type="text" id="rot-km" placeholder="Ex: 7" required>
+            </div>
+            <div class="rodape-modal">
+                <button type="button" class="btn-cancelar" onclick="fecharModal('modalRota')">Cancelar</button>
+                <button type="submit" class="btn-confirmar">Confirmar cadastro</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div id="toast"></div>
+
+    <script>
+        const dados = {
+            faculdades: [],
+            onibus: [],
+            motoristas: [],
+            rotas: []
+        };
+
+        function abrirModal(id) {
+            if (id === 'modalMotorista') atualizarSelectOnibus();
+            document.getElementById(id).showModal();
+        }
+
+        function fecharModal(id) {
+            document.getElementById(id).close();
+        }
+
+        document.querySelectorAll('dialog').forEach(d => {
+            d.addEventListener('click', e => {
+                const rect = d.getBoundingClientRect();
+                if (e.clientX < rect.left || e.clientX > rect.right ||
+                    e.clientY < rect.top  || e.clientY > rect.bottom) {
+                    d.close();
+                }
+            });
+        });
+
+        function mostrarToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('visivel');
+            setTimeout(() => t.classList.remove('visivel'), 2800);
+        }
+
+        function renderTabela(tbodyId, linhas) {
+            const tbody = document.getElementById(tbodyId);
+            tbody.innerHTML = linhas.length ? linhas : `<tr><td colspan="99" class="vazio">Nenhum registro ainda.</td></tr>`;
+        }
+
+// Faculdade
+        function cadastrarFaculdade(e) {
+            e.preventDefault();
+            const nome   = document.getElementById('fac-nome').value.trim();
+            const bairro = document.getElementById('fac-bairro').value.trim();
+
+            dados.faculdades.push({ nome, bairro });
+
+            renderTabela('tabelaFaculdades',
+                dados.faculdades.map(f => `<tr><td>${f.nome}</td><td>${f.bairro}</td></tr>`).join(''));
+
+            document.getElementById('formFaculdade').reset();
+            fecharModal('modalFaculdade');
+            mostrarToast(`✅ Faculdade "${nome}" cadastrada!`);
+        }
+
+ // Ônibus
+        function cadastrarOnibus(e) {
+            e.preventDefault();
+            const nome  = document.getElementById('oni-nome').value.trim();
+            const placa = document.getElementById('oni-placa').value.trim();
+
+            dados.onibus.push({ nome, placa });
+
+            renderTabela('tabelaOnibus',
+                dados.onibus.map(o => `<tr><td>${o.nome}</td><td>${o.placa}</td></tr>`).join(''));
+
+            document.getElementById('formOnibus').reset();
+            fecharModal('modalOnibus');
+            mostrarToast(`✅ Ônibus "${nome}" cadastrado!`);
+        }
+ 
+        function atualizarSelectOnibus() {
+            const sel = document.getElementById('mot-onibus');
+            sel.innerHTML = '<option value="" disabled selected>Selecione o ônibus</option>';
+            dados.onibus.forEach((o, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = o.nome;
+                sel.appendChild(opt);
+            });
+        }
+
+// Motorista
+        function cadastrarMotorista(e) {
+            e.preventDefault();
+            const nome       = document.getElementById('mot-nome').value.trim();
+            const onibuIdx   = document.getElementById('mot-onibus').value;
+            const onibusNome = dados.onibus[onibuIdx]?.nome || '—';
+
+            dados.motoristas.push({ nome, onibus: onibusNome });
+
+            renderTabela('tabelaMotoristas',
+                dados.motoristas.map(m => `<tr><td>${m.nome}</td><td>${m.onibus}</td></tr>`).join(''));
+
+            document.getElementById('formMotorista').reset();
+            fecharModal('modalMotorista');
+            mostrarToast(`✅ Motorista "${nome}" cadastrado!`);
+        }
+
+// Rota
+        function cadastrarRota(e) {
+            e.preventDefault();
+            const distrito = document.getElementById('rot-distrito').value.trim();
+            const bairro   = document.getElementById('rot-bairro').value.trim();
+            const km       = document.getElementById('rot-km').value.trim();
+
+            dados.rotas.push({ distrito, bairro, km });
+
+            renderTabela('tabelaRotas',
+                dados.rotas.map(r => `<tr><td>${r.distrito}</td><td>${r.bairro}</td><td>${r.km} km</td></tr>`).join(''));
+
+            document.getElementById('formRota').reset();
+            fecharModal('modalRota');
+            mostrarToast(`✅ Rota "${distrito}" cadastrada!`);
+        }
+    </script>
+</body>
+</html>
