@@ -8,10 +8,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
+    <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/AdmMotoristas/AdmMotoristas.css" />
   </head>
   <body>
-    <header class="motoristasHeader">
+    <!-- <header class="motoristasHeader">
       <h2>Gestão de Logística</h2>
 
       <div class="motoristasProfile">
@@ -27,106 +28,86 @@
           />
         </div>
       </div>
-    </header>
+    </header> -->
 
-    <main class="motoristasMain">
-      <h1>Gestão de motoristas</h1>
+    <main class="wrap">
+      <div id="sidebar-container"></div>
+      <div class="motoristasMain">
+        <h1>Gestão de motoristas</h1>
 
-      <p class="motoristasSubtitle">
-        Visualize e gerencie os motoristas cadastrados no sistema.
-      </p>
+        <p class="motoristasSubtitle">
+          Visualize e gerencie os motoristas cadastrados no sistema.
+        </p>
 
-      <div class="motoristasSearch">
-        <form action="">
-          <input
-            type="text"
-            placeholder="Buscar faculdade por nome ou bairro..."
-          />
+        <div class="motoristasSearch">
+          <form action="">
+            <input
+              type="text"
+              placeholder="Buscar faculdade por nome ou bairro..."
+            />
 
-          <button type="submit" aria-label="Buscar">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
+            <button type="submit" aria-label="Buscar">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
 
-        <div class="listActions">
-          <div class="motoristasFiltro">
-            <select name="filtro" id="filtro">
-              <option value="default" selected>Filtros</option>
-              <option value="centro">Centro</option>
-              <option value="planalto">Bairro Planalto</option>
-              <option value="cedro">Cedro</option>
-            </select>
+          <div class="listActions">
+            <div class="motoristasFiltro">
+              <select name="filtro" id="filtro">
+                <option value="default" selected>Filtros</option>
+                <option value="centro">Centro</option>
+                <option value="planalto">Bairro Planalto</option>
+                <option value="cedro">Cedro</option>
+              </select>
+            </div>
+
+            <button class="efetuarCadastro">+ Cadastrar onibus</button>
           </div>
-
-          <button class="efetuarCadastro">+ Cadastrar onibus</button>
         </div>
-      </div>
 
-      <table class="motoristasTable">
-        <tr class="thead">
-          <th>NOME DO MOTORISTA</th>
-          <th>ONIBUS</th>
-          <th>KM ATUAL DO MES</th>
-          <th class="alignRight">AÇÕES</th>
-        </tr>
-
-        <!-- <tr>
-          <td class="name">
-            <i class="bi bi-mortarboard" aria-hidden="true"></i>
-            NETO
-          </td>
-
-          <td>AMALERO</td>
-
-          <td>
-            <span class="qtdAlunos">200 KM</span>
-          </td>
-
-          <td class="buttons">
-            <button type="button" aria-label="Editar" class="edit">
-              <i class="bi bi-pencil"></i>
-            </button>
-
-            <button type="button" aria-label="Excluir" class="delete">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr> -->
-
-        <tfoot>
-          <tr class="tfoot">
-            <td class="tfoot-info" colspan="2">
-              Mostrando 1-5 de 12 motoristas
-            </td>
-
-            <td class="tfoot-pager" colspan="2">
-              <nav class="motoristasFooter-pagination" aria-label="Paginação">
-                <ul>
-                  <li class="prev">
-                    <button aria-label="Anterior">
-                      <i class="bi bi-chevron-left"></i>
-                    </button>
-                  </li>
-
-                  <li>
-                    <button class="page active" aria-current="page">1</button>
-                  </li>
-
-                  <li><button class="page">2</button></li>
-
-                  <li><button class="page">3</button></li>
-
-                  <li class="next">
-                    <button aria-label="Próximo">
-                      <i class="bi bi-chevron-right"></i>
-                    </button>
-                  </li>
-                </ul>
-              </nav>
-            </td>
+        <table class="motoristasTable">
+          <tr class="thead">
+            <th>NOME DO MOTORISTA</th>
+            <th>ONIBUS</th>
+            <th>KM ATUAL DO MES</th>
+            <th class="alignRight">AÇÕES</th>
           </tr>
-        </tfoot>
-      </table>
+
+          <tfoot>
+            <tr class="tfoot">
+              <td class="tfoot-info" colspan="2">
+                Mostrando 1-5 de 12 motoristas
+              </td>
+
+              <td class="tfoot-pager" colspan="2">
+                <nav class="motoristasFooter-pagination" aria-label="Paginação">
+                  <ul>
+                    <li class="prev">
+                      <button aria-label="Anterior">
+                        <i class="bi bi-chevron-left"></i>
+                      </button>
+                    </li>
+
+                    <li>
+                      <button class="page active" aria-current="page">1</button>
+                    </li>
+
+                    <li><button class="page">2</button></li>
+
+                    <li><button class="page">3</button></li>
+
+                    <li class="next">
+                      <button aria-label="Próximo">
+                        <i class="bi bi-chevron-right"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </main>
 
     <div class="motoristasModalOverlay" hidden>
@@ -192,5 +173,6 @@
     </div>
 
     <script type="module" src="../dist/admMotoristas/admMotoristas.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
   </body>
 </html>

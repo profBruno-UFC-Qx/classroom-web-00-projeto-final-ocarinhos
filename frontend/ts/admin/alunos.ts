@@ -1,4 +1,6 @@
 import { supabase } from "../supabase/supabase.js";
+import { renderizarSidebar } from "../components/sidebar.js";
+renderizarSidebar("sidebar-container", "dashboard");
 
 type AlunoStatus = "ativo" | "inativo";
 
