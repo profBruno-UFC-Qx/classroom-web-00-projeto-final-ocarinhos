@@ -15,6 +15,7 @@
 
 .mainDasboard {
   margin-left: 30px;
+  padding: 28px 50px;
   display: flex;
   flex-direction: column;
   gap: 32px;
