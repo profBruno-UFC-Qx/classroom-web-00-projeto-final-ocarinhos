@@ -138,7 +138,7 @@ async function renderizarAlunosSupabase() {
 
   const tfoot = tabela.querySelector("tfoot");
 
-  data.forEach((usuario) => {
+  data.forEach((usuario: any) => {
     const nomeFaculdade = usuario.ies?.nome_faculdade || "Não informada";
     const statusTexto = usuario.status ? "ativo" : "inativo";
     const statusLabel = usuario.status ? "ATIVO" : "INATIVO";
