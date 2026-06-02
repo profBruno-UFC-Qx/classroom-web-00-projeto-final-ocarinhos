@@ -3,6 +3,9 @@ import showTopMessage from "../utils/showMsg.js";
 import { renderizarSidebar } from "../components/sidebar.js";
 renderizarSidebar("sidebar-container", "dashboard");
 
+const page = 0;
+const pageSize = 5;
+
 interface motoristasInterface {
   nome: string;
   kmAtual: number;
@@ -11,10 +14,11 @@ interface motoristasInterface {
   };
 }
 
-async function fetchMotoristas() {
+async function fetchMotoristas(page: number = 0) {
   const { data, error } = (await supabase
     .from("motoristas")
-    .select("nome, onibus (nome), kmAtual")) as {
+    .select("nome, onibus (nome), kmAtual")
+    .range(page * pageSize, page * pageSize + pageSize - 1)) as {
     data: motoristasInterface[] | null;
     error: any;
   };
@@ -28,10 +32,13 @@ async function fetchMotoristas() {
   }
 }
 
+// O CARA TA COLOCANDO DENTRO DE UM TBODY QUE NAO EXISTE **___**
 function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
   const motoristasTable = document.querySelector(
     ".motoristasTable tbody"
   ) as HTMLTableSectionElement;
+
+  console.log(motoristasTable);
 
   listaMotoristas.forEach((motorista) => {
     const tr = document.createElement("tr");
@@ -45,7 +52,7 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
   <td>${motorista.onibus.nome}</td>
 
   <td>
-    <span class='qtdAlunos'>${motorista.kmAtual} KM</span>
+    <span class='qtdKm'>${motorista.kmAtual} KM</span>
   </td>
 
   <td class='buttons'>
@@ -63,4 +70,44 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
   });
 }
 
-fetchMotoristas();
+async function preencherFooterTable() {
+  const { count: totalOnibus, error: errOnibus } = await supabase
+    .from("motoristas")
+    .select("*", { count: "exact", head: true });
+
+  const span = document.querySelector(".qtdMotorista");
+
+  if (totalOnibus && span instanceof HTMLSpanElement) {
+    span.innerText = String(totalOnibus);
+  } else {
+    console.log("erro");
+  }
+
+  const listPages = document.querySelector(".pages");
+
+  if (listPages instanceof HTMLDivElement) {
+    for (let index = 0; index < totalOnibus / 5; index++) {
+      const uniquePage = document.createElement("li");
+      uniquePage.innerHTML = `<button id="${index}" class="page ${page == index ? "active" : ""}" aria-current="page">
+                          ${index}
+                        </button>`;
+
+      const btn = uniquePage.querySelector("button") as HTMLButtonElement;
+      btn.addEventListener("click", async function () {
+        const id = btn.getAttribute("id");
+        if (id) {
+          await skipPage(Number(id));
+        }
+      });
+
+      listPages.appendChild(uniquePage);
+    }
+  }
+}
+
+async function skipPage(page: number) {
+  fetchMotoristas(page);
+}
+
+await fetchMotoristas();
+await preencherFooterTable();
