@@ -1,6 +1,6 @@
 import { supabase } from "../supabase/supabase.js";
-import { renderizarSidebar } from "../components/sidebar.js";
-renderizarSidebar("sidebar-container", "dashboard");
+import { renderizarSidebar } from "../components/sidebarADM.js";
+renderizarSidebar("sidebar-container", "alunos");
 
 type AlunoStatus = "ativo" | "inativo";
 
@@ -28,8 +28,7 @@ const modalOverlay = document.querySelector<HTMLElement>(".alunosModalOverlay");
 const form = document.querySelector<HTMLFormElement>(".alunosModalForm");
 const nomeInput = document.querySelector<HTMLInputElement>("#alunoNome");
 const emailInput = document.querySelector<HTMLInputElement>("#alunoEmail");
-const faculdadeInput =
-  document.querySelector<HTMLInputElement>("#alunoFaculdade");
+const faculdadeInput = document.querySelector<HTMLInputElement>("#alunoFaculdade");
 const cursoInput = document.querySelector<HTMLInputElement>("#alunoCurso");
 const statusInput = document.querySelector<HTMLSelectElement>("#alunoStatus");
 
@@ -127,7 +126,7 @@ async function renderizarAlunosSupabase() {
     `);
 
   if (error) {
-    console.error("Erro ao buscar dados do Supabase:", error.message);
+    console.error(error.message);
     return;
   }
 
@@ -135,7 +134,6 @@ async function renderizarAlunosSupabase() {
     ".alunosTable"
   ) as HTMLTableElement | null;
   if (!tabela) {
-    console.error("Tabela .alunosTable não encontrada.");
     return;
   }
 

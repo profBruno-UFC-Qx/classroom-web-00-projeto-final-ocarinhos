@@ -1,8 +1,8 @@
-import { renderizarSidebar } from "../components/sidebar.js";
+import { renderizarSidebar } from "../components/sidebarADM.js";
 import showTopMessage from "../utils/showMsg.js";
 import { supabase } from "../supabase/supabase.js";
 
-renderizarSidebar("sidebar-container", "dashboard");
+renderizarSidebar("sidebar-container", "avisos");
 
 interface Aviso {
   id: number;

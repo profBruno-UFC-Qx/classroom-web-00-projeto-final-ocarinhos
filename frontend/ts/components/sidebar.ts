@@ -6,7 +6,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
 
     container.innerHTML = `
         <aside class="sidebar">
-            <div class="sidebar-header">
+            <div class="sidebar-header" onclick="window.location.href='index.html'" style="cursor: pointer;">
                 <img src="../assets/Header/AUO Logo.svg" alt="Logo AUO" class="logo-img">
                 <div class="logo-text">
                     <h2>A.U.O</h2>
@@ -21,7 +21,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
                 <a href="consultar-rota.html" class="menu-item ${paginaAtiva === 'rota' ? 'active' : ''}">
                     <i data-lucide="route"></i> Consultar Rota
                 </a>
-                <a href="../../aluno/formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
+                <a href="formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
                     <i data-lucide="calendar-check"></i> Formulário Semanal
                 </a>
                 <a href="perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
