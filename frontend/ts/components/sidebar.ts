@@ -48,10 +48,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
     supabase.auth.getSession().then((result: Awaited<ReturnType<typeof supabase.auth.getSession>>) => {
         const user = result.data.session?.user;
 
-        if (!user) {
-            window.location.replace("login.html");
-            return;
-        }
+
 
         const nomeUsuario = String(
             user?.user_metadata?.nome ??
