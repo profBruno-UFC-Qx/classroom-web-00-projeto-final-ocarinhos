@@ -19,6 +19,9 @@ interface AlunoResponse {
   faculdade: string;
   curso: string;
   status: AlunoStatus;
+  ies?: {
+    nome_faculdade?: string;
+  };
 }
 
 const modalOverlay = document.querySelector<HTMLElement>(".alunosModalOverlay");
@@ -136,14 +139,14 @@ async function renderizarAlunosSupabase() {
 
   const tfoot = tabela.querySelector("tfoot");
 
-  data.forEach((usuario: any) => {
+  data.forEach((usuario: AlunoResponse) => {
     const nomeFaculdade = usuario.ies?.nome_faculdade || "Não informada";
     const statusTexto = usuario.status ? "ativo" : "inativo";
     const statusLabel = usuario.status ? "ATIVO" : "INATIVO";
 
     const tr = document.createElement("tr");
 
-    tr.setAttribute("data-aluno-id", usuario.user_id);
+    tr.setAttribute("data-aluno-id", String(usuario.user_id));
     tr.setAttribute("data-aluno-nome", usuario.nome);
     tr.setAttribute("data-aluno-email", usuario.email);
     tr.setAttribute("data-aluno-faculdade", nomeFaculdade);
