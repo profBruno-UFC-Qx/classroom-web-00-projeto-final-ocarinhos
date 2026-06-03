@@ -1,4 +1,5 @@
 import { supabase } from "../supabase/supabase.js";
+import showTopMessage from "../utils/showMsg.js";
 
 const { data } = await supabase.auth.getSession();
 
@@ -52,108 +53,81 @@ if (header && menuToggle) {
   });
 }
 
-async function carregarEstatisticas(): Promise<void> {
-  try {
-    const { count: totalOnibus, error: errOnibus } = await supabase
-      .from("onibus")
-      .select("*", { count: "exact", head: true })
-      .eq("disponivel", true);
+async function fetchEstatisticas() {
+  const { count: totalMotorista, error: errMotorista } = await supabase
+    .from("motoristas")
+    .select("*", { count: "exact", head: true });
 
-    const { count: totalAlunos, error: errAlunos } = await supabase
-      .from("usuarios")
-      .select("*", { count: "exact", head: true });
+  inserirTotalMotoristas(totalMotorista);
 
-    const { count: totalMotoristas, error: errMotoristas } = await supabase
-      .from("motoristas")
-      .select("*", { count: "exact", head: true });
+  const { count: totalAlunos, error: errAlunos } = await supabase
+    .from("usuarios")
+    .select("*", { count: "exact", head: true });
 
-    if (errOnibus || errAlunos || errMotoristas) {
-      throw errOnibus || errAlunos || errMotoristas;
-    }
+  inserirTotalAlunos(totalAlunos);
 
-    const txtOnibus = document.getElementById("qtd-onibus");
-    const txtAlunos = document.getElementById("qtd-alunos");
-    const txtMotoristas = document.getElementById("qtd-motoristas");
+  const { count: totalOnibus, error: errOnibus } = await supabase
+    .from("onibus")
+    .select("*", { count: "exact", head: true });
 
-    if (txtOnibus) {
-      txtOnibus.innerText = `${totalOnibus ?? 0} Ônibus rodando`;
-    }
-
-    if (txtAlunos) {
-      txtAlunos.innerText = `${totalAlunos ?? 0} Alunos`;
-    }
-
-    if (txtMotoristas) {
-      txtMotoristas.innerText = `${totalMotoristas ?? 0} Motoristas`;
-    }
-  } catch (error) {
-    console.error("Erro ao carregar os dados do painel:", error);
-
-    const elementos = ["qtd-onibus", "qtd-alunos", "qtd-motoristas"];
-    elementos.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) el.innerText = "Erro";
-    });
-  }
+  inserirTotalOnibus(totalOnibus);
 }
 
-function renderizarAlertasSimples(avisos: Aviso[]): void {
-  const gridAlertas = document.querySelector(".alerts-grid");
+function inserirTotalMotoristas(totalMotorista: number) {
+  const cell = document.querySelector(".qtd-motoristas") as HTMLSpanElement;
 
-  if (!gridAlertas) {
-    console.error("Elemento .alerts-grid não foi encontrado no DOM.");
+  cell.innerText = String(totalMotorista);
+}
+
+function inserirTotalAlunos(totalAlunos: number) {
+  const cell = document.querySelector(".qtd-alunos") as HTMLSpanElement;
+
+  cell.innerText = String(totalAlunos);
+}
+
+function inserirTotalOnibus(totalOnibus: number) {
+  const cell = document.querySelector(".qtd-onibus") as HTMLSpanElement;
+
+  cell.innerText = String(totalOnibus);
+}
+
+fetchEstatisticas();
+
+async function fetchAvisos() {
+  const { data, error } = (await supabase.from("avisos").select("*")) as {
+    data: Array<Aviso>;
+    error: any;
+  };
+
+  if (error) {
+    showTopMessage("Não foi possível fazer o fetch dos avisos", "error");
     return;
   }
 
-  gridAlertas.innerHTML = "";
+  inserirAvisos(data);
+}
 
-  if (avisos.length === 0) {
-    gridAlertas.innerHTML =
-      '<p style="grid-column: 1/-1; padding: 10px;">Nenhum aviso registrado no momento.</p>';
-    return;
-  }
+function inserirAvisos(avisos: Array<Aviso>) {
+  const painel = document.querySelector(".alerts-grid");
 
-  avisos.forEach((aviso) => {
-    const dataObjeto = new Date(aviso.data);
-    const dataFormatada = dataObjeto.toLocaleString("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    const article = document.createElement("article");
-    article.className = "alert-card";
-
-    article.innerHTML = `
+  if (painel instanceof HTMLDivElement) {
+    avisos.forEach((aviso) => {
+      const uniqueAviso = document.createElement("article");
+      uniqueAviso.classList.add("alert-card");
+      const data = new Date(aviso.data);
+      uniqueAviso.innerHTML = `
       <p class="alert-type alert-type-info">
-        <i class="bi bi-info-circle"></i> Informativo
-      </p>
-      <h4>${aviso.titulo}</h4>
-      <p>${aviso.desc}</p>
-      <time datetime="${aviso.data}">${dataFormatada}</time>
-    `;
+                <i class="bi bi-info-circle"></i> Informativo
+              </p>
+              <h4>${aviso.titulo}</h4>
+              <p>
+                ${aviso.desc}
+              </p>
+              <time>${data.toLocaleDateString()}</time>`;
 
-    gridAlertas.appendChild(article);
-  });
-}
-
-async function buscarAvisosDoSupabase(): Promise<void> {
-  try {
-    const { data, error } = await supabase
-      .from("avisos")
-      .select("id, titulo, desc, data")
-      .order("data", { ascending: false });
-
-    if (error) throw error;
-
-    if (data) {
-      renderizarAlertasSimples(data as Aviso[]);
-    }
-  } catch (error) {
-    console.error("Erro ao buscar avisos do Supabase:", error);
+      painel.appendChild(uniqueAviso);
+    });
   }
 }
 
-buscarAvisosDoSupabase();
-carregarEstatisticas();
+fetchAvisos();
