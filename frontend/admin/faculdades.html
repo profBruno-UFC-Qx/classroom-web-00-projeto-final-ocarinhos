@@ -203,67 +203,6 @@
       </div>
     </main>
 
-    <div class="faculdadesModalOverlay" hidden>
-      <section
-        class="faculdadesModal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="faculdadesModalTitle"
-      >
-        <header class="faculdadesModalHeader">
-          <div>
-            <span class="faculdadesModalEyebrow"> Edição de faculdade </span>
-
-            <h2 id="faculdadesModalTitle">Editar faculdade</h2>
-
-            <p>Atualize as informações da instituição cadastrada.</p>
-          </div>
-
-          <button
-            type="button"
-            class="faculdadesModalClose"
-            aria-label="Fechar modal"
-          >
-            <i class="bi bi-x-lg"></i>
-          </button>
-        </header>
-
-        <form class="faculdadesModalForm">
-          <div class="faculdadesModalGrid">
-            <label>
-              <span>Nome da faculdade</span>
-
-              <input type="text" name="nome" maxlength="45" required />
-            </label>
-
-            <label>
-              <span>Bairro</span>
-
-              <input type="text" name="bairro" maxlength="45" required />
-            </label>
-
-            <label>
-              <span>Quantidade de Alunos</span>
-
-              <input type="number" name="quantidade" required />
-            </label>
-          </div>
-
-          <footer class="faculdadesModalActions">
-            <button
-              type="button"
-              class="faculdadesModalButton secondary faculdadesModalCancel"
-            >
-              Cancelar
-            </button>
-
-            <button type="submit" class="faculdadesModalButton primary">
-              Salvar alterações
-            </button>
-          </footer>
-        </form>
-      </section>
-    </div>
 
     <script type="module" src="../dist/admin/faculdades.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
