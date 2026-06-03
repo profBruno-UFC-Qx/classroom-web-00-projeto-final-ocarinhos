@@ -28,5 +28,6 @@ new Chart(chart_div, {
   },
 });
 
-import { renderizarSidebar } from "../components/sidebar.js";
+import { renderizarSidebar } from "../components/sidebarADM.js";
 renderizarSidebar("sidebar-container", "dashboard");
+  
