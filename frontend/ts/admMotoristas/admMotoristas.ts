@@ -3,7 +3,7 @@ import showTopMessage from "../utils/showMsg.js";
 import { renderizarSidebar } from "../components/sidebar.js";
 renderizarSidebar("sidebar-container", "dashboard");
 
-const page = 0;
+let atualPage = 0;
 const pageSize = 5;
 
 interface motoristasInterface {
@@ -14,11 +14,15 @@ interface motoristasInterface {
   };
 }
 
-async function fetchMotoristas(page: number = 0) {
+const { count: totalMotorista, error: errmotorista } = await supabase
+  .from("motoristas")
+  .select("*", { count: "exact", head: true });
+
+async function fetchMotoristas() {
   const { data, error } = (await supabase
     .from("motoristas")
     .select("nome, onibus (nome), kmAtual")
-    .range(page * pageSize, page * pageSize + pageSize - 1)) as {
+    .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
     data: motoristasInterface[] | null;
     error: any;
   };
@@ -32,13 +36,12 @@ async function fetchMotoristas(page: number = 0) {
   }
 }
 
-// O CARA TA COLOCANDO DENTRO DE UM TBODY QUE NAO EXISTE **___**
 function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
   const motoristasTable = document.querySelector(
     ".motoristasTable tbody"
   ) as HTMLTableSectionElement;
 
-  console.log(motoristasTable);
+  motoristasTable.innerHTML = "";
 
   listaMotoristas.forEach((motorista) => {
     const tr = document.createElement("tr");
@@ -71,24 +74,42 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
 }
 
 async function preencherFooterTable() {
-  const { count: totalOnibus, error: errOnibus } = await supabase
-    .from("motoristas")
-    .select("*", { count: "exact", head: true });
-
   const span = document.querySelector(".qtdMotorista");
 
-  if (totalOnibus && span instanceof HTMLSpanElement) {
-    span.innerText = String(totalOnibus);
+  if (totalMotorista && span instanceof HTMLSpanElement) {
+    span.innerText = String(totalMotorista);
   } else {
     console.log("erro");
   }
 
+  inserirPaginas();
+}
+
+async function skipPage(page: number) {
+  if (page < 0) {
+    page = 0;
+  }
+
+  if (page > Math.floor(totalMotorista / 5)) {
+    page = Math.floor(totalMotorista / 5);
+  }
+
+  atualPage = page;
+  fetchMotoristas();
+  inserirPaginas();
+}
+
+async function inserirPaginas() {
   const listPages = document.querySelector(".pages");
 
+  if (listPages) {
+    listPages.innerHTML = "";
+  }
+
   if (listPages instanceof HTMLDivElement) {
-    for (let index = 0; index < totalOnibus / 5; index++) {
+    for (let index = 0; index < Math.ceil(totalMotorista / 5); index++) {
       const uniquePage = document.createElement("li");
-      uniquePage.innerHTML = `<button id="${index}" class="page ${page == index ? "active" : ""}" aria-current="page">
+      uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
                           ${index}
                         </button>`;
 
@@ -105,9 +126,30 @@ async function preencherFooterTable() {
   }
 }
 
-async function skipPage(page: number) {
-  fetchMotoristas(page);
+function actionButtons() {
+  const prev = document.querySelector(".prev");
+  if (prev) {
+    prev?.addEventListener("click", function () {
+      skipPage(atualPage - 1);
+    });
+  }
+
+  const next = document.querySelector(".next");
+  if (next) {
+    next?.addEventListener("click", function () {
+      skipPage(atualPage + 1);
+    });
+  }
 }
 
 await fetchMotoristas();
-await preencherFooterTable();
+
+if (errmotorista) {
+  showTopMessage(
+    "Não foi possível fazer o fetch da quantidade de motoristas.",
+    "error"
+  );
+} else {
+  await preencherFooterTable();
+  actionButtons();
+}

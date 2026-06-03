@@ -23,10 +23,7 @@
 
         <div class="motoristasSearch">
           <form action="">
-            <input
-              type="text"
-              placeholder="Buscar faculdade por nome ou bairro..."
-            />
+            <input type="text" placeholder="Buscar motoristas por nome" />
 
             <button type="submit" aria-label="Buscar">
               <i class="bi bi-search"></i>
@@ -43,17 +40,20 @@
               </select>
             </div>
 
-            <button class="efetuarCadastro">+ Cadastrar onibus</button>
+            <button class="efetuarCadastro">+ Cadastrar motorista</button>
           </div>
         </div>
 
         <table class="motoristasTable">
-          <tr class="thead">
-            <th>NOME DO MOTORISTA</th>
-            <th>ONIBUS</th>
-            <th>KM ATUAL DO MES</th>
-            <th class="alignRight">AÇÕES</th>
-          </tr>
+          <thead>
+            <tr class="thead">
+              <th>NOME DO MOTORISTA</th>
+              <th>ONIBUS</th>
+              <th>KM ATUAL DO MES</th>
+              <th class="alignRight">AÇÕES</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
 
           <tfoot>
             <tr class="tfoot">
@@ -70,17 +70,7 @@
                       </button>
                     </li>
 
-                    <div class="pages">
-                      <!-- <li>
-                        <button class="page active" aria-current="page">
-                          1
-                        </button>
-                      </li>
-
-                      <li><button class="page">2</button></li>
-
-                      <li><button class="page">3</button></li> -->
-                    </div>
+                    <div class="pages"></div>
 
                     <li class="next">
                       <button aria-label="Próximo">
