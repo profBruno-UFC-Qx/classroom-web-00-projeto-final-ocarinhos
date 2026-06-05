@@ -4,6 +4,7 @@ import { renderizarSidebar } from "../components/sidebar.js";
 renderizarSidebar("sidebar-container", "dashboard");
 
 let atualPage = 0;
+console.log(atualPage);
 const pageSize = 5;
 
 function validarMotorista(
@@ -162,7 +163,6 @@ async function cadastrarMotorista() {
       }
     });
 
-
     if (!validarMotorista(objMotorista)) {
       showTopMessage(
         "Algum campo esta com valores negativos ou vazio",
@@ -249,10 +249,11 @@ async function skipPage(totalMotorista: number, page: number) {
   }
 
   if (page >= Math.floor(totalMotorista / pageSize)) {
-    page = Math.floor(totalMotorista / pageSize) - 1;
+    page = Math.floor(totalMotorista / pageSize);
   }
 
   atualPage = page;
+
   await fetchMotoristas();
   await inserirPaginas(totalMotorista);
 }
