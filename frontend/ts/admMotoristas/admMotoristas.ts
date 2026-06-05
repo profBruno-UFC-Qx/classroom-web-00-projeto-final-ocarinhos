@@ -6,6 +6,22 @@ renderizarSidebar("sidebar-container", "dashboard");
 let atualPage = 0;
 const pageSize = 5;
 
+function validarMotorista(
+  objMotorista: Record<string, string | number>
+): boolean {
+  for (const valor of Object.values(objMotorista)) {
+    if (typeof valor === "string" && valor.trim() === "") {
+      return false;
+    }
+
+    if (typeof valor === "number" && valor < 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 interface motoristasInterface {
   id: number;
   nome: string;
@@ -49,7 +65,7 @@ async function excluirMotorista(id: number) {
     return error;
   }
 
-  fetchMotoristas();
+  await fetchMotoristas();
   return data;
 }
 
@@ -68,7 +84,11 @@ async function editarMotorista(id: number) {
   modal?.removeAttribute("hidden");
 
   const closeEdit = document.querySelectorAll("[aria-label='FecharEdit']");
-  console.log(closeEdit);
+  closeEdit.forEach((closeBtn) => {
+    closeBtn.addEventListener("click", function () {
+      modal?.setAttribute("hidden", "");
+    });
+  });
 
   const form = modal?.querySelector("form");
   if (form instanceof HTMLFormElement) {
@@ -109,6 +129,58 @@ async function editarMotorista(id: number) {
     }
 
     showTopMessage("Motorista atualizado", "alert");
+    await fetchMotoristas();
+    modal?.setAttribute("hidden", "");
+  });
+}
+
+const btnCadastro = document.querySelector(".efetuarCadastro");
+btnCadastro?.addEventListener("click", cadastrarMotorista);
+
+async function cadastrarMotorista() {
+  const modal = document.getElementById("cadastrar");
+  console.log(modal);
+  modal?.removeAttribute("hidden");
+
+  const closeEdit = document.querySelectorAll("[aria-label='FecharCadastro']");
+  closeEdit.forEach((closeBtn) => {
+    closeBtn.addEventListener("click", function () {
+      modal?.setAttribute("hidden", "");
+    });
+  });
+
+  const form = modal?.querySelector("form");
+
+  form?.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const newForm = new FormData(form);
+    const objMotorista: Record<string, string | number> = {};
+
+    newForm.forEach((valor, atributo) => {
+      if (typeof valor == "string" || typeof valor == "number") {
+        objMotorista[atributo] = valor;
+      }
+    });
+
+
+    if (!validarMotorista(objMotorista)) {
+      showTopMessage(
+        "Algum campo esta com valores negativos ou vazio",
+        "error"
+      );
+      return;
+    }
+
+    const { error } = await supabase.from("motoristas").insert(objMotorista);
+
+    if (error) {
+      console.log(error);
+      showTopMessage("Nao foi possivel efetuar o cadastro", "error");
+      return;
+    }
+
+    showTopMessage("Cadastro efetuado", "alert");
+    await fetchMotoristas();
     modal?.setAttribute("hidden", "");
   });
 }

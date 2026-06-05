@@ -96,13 +96,13 @@
         <header class="motoristasModalHeader">
           <div>
             <span class="motoristasModalEyebrow">Edição de cadastro</span>
-            <h2 id="motoristasModalTitle">Editar aluno</h2>
+            <h2 id="motoristasModalTitle">Cadastrar motorista</h2>
             <p>Atualize as informações e salve as mudanças no registro.</p>
           </div>
           <button
             type="button"
             class="motoristasModalClose"
-            aria-label="Fechar modal"
+            aria-label="FecharCadastro"
           >
             <i class="bi bi-x-lg"></i>
           </button>
@@ -133,10 +133,7 @@
 
             <label class="motoristasModalStatusField">
               <span>Onibus</span>
-              <select name="onibus" id="onibus">
-                <option value="ativo">Ativo</option>
-                <option value="inativo">Inativo</option>
-              </select>
+              <select name="onibus" id="onibus"></select>
             </label>
           </div>
 
@@ -144,6 +141,7 @@
             <button
               type="button"
               class="motoristasModalButton secondary motoristasModalCancel"
+              aria-label="FecharCadastro"
             >
               Cancelar
             </button>
