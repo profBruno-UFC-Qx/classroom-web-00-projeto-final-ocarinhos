@@ -15,9 +15,11 @@ interface motoristasInterface {
   };
 }
 
-const { count: totalMotorista, error: errmotorista } = await supabase
-  .from("motoristas")
-  .select("*", { count: "exact", head: true });
+interface onibusInterface {
+  id: number;
+  nome: string;
+  kmAtual: number;
+}
 
 async function fetchMotoristas() {
   const { data, error } = (await supabase
@@ -38,7 +40,6 @@ async function fetchMotoristas() {
 }
 
 async function excluirMotorista(id: number) {
-  console.log(id);
   const { data, error } = await supabase
     .from("motoristas")
     .delete()
@@ -50,6 +51,66 @@ async function excluirMotorista(id: number) {
 
   fetchMotoristas();
   return data;
+}
+
+async function editarMotorista(id: number) {
+  const { data, error } = await supabase
+    .from("motoristas")
+    .select()
+    .eq("id", id);
+
+  if (error) {
+    return error;
+  }
+
+  // Trazendo os dados ja cadastrados e inserindo nos inputs. isso aki nao foi feito pelo GPT, =D
+  const modal = document.getElementById("editar");
+  modal?.removeAttribute("hidden");
+
+  const closeEdit = document.querySelectorAll("[aria-label='FecharEdit']");
+  console.log(closeEdit);
+
+  const form = modal?.querySelector("form");
+  if (form instanceof HTMLFormElement) {
+    const formData = new FormData(form);
+
+    formData.entries().forEach((el) => {
+      const input = form.elements.namedItem(el[0]);
+
+      if (
+        input instanceof HTMLInputElement ||
+        input instanceof HTMLSelectElement
+      ) {
+        input.value = data[0][el[0]];
+      }
+    });
+  }
+
+  form?.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const newForm = new FormData(form);
+    const objMotorista: Record<string, string | number> = {};
+
+    newForm.forEach((valor, atributo) => {
+      if (typeof valor == "string" || typeof valor == "number") {
+        objMotorista[atributo] = valor;
+      }
+    });
+
+    const { error } = await supabase
+      .from("motoristas")
+      .update(objMotorista)
+      .eq("id", id);
+
+    if (error) {
+      showTopMessage("Nao foi possivel atualizar o motorista", "error");
+      console.log(error);
+      return;
+    }
+
+    showTopMessage("Motorista atualizado", "alert");
+    modal?.setAttribute("hidden", "");
+  });
 }
 
 function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
@@ -75,7 +136,7 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
   </td>
 
   <td class='buttons'>
-    <button type='button' aria-label='Editar' class='edit'>
+    <button type='button' aria-label='Editar' class='edit' id='${motorista.id}'>
       <i class='bi bi-pencil'></i>
     </button>
 
@@ -91,37 +152,40 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
       });
     }
 
+    const btnEditar = tr.querySelector("[aria-label='Editar']");
+    if (btnEditar instanceof HTMLButtonElement) {
+      btnEditar.addEventListener("click", function () {
+        editarMotorista(Number(this.getAttribute("id")));
+      });
+    }
+
     motoristasTable.appendChild(tr);
   });
 }
 
-async function preencherFooterTable() {
+function preencherQTDMotoristas(totalMotorista: number) {
   const span = document.querySelector(".qtdMotorista");
 
   if (totalMotorista && span instanceof HTMLSpanElement) {
     span.innerText = String(totalMotorista);
-  } else {
-    console.log("erro");
   }
-
-  inserirPaginas();
 }
 
-async function skipPage(page: number) {
+async function skipPage(totalMotorista: number, page: number) {
   if (page < 0) {
     page = 0;
   }
 
-  if (page >= Math.floor(totalMotorista / 5)) {
-    page = Math.floor(totalMotorista / 5) - 1;
+  if (page >= Math.floor(totalMotorista / pageSize)) {
+    page = Math.floor(totalMotorista / pageSize) - 1;
   }
 
   atualPage = page;
-  fetchMotoristas();
-  inserirPaginas();
+  await fetchMotoristas();
+  await inserirPaginas(totalMotorista);
 }
 
-async function inserirPaginas() {
+async function inserirPaginas(totalMotorista: number) {
   const listPages = document.querySelector(".pages");
 
   if (listPages) {
@@ -139,7 +203,7 @@ async function inserirPaginas() {
       btn.addEventListener("click", async function () {
         const id = btn.getAttribute("id");
         if (id) {
-          await skipPage(Number(id));
+          await skipPage(totalMotorista, Number(id));
         }
       });
 
@@ -148,30 +212,52 @@ async function inserirPaginas() {
   }
 }
 
-function actionButtons() {
+async function preencherFooterTable() {
+  const { count: totalMotorista, error: errmotorista } = await supabase
+    .from("motoristas")
+    .select("*", { count: "exact", head: true });
+
+  if (errmotorista) {
+    showTopMessage(
+      "Não foi possível fazer o fetch da quantidade de motoristas.",
+      "error"
+    );
+  } else {
+    preencherQTDMotoristas(totalMotorista);
+    await inserirPaginas(totalMotorista);
+    actionButtons(totalMotorista);
+  }
+}
+
+function actionButtons(totalMotorista: number) {
   const prev = document.querySelector(".prev");
   if (prev) {
     prev?.addEventListener("click", function () {
-      skipPage(atualPage - 1);
+      skipPage(totalMotorista, atualPage - 1);
     });
   }
 
   const next = document.querySelector(".next");
   if (next) {
     next?.addEventListener("click", function () {
-      skipPage(atualPage + 1);
+      skipPage(totalMotorista, atualPage + 1);
     });
   }
 }
 
-await fetchMotoristas();
+async function preencherFormularioOnibus() {
+  const { data, error } = (await supabase
+    .from("onibus")
+    .select("id, nome")) as { data: Array<onibusInterface>; error: any };
 
-if (errmotorista) {
-  showTopMessage(
-    "Não foi possível fazer o fetch da quantidade de motoristas.",
-    "error"
-  );
-} else {
-  await preencherFooterTable();
-  actionButtons();
+  const selects = document.querySelectorAll("#onibus");
+  selects.forEach((select) => {
+    data.forEach((onibus) => {
+      select.innerHTML += `<option value=${onibus.id}>${onibus.nome}</option>`;
+    });
+  });
 }
+
+await preencherFormularioOnibus();
+await fetchMotoristas();
+await preencherFooterTable();

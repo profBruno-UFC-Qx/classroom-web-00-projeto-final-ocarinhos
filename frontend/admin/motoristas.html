@@ -86,7 +86,7 @@
       </main>
     </div>
 
-    <div class="motoristasModalOverlay">
+    <div class="motoristasModalOverlay" hidden id="cadastrar">
       <section
         class="motoristasModal"
         role="dialog"
@@ -115,7 +115,7 @@
               <input
                 type="text"
                 name="nome"
-                id="motoristaNome"
+                id="nome"
                 maxlength="45"
                 required
               />
@@ -124,8 +124,8 @@
               <span>KM rodados</span>
               <input
                 type="text"
-                name="km"
-                id="motoristaKm"
+                name="kmAtual"
+                id="kmAtual"
                 maxlength="45"
                 required
               />
@@ -133,7 +133,7 @@
 
             <label class="motoristasModalStatusField">
               <span>Onibus</span>
-              <select name="onibus" id="motoristaOnibus">
+              <select name="onibus" id="onibus">
                 <option value="ativo">Ativo</option>
                 <option value="inativo">Inativo</option>
               </select>
@@ -144,6 +144,73 @@
             <button
               type="button"
               class="motoristasModalButton secondary motoristasModalCancel"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="motoristasModalButton primary">
+              Enviar
+            </button>
+          </footer>
+        </form>
+      </section>
+    </div>
+
+    <div class="motoristasModalOverlay" hidden id="editar">
+      <section
+        class="motoristasModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="motoristasModalTitle"
+      >
+        <header class="motoristasModalHeader">
+          <div>
+            <span class="motoristasModalEyebrow">Edição de cadastro</span>
+            <h2 id="motoristasModalTitle">Editar Motorista</h2>
+            <p>Atualize as informações e salve as mudanças no registro.</p>
+          </div>
+          <button
+            type="button"
+            class="motoristasModalClose"
+            aria-label="FecharEdit"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </header>
+
+        <form class="motoristasModalForm">
+          <div class="motoristasModalGrid">
+            <label>
+              <span>Nome do motorista</span>
+              <input
+                type="text"
+                name="nome"
+                id="nome"
+                maxlength="45"
+                required
+              />
+            </label>
+            <label>
+              <span>KM rodados</span>
+              <input
+                type="text"
+                name="kmAtual"
+                id="kmAtual"
+                maxlength="45"
+                required
+              />
+            </label>
+
+            <label class="motoristasModalStatusField">
+              <span>Onibus</span>
+              <select name="onibus" id="onibus"></select>
+            </label>
+          </div>
+
+          <footer class="motoristasModalActions">
+            <button
+              type="button"
+              class="motoristasModalButton secondary motoristasModalCancel"
+              aria-label="FecharEdit"
             >
               Cancelar
             </button>
