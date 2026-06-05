@@ -86,6 +86,75 @@
       </main>
     </div>
 
+    <div class="motoristasModalOverlay">
+      <section
+        class="motoristasModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="motoristasModalTitle"
+      >
+        <header class="motoristasModalHeader">
+          <div>
+            <span class="motoristasModalEyebrow">Edição de cadastro</span>
+            <h2 id="motoristasModalTitle">Editar aluno</h2>
+            <p>Atualize as informações e salve as mudanças no registro.</p>
+          </div>
+          <button
+            type="button"
+            class="motoristasModalClose"
+            aria-label="Fechar modal"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </header>
+
+        <form class="motoristasModalForm">
+          <div class="motoristasModalGrid">
+            <label>
+              <span>Nome do motorista</span>
+              <input
+                type="text"
+                name="nome"
+                id="motoristaNome"
+                maxlength="45"
+                required
+              />
+            </label>
+            <label>
+              <span>KM rodados</span>
+              <input
+                type="text"
+                name="km"
+                id="motoristaKm"
+                maxlength="45"
+                required
+              />
+            </label>
+
+            <label class="motoristasModalStatusField">
+              <span>Onibus</span>
+              <select name="onibus" id="motoristaOnibus">
+                <option value="ativo">Ativo</option>
+                <option value="inativo">Inativo</option>
+              </select>
+            </label>
+          </div>
+
+          <footer class="motoristasModalActions">
+            <button
+              type="button"
+              class="motoristasModalButton secondary motoristasModalCancel"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="motoristasModalButton primary">
+              Enviar
+            </button>
+          </footer>
+        </form>
+      </section>
+    </div>
+
     <script type="module" src="../dist/admMotoristas/admMotoristas.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
   </body>

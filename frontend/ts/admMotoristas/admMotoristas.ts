@@ -7,6 +7,7 @@ let atualPage = 0;
 const pageSize = 5;
 
 interface motoristasInterface {
+  id: number;
   nome: string;
   kmAtual: number;
   onibus: {
@@ -21,7 +22,7 @@ const { count: totalMotorista, error: errmotorista } = await supabase
 async function fetchMotoristas() {
   const { data, error } = (await supabase
     .from("motoristas")
-    .select("nome, onibus (nome), kmAtual")
+    .select("id, nome, onibus (nome), kmAtual")
     .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
     data: motoristasInterface[] | null;
     error: any;
@@ -34,6 +35,21 @@ async function fetchMotoristas() {
   if (data) {
     inserirMotoristas(data);
   }
+}
+
+async function excluirMotorista(id: number) {
+  console.log(id);
+  const { data, error } = await supabase
+    .from("motoristas")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    return error;
+  }
+
+  fetchMotoristas();
+  return data;
 }
 
 function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
@@ -63,11 +79,17 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
       <i class='bi bi-pencil'></i>
     </button>
 
-    <button type='button' aria-label='Excluir' class='delete'>
+    <button type='button' aria-label='Excluir' class='delete' id='${motorista.id}'>
       <i class='bi bi-trash'></i>
     </button>
-  </td>
-`;
+  </td>`;
+
+    const btnExcluir = tr.querySelector("[aria-label='Excluir']");
+    if (btnExcluir instanceof HTMLButtonElement) {
+      btnExcluir.addEventListener("click", function () {
+        excluirMotorista(Number(this.getAttribute("id")));
+      });
+    }
 
     motoristasTable.appendChild(tr);
   });
@@ -90,8 +112,8 @@ async function skipPage(page: number) {
     page = 0;
   }
 
-  if (page > Math.floor(totalMotorista / 5)) {
-    page = Math.floor(totalMotorista / 5);
+  if (page >= Math.floor(totalMotorista / 5)) {
+    page = Math.floor(totalMotorista / 5) - 1;
   }
 
   atualPage = page;
