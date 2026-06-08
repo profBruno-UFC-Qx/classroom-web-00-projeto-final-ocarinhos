@@ -1,3 +1,5 @@
+
+
 .sem-form-page-content {
   padding: 28px 0px;
   flex: 1;
@@ -216,6 +218,7 @@
   height: 50px;
   font-size: small;
   padding: auto;
+  background-color: #1e3a8a;
 }
 
 
