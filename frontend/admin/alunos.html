@@ -29,9 +29,7 @@
           </form>
           <div class="alunosFiltro">
             <select name="filtro" id="filtro">
-              <option value="default" selected>Filtrar por Faculdade</option>
-              <option value="f1">Filtro 1</option>
-              <option value="f2">Filtro 2</option>
+              <option value="">Todas as Faculdades</option>
             </select>
           </div>
         </div>
@@ -45,78 +43,6 @@
             <th class="status">STATUS</th>
             <th class="buttons alignRight">AÇÕES</th>
           </tr>
-          <!-- <tr
-          data-aluno-nome="Alice Silva Olveira"
-          data-aluno-email="aluno@gmail.com"
-          data-aluno-faculdade="UFC"
-          data-aluno-curso="Sistemas de Informação"
-          data-aluno-status="ativo"
-        >
-          <td class="name">
-            <i class="bi bi-person-circle" aria-hidden="true"></i> Alice Silva
-            Olveira
-          </td>
-          <td>aluno@gmail.com</td>
-          <td>UFC</td>
-          <td>Sistemas de Informação</td>
-          <td><span class="ativo">ATIVO</span></td>
-          <td class="buttons">
-            <button type="button" aria-label="Editar" class="edit">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button type="button" aria-label="Excluir" class="delete">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr>
-        <tr
-          data-aluno-nome="Alice Silva Olveira"
-          data-aluno-email="aluno@gmail.com"
-          data-aluno-faculdade="UFC"
-          data-aluno-curso="Sistemas de Informação"
-          data-aluno-status="inativo"
-        >
-          <td class="name">
-            <i class="bi bi-person-circle" aria-hidden="true"></i> Alice Silva
-            Olveira
-          </td>
-          <td>aluno@gmail.com</td>
-          <td>UFC</td>
-          <td>Sistemas de Informação</td>
-          <td><span class="inativo">INATIVO</span></td>
-          <td class="buttons">
-            <button type="button" aria-label="Editar" class="edit">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button type="button" aria-label="Excluir" class="delete">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr>
-        <tr
-          data-aluno-nome="Alice Silva Olveira"
-          data-aluno-email="aluno@gmail.com"
-          data-aluno-faculdade="UFC"
-          data-aluno-curso="Sistemas de Informação"
-          data-aluno-status="ativo"
-        >
-          <td class="name">
-            <i class="bi bi-person-circle" aria-hidden="true"></i> Alice Silva
-            Olveira
-          </td>
-          <td>aluno@gmail.com</td>
-          <td>UFC</td>
-          <td>Sistemas de Informação</td>
-          <td><span class="ativo">ATIVO</span></td>
-          <td class="buttons">
-            <button type="button" aria-label="Editar" class="edit">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button type="button" aria-label="Excluir" class="delete">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr> -->
           <tfoot>
             <tr class="tfoot">
               <td class="tfoot-info" colspan="4">
@@ -130,19 +56,15 @@
                         <i class="bi bi-chevron-left"></i>
                       </button>
                     </li>
-                    <li>
-                      <button class="page active" aria-current="page">1</button>
-                    </li>
-                    <li><button class="page">2</button></li>
-                    <li><button class="page">3</button></li>
-                    <li class="dots">…</li>
-                    <li><button class="page">26</button></li>
+
+                    <li class="pagination-pages"></li>
+
                     <li class="next">
                       <button aria-label="Próximo">
                         <i class="bi bi-chevron-right"></i>
                       </button>
                     </li>
-                  </ul>
+                </ul>
                 </nav>
               </td>
             </tr>
