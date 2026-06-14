@@ -1,12 +1,11 @@
 import { supabase } from "../supabase/supabase.js";
-
-export function renderizarSidebar(containerId: string, paginaAtiva: string) {
+export function renderizarSidebar(containerId, paginaAtiva) {
     const container = document.getElementById(containerId);
-    if (!container) return;
-
+    if (!container)
+        return;
     container.innerHTML = `
         <aside class="sidebar">
-            <div class="sidebar-header" onclick="window.location.href='index.html'" style="cursor: pointer;">
+            <div class="sidebar-header">
                 <img src="../assets/Header/AUO Logo.svg" alt="Logo AUO" class="logo-img">
                 <div class="logo-text">
                     <h2>A.U.O</h2>
@@ -21,7 +20,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
                 <a href="consultar-rota.html" class="menu-item ${paginaAtiva === 'rota' ? 'active' : ''}">
                     <i data-lucide="route"></i> Consultar Rota
                 </a>
-                <a href="formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
+                <a href="../../aluno/formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
                     <i data-lucide="calendar-check"></i> Formulário Semanal
                 </a>
                 <a href="perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
@@ -36,7 +35,6 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
             </div>
         </aside>
     `;
-
     const renderIcons = () => {
         // @ts-ignore
         if (window.lucide) {
@@ -44,34 +42,23 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
             lucide.createIcons();
         }
     };
-
-    supabase.auth.getSession().then((result: Awaited<ReturnType<typeof supabase.auth.getSession>>) => {
+    supabase.auth.getSession().then((result) => {
         const user = result.data.session?.user;
-
         if (!user) {
             window.location.replace("login.html");
             return;
         }
-
-        const nomeUsuario = String(
-            user?.user_metadata?.nome ??
-                localStorage.getItem("auo-user-name") ??
-                user?.email ??
-                "Aluno"
-        );
-
-        document.querySelectorAll<HTMLElement>(".user-nickname").forEach((element) => {
+        const nomeUsuario = String(user?.user_metadata?.nome ??
+            localStorage.getItem("auo-user-name") ??
+            user?.email ??
+            "Aluno");
+        document.querySelectorAll(".user-nickname").forEach((element) => {
             element.textContent = nomeUsuario;
         });
-
         renderIcons();
     });
-
-    const existingLoader = document.querySelector<HTMLScriptElement>(
-        'script[data-lucide-loader="true"]'
-    );
-
-    if (!existingLoader && !(window as typeof window & { lucide?: unknown }).lucide) {
+    const existingLoader = document.querySelector('script[data-lucide-loader="true"]');
+    if (!existingLoader && !window.lucide) {
         const script = document.createElement("script");
         script.src = "https://unpkg.com/lucide@latest";
         script.defer = true;

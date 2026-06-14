@@ -1,0 +1,243 @@
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --soft: #eef2ff;
+  --border: #e6eef6;
+}
+
+.consultar-rota {
+  padding: 28px 32px;
+}
+
+.aluno-content .mainDasboard.consultar-rota > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-head h1 {
+  font-size: 28px;
+  margin: 0 0 6px;
+  color: #0f172a;
+}
+
+.page-head p {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.weekday-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.weekday-tabs .tab {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.weekday-tabs .tab.active {
+  background: var(--soft);
+  border-color: var(--border);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.transporte-do-dia {
+  margin-top: 8px;
+}
+
+.transporte-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.transporte-title {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.transporte-title h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.transporte-title .muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.weekday-badge {
+  background: var(--soft);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-weight: 600;
+}
+
+.transporte-grid {
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  gap: 20px;
+}
+
+.table-card {
+  background: var(--card);
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.transporte-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transporte-table thead th {
+  font-size: 12px;
+  text-align: left;
+  color: var(--muted);
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.transporte-table tbody td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--border);
+  color: #0f172a;
+}
+
+.transporte-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.transporte-table .time {
+  font-weight: 700;
+  color: #0f172a;
+  text-align: right;
+}
+
+.map-card {
+  background: linear-gradient(180deg, #0f172a 0%, #0f172a 40%);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+}
+
+.map-visual {
+  flex: 1;
+  background: linear-gradient(135deg, #0fb0d0 0%, #0f172a 60%);
+  min-height: 150px;
+}
+
+.map-caption {
+  padding: 12px;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+
+.filters-and-list {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.filter-card {
+  width: 320px;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.filter-card h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.filter-card select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.passengers-card {
+  flex: 1;
+  background: var(--card);
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.passengers-card h3 {
+  margin: 0 0 6px;
+}
+
+.passengers-card .small {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.passengers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.passengers-table thead th {
+  font-size: 12px;
+  text-align: left;
+  color: var(--muted);
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.passengers-table tbody td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tag {
+  background: #eef2ff;
+  color: var(--accent);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+  .transporte-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-and-list {
+    flex-direction: column;
+  }
+
+  .filter-card {
+    width: 100%;
+  }
+}
+
+.aluno-content {
+  overflow-y: auto;
+}
+
+.aluno-content .mainDasboard.consultar-rota {
+  min-height: 0;
+  overflow-y: auto;
+}
