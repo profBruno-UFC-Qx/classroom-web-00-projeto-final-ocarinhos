@@ -34,12 +34,12 @@
 
         <div class="mainDasboard">
         <section class="mainHead">
-          <h1>Seja bem-vindo!</h1>
-          <p>Confira os detalhes do seu transporte para hoje.</p>
+          <h1>Olá, <span class="nomeUser"></span>!</h1>
+          <p>Confira os detalhes do seu transporte para hoje .</p>
         </section>
 
         <section class="mainInfo">
-          <h1>Transporte da Ida</h1>
+          <h1>Transporte da Ida - <span class="data"></span></h1>
 
           <div class="cards">
             <div class="card">
@@ -47,62 +47,66 @@
                 <img src="../assets/dashBoard/rota.svg" alt="" />
                 <h1>ROTA</h1>
               </div>
-              <p>Ocara → Unicatólica</p>
+              <p class="rota">
+                <span class="idaEmbarque">---</span> →
+                <span class="idaDestino">---</span>
+              </p>
             </div>
             <div class="card">
               <div class="title">
                 <img src="../assets/dashBoard/onibus.svg" alt="" />
                 <h1>ÔNIBUS</h1>
               </div>
-              <p>Ônibus 08</p>
+              <p class="onibusIda">---</p>
             </div>
             <div class="card">
               <div class="title">
                 <img src="../assets/dashBoard/motorista.svg" alt="" />
                 <h1>MOTORISTA</h1>
               </div>
-              <p>Sr. João</p>
+              <p class="motoristaIda">---</p>
             </div>
-            <div class="card tempo">
+            <div class="card rota">
               <div class="title">
-                <img src="../assets/dashBoard/tempo.svg" alt="" />
-                <h1>SAÍDA ESTIMADA</h1>
+                <h1>Rota Comp.</h1>
               </div>
-              <p>18:30</p>
+              <p class="rotaCompIda">---</p>
             </div>
           </div>
         </section>
 
         <section class="mainInfo">
-          <h1>Transporte da volta</h1>
+          <h1>Transporte da volta - <span class="data"></span></h1>
           <div class="cards">
             <div class="card">
               <div class="title">
                 <img src="../assets/dashBoard/rota.svg" alt="" />
                 <h1>ROTA</h1>
               </div>
-              <p>Ocara → Unicatólica</p>
+              <p>
+                <span class="voltaEmbarque">---</span> →
+                <span class="voltaDestino">---</span>
+              </p>
             </div>
             <div class="card">
               <div class="title">
                 <img src="../assets/dashBoard/onibus.svg" alt="" />
                 <h1>ÔNIBUS</h1>
               </div>
-              <p>Ônibus 08</p>
+              <p class="onibusVolta">---</p>
             </div>
             <div class="card">
               <div class="title">
                 <img src="../assets/dashBoard/motorista.svg" alt="" />
                 <h1>MOTORISTA</h1>
               </div>
-              <p>Sr. João</p>
+              <p class="motoristaVolta">---</p>
             </div>
-            <div class="card tempo">
+            <div class="card rota">
               <div class="title">
-                <img src="../assets/dashBoard/tempo.svg" alt="" />
-                <h1>SAÍDA ESTIMADA</h1>
+                <h1>Rota Comp.</h1>
               </div>
-              <p>21:00</p>
+              <p class="rotaCompVolta">---</p>
             </div>
           </div>
         </section>
@@ -118,18 +122,7 @@
                   </div>
                   <div class="cardInfo">
                     <h1>FACULDADE</h1>
-                    <p>Unicatólica</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="embarqueCard">
-                  <div>
-                    <img src="../assets/dashBoard/local.svg" alt="" />
-                  </div>
-                  <div class="cardInfo">
-                    <h1>PONTO DE SAÍDA</h1>
-                    <p>Posto são marcos</p>
+                    <p class="embarqueFaculdade">---</p>
                   </div>
                 </div>
               </li>
@@ -140,7 +133,7 @@
                   </div>
                   <div class="cardInfo">
                     <h1>ROTA COMPLEMENTAR</h1>
-                    <p>CE 464</p>
+                    <p class="embarqueRotaComp">---</p>
                   </div>
                 </div>
               </li>

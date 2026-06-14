@@ -81,13 +81,13 @@
   font-weight: bold;
 }
 
-.card.tempo {
+.card.rota {
   color: #c7d9ff;
   background-color: #1e5db0;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
-.card.tempo h1 {
+.card.rota h1 {
   color: #c7d9ff;
 }
 
