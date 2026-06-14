@@ -13,14 +13,14 @@ interface AlunoFormState {
 }
 
 interface AlunoResponse {
-  user_id: number;
+  user_id: string;
   nome: string;
   email: string;
-  faculdade: string;
   curso: string;
-  status: AlunoStatus;
+  status: boolean;
   ies?: {
-    nome_faculdade?: string;
+    id: number;
+    nome: string;
   };
 }
 
@@ -32,6 +32,7 @@ const faculdadeInput = document.querySelector<HTMLInputElement>("#alunoFaculdade
 const cursoInput = document.querySelector<HTMLInputElement>("#alunoCurso");
 const statusInput = document.querySelector<HTMLSelectElement>("#alunoStatus");
 const searchInput = document.querySelector<HTMLInputElement>(".alunosSearch input");
+const faculdadeFilter = document.querySelector<HTMLSelectElement>("#filtro");
 
 let currentRow: HTMLTableRowElement | null = null;
 
@@ -39,6 +40,35 @@ let alunos: AlunoResponse[] = [];
 let paginaAtual = 1;
 
 const itensPorPagina = 5;
+
+async function carregarFaculdades() {
+  const { data, error } = await supabase
+    .from("faculdades")
+    .select("id, nome")
+    .order("nome");
+
+  if (error) {
+    console.error(error.message);
+    return;
+  }
+
+  if (!faculdadeFilter) {
+    return;
+  }
+
+  faculdadeFilter.innerHTML =
+    '<option value="">Todas as Faculdades</option>';
+
+  data.forEach((faculdade: any) => {
+    const option = document.createElement("option");
+
+    option.value = String(faculdade.id);
+
+    option.textContent = faculdade.nome;
+
+    faculdadeFilter.appendChild(option);
+  });
+}
 
 function normalizeText(value?: string | null): string {
   return (value ?? "")
@@ -54,18 +84,23 @@ function getSearchValue(): string {
 function getFilteredAlunos(): AlunoResponse[] {
   const query = normalizeText(getSearchValue());
 
-  return alunos.filter((aluno) => {
-    if (!query) {
-      return true;
-    }
+  const faculdadeSelecionada = faculdadeFilter?.value ?? "";
 
-    return (
+  return alunos.filter((aluno) => {
+    const correspondePesquisa =
+      !query ||
       normalizeText(aluno.nome).includes(query) ||
       normalizeText(aluno.email).includes(query) ||
-      normalizeText(aluno.curso).includes(query) ||
-      normalizeText(
-        aluno.ies?.nome_faculdade ?? ""
-      ).includes(query)
+      normalizeText(aluno.curso).includes(query);
+
+    const correspondeFaculdade =
+      !faculdadeSelecionada ||
+      aluno.ies?.id ===
+        Number(faculdadeSelecionada);
+
+    return (
+      correspondePesquisa &&
+      correspondeFaculdade
     );
   });
 }
@@ -158,7 +193,10 @@ async function renderizarAlunosSupabase() {
       email,
       curso,
       status,
-      ies
+      ies (
+        id,
+        nome
+      )
     `);
 
   if (error) {
@@ -199,7 +237,7 @@ function renderizarPagina() {
   const alunosPagina = alunosFiltrados.slice(inicio, inicio + itensPorPagina);
 
   alunosPagina.forEach((usuario) => {
-    const nomeFaculdade = usuario.ies?.nome_faculdade || "Não informado";
+    const nomeFaculdade = usuario.ies?.nome ?? "Não informado";
 
     const statusTexto = usuario.status ? "ativo" : "inativo";
     const statusLabel = usuario.status ? "ATIVO" : "INATIVO";
@@ -317,7 +355,15 @@ function atualizarRodape() {
   });
 }
 
-await renderizarAlunosSupabase();
+await Promise.all([
+  renderizarAlunosSupabase(),
+  carregarFaculdades(),
+]);
+
+faculdadeFilter?.addEventListener("change", () => {
+    paginaAtual = 1;
+    renderizarPagina();
+});
 
 searchInput?.addEventListener("input", () => {
   paginaAtual = 1;
