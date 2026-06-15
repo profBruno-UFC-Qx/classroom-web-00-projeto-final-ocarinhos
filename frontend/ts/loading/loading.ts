@@ -42,4 +42,4 @@ document.addEventListener('click', (e) => {
   if (link && link.href && !link.href.startsWith('javascript:') && !link.getAttribute('href')?.startsWith('#') && link.target !== '_blank') {
     showLoader();
   }
-});
+}); 
