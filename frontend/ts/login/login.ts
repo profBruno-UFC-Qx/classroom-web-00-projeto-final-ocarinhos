@@ -98,6 +98,9 @@ if (form instanceof HTMLFormElement) {
         console.log(str_redirect);
 
         window.location.href = str_redirect;
+        const nomeUsuario = String(data.user?.user_metadata?.nome ?? objLogin.email);
+        localStorage.setItem("auo-user-name", nomeUsuario);
+        window.location.href = "index.html";
       }
 
 

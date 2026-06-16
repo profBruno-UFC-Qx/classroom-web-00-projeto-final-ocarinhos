@@ -8,159 +8,158 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E"
+    />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/consultar-rota/consultar-rota.css" />
+    <link rel="stylesheet" href="../css/loading/loading.css">
+    <script type="module" src="../dist/loading/loading.js"></script> 
   </head>
   <body>
     <main class="aluno-shell">
       <div id="sidebar-container"></div>
 
       <div class="aluno-content">
-        <header class="main-header">
-          <div class="header-content">
-            <h1 class="logo-title">Transporte Universitário Ocara</h1>
-            <div class="header-user-info">
-              <i class="bi bi-bell header-icon"></i>
-              <i class="bi bi-gear header-icon"></i>
-              <span class="user-nickname">Painel do Aluno</span>
-              <img
-                src="../assets/profilepic.jpg"
-                alt="Avatar"
-                class="mini-avatar"
-              />
-            </div>
-          </div>
-        </header>
-
         <div class="mainDasboard consultar-rota">
           <div class="container">
-          <section class="page-head">
-            <h1>Consultar Rota</h1>
-            <p>Visualize a escala de transporte e rotas para cada dia da semana.</p>
+            <section class="page-head">
+              <h1>Consultar Rota</h1>
+              <p>
+                Visualize a escala de transporte e rotas para cada dia da
+                semana.
+              </p>
 
-            <nav class="weekday-tabs" role="tablist">
-              <button class="tab active">Segunda</button>
-              <button class="tab">Terça</button>
-              <button class="tab">Quarta</button>
-              <button class="tab">Quinta</button>
-              <button class="tab">Sexta</button>
-            </nav>
-          </section>
+              <nav class="weekday-tabs" role="tablist">
+                <button class="tab active">Segunda</button>
+                <button class="tab">Terça</button>
+                <button class="tab">Quarta</button>
+                <button class="tab">Quinta</button>
+                <button class="tab">Sexta</button>
+              </nav>
+            </section>
 
-          <section class="transporte-do-dia">
-            <header class="transporte-header">
-              <div class="transporte-title">
-                <i class="bi bi-bus-front"></i>
-                <h2>Transportes do Dia</h2>
-                <small class="muted">Visualize os horários e destinos</small>
+            <section class="transporte-do-dia">
+              <header class="transporte-header">
+                <div class="transporte-title">
+                  <i class="bi bi-bus-front"></i>
+                  <h2>Transportes do Dia</h2>
+                  <small class="muted">Visualize os horários e destinos</small>
+                </div>
+                <div class="weekday-badge">Segunda-feira</div>
+              </header>
+
+              <div class="transporte-grid">
+                <div class="table-card">
+                  <table class="transporte-table">
+                    <thead>
+                      <tr>
+                        <th>ÔNIBUS</th>
+                        <th>DESTINO/FACULDADE</th>
+                        <th>ROTA COMPLEMENTAR</th>
+                        <th>SAÍDA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Faustino</strong></td>
+                        <td>Unicatólica / IFCE</td>
+                        <td>CE 464</td>
+                        <td class="time">17:30</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Kim</strong></td>
+                        <td>UFC / FECLEARE</td>
+                        <td>CENTRO</td>
+                        <td class="time">18:00</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Balde</strong></td>
+                        <td>Unicatólica</td>
+                        <td>SERRAGEM/CURUPIRA</td>
+                        <td class="time">18:15</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="map-card">
+                  <div class="map-visual">
+                    <!-- futuro mapa desenhado :) -->
+                  </div>
+                  <div class="map-caption">
+                    Visualização da Rota Ativa<br /><span class="muted"
+                      >Quixadá - Campus Integrados</span
+                    >
+                  </div>
+                </div>
               </div>
-              <div class="weekday-badge">Segunda-feira</div>
-            </header>
+            </section>
 
-            <div class="transporte-grid">
-              <div class="table-card">
-                <table class="transporte-table">
+            <section class="filters-and-list">
+              <aside class="filter-card">
+                <h3><i class="bi bi-filter"></i> Filtro por Ônibus</h3>
+                <select>
+                  <option>Todos os Ônibus</option>
+                  <option>Faustino</option>
+                  <option>Kim</option>
+                  <option>Balde</option>
+                </select>
+              </aside>
+
+              <div class="passengers-card">
+                <h3>Lista de Passageiros</h3>
+                <p class="muted small">Ônibus 01 - 32 Alunos Alocados</p>
+
+                <table class="passengers-table">
                   <thead>
                     <tr>
-                      <th>ÔNIBUS</th>
-                      <th>DESTINO/FACULDADE</th>
-                      <th>ROTA COMPLEMENTAR</th>
-                      <th>SAÍDA</th>
+                      <th>NOME DO ALUNO</th>
+                      <th>CURSO</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><strong>Faustino</strong></td>
-                      <td>Unicatólica / IFCE</td>
-                      <td>CE 464</td>
-                      <td class="time">17:30</td>
+                      <td>Mariana Silva</td>
+                      <td><span class="tag">ENG. CIVIL</span></td>
                     </tr>
                     <tr>
-                      <td><strong>Kim</strong></td>
-                      <td>UFC / FECLEARE</td>
-                      <td>CENTRO</td>
-                      <td class="time">18:00</td>
+                      <td>João Pedro Santos</td>
+                      <td><span class="tag">DIREITO</span></td>
                     </tr>
                     <tr>
-                      <td><strong>Balde</strong></td>
-                      <td>Unicatólica</td>
-                      <td>SERRAGEM/CURUPIRA</td>
-                      <td class="time">18:15</td>
+                      <td>Ana Clara Oliveira</td>
+                      <td><span class="tag">SISTEMAS</span></td>
+                    </tr>
+                    <tr>
+                      <td>Lucas Ferreira</td>
+                      <td><span class="tag">PSICOLOGIA</span></td>
+                    </tr>
+                    <tr>
+                      <td>Beatriz Lima</td>
+                      <td><span class="tag">ARQUITETURA</span></td>
+                    </tr>
+                    <tr>
+                      <td>Ricardo Mota</td>
+                      <td><span class="tag">ADM</span></td>
+                    </tr>
+                    <tr>
+                      <td>Fernanda Costa</td>
+                      <td><span class="tag">ENFERMAGEM</span></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-
-              <div class="map-card">
-                <div class="map-visual">
-                  <!-- futuro mapa desenhado :) -->
-                </div>
-                <div class="map-caption">Visualização da Rota Ativa<br /><span class="muted">Quixadá - Campus Integrados</span></div>
-              </div>
-            </div>
-          </section>
-
-          <section class="filters-and-list">
-            <aside class="filter-card">
-              <h3><i class="bi bi-filter"></i> Filtro por Ônibus</h3>
-              <select>
-                <option>Todos os Ônibus</option>
-                <option>Faustino</option>
-                <option>Kim</option>
-                <option>Balde</option>
-              </select>
-            </aside>
-
-            <div class="passengers-card">
-              <h3>Lista de Passageiros</h3>
-              <p class="muted small">Ônibus 01 - 32 Alunos Alocados</p>
-
-              <table class="passengers-table">
-                <thead>
-                  <tr>
-                    <th>NOME DO ALUNO</th>
-                    <th>CURSO</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mariana Silva</td>
-                    <td><span class="tag">ENG. CIVIL</span></td>
-                  </tr>
-                  <tr>
-                    <td>João Pedro Santos</td>
-                    <td><span class="tag">DIREITO</span></td>
-                  </tr>
-                  <tr>
-                    <td>Ana Clara Oliveira</td>
-                    <td><span class="tag">SISTEMAS</span></td>
-                  </tr>
-                  <tr>
-                    <td>Lucas Ferreira</td>
-                    <td><span class="tag">PSICOLOGIA</span></td>
-                  </tr>
-                  <tr>
-                    <td>Beatriz Lima</td>
-                    <td><span class="tag">ARQUITETURA</span></td>
-                  </tr>
-                  <tr>
-                    <td>Ricardo Mota</td>
-                    <td><span class="tag">ADM</span></td>
-                  </tr>
-                  <tr>
-                    <td>Fernanda Costa</td>
-                    <td><span class="tag">ENFERMAGEM</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+            </section>
           </div>
         </div>
       </div>
     </main>
 
-    <script type="module" src="../dist/consultar-rota/consultar-rota.js"></script>
+    <script
+      type="module"
+      src="../dist/consultar-rota/consultar-rota.js"
+    ></script>
   </body>
 </html>

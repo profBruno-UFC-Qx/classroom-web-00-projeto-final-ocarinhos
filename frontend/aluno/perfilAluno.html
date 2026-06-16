@@ -8,30 +8,19 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E"
+    />
     <link rel="stylesheet" href="../css/perfilAluno/perfilAluno.css" />
+    <link rel="stylesheet" href="../css/loading/loading.css">
+    <script type="module" src="../dist/loading/loading.js"></script>
   </head>
   <body>
     <main class="aluno-shell">
       <div id="sidebar-container"></div>
 
       <div class="aluno-content">
-        <header class="main-header">
-          <div class="header-content">
-            <h1 class="logo-title">Transporte Universitário Ocara</h1>
-            <div class="header-user-info">
-              <i class="bi bi-bell header-icon"></i>
-              <i class="bi bi-gear header-icon"></i>
-              <span class="user-nickname">Painel do Aluno</span>
-              <img
-                src="../assets/profilepic.jpg"
-                alt="Avatar"
-                class="mini-avatar"
-              />
-            </div>
-          </div>
-        </header>
-
         <div class="profile-container">
           <div class="profile-grid">
             <aside class="sidebar-info">
@@ -113,7 +102,9 @@
               <div class="card virtual-pass-card">
                 <div class="pass-info">
                   <h3>Passe Estudantil Virtual</h3>
-                  <p>Apresente seu QR Code ao embarcar para validação rápida.</p>
+                  <p>
+                    Apresente seu QR Code ao embarcar para validação rápida.
+                  </p>
                   <button class="btn-qr-view">VISUALIZAR CÓDIGO</button>
                 </div>
                 <div class="qr-code-wrapper">

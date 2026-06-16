@@ -1,4 +1,5 @@
 import { supabase } from "../supabase/supabase.js";
+import showTopMessage from "../utils/showMsg.js";
 
 export function renderizarSidebar(containerId: string, paginaAtiva: string) {
   const container = document.getElementById(containerId);
@@ -15,39 +16,54 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
             </div>
             
 <nav class="sidebar-nav">
-    <a href="dashboard.html" class="menu-item ${paginaAtiva === 'dashboard' ? 'active' : ''}">
+    <a href="dashboard.html" class="menu-item ${paginaAtiva === "dashboard" ? "active" : ""}">
         <i data-lucide="layout-dashboard"></i> Dashboard
     </a>
-    <a href="alunos.html" class="menu-item ${paginaAtiva === 'alunos' ? 'active' : ''}">
+    <a href="alunos.html" class="menu-item ${paginaAtiva === "alunos" ? "active" : ""}">
         <i data-lucide="graduation-cap"></i> Alunos
     </a>
-    <a href="faculdades.html" class="menu-item ${paginaAtiva === 'faculdades' ? 'active' : ''}">
+    <a href="faculdades.html" class="menu-item ${paginaAtiva === "faculdades" ? "active" : ""}">
         <i data-lucide="landmark"></i> Faculdades
     </a>
-    <a href="/admin/onibus.html" class="menu-item ${paginaAtiva === 'onibus' ? 'active' : ''}">
+    <a href="onibus.html" class="menu-item ${paginaAtiva === 'onibus' ? 'active' : ''}">
         <i data-lucide="bus"></i> Ônibus
     </a>
-    <a href="motoristas.html" class="menu-item ${paginaAtiva === 'motoristas' ? 'active' : ''}">
+    <a href="motoristas.html" class="menu-item ${paginaAtiva === "motoristas" ? "active" : ""}">
         <i data-lucide="user-cog"></i> Motoristas
     </a>
-    <a href="rotas-complementares.html" class="menu-item ${paginaAtiva === 'rotas' ? 'active' : ''}">
+    <a href="rotas-complementares.html" class="menu-item ${paginaAtiva === "rotas" ? "active" : ""}">
         <i data-lucide="route"></i> Rotas complementares
     </a>
-    <a href="/admin/frequencia.html" class="menu-item ${paginaAtiva === 'frequencia' ? 'active' : ''}">
+    <a href="/admin/frequencia.html" class="menu-item ${paginaAtiva === "frequencia" ? "active" : ""}">
         <i data-lucide="calendar-days"></i> Frequência
     </a>
-    <a href="avisos.html" class="menu-item ${paginaAtiva === 'avisos' ? 'active' : ''}">
+    <a href="avisos.html" class="menu-item ${paginaAtiva === "avisos" ? "active" : ""}">
         <i data-lucide="megaphone"></i> Avisos
     </a>
 </nav>
 
             <div class="sidebar-footer">
-                <a href="login.html" class="menu-item logout">
+                <a href="../aluno/login.html" class="menu-item logout">
                     <i data-lucide="log-out"></i> Sair
                 </a>
             </div>
         </aside>
     `;
+
+  const logOut = container.querySelector(".logout");
+  if (logOut instanceof HTMLAnchorElement) {
+    async function signOut() {
+      Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith("sb-")) {
+          localStorage.removeItem(key);
+        }else if (key.startsWith("auo")) {
+          localStorage.removeItem(key);
+        }
+      });
+    }
+
+    logOut.addEventListener("click", signOut);
+  }
 
   // @ts-ignore
   if (window.lucide) {
