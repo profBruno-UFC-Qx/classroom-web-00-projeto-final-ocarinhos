@@ -1,247 +1,255 @@
 .dashboard-tela {
-    display: flex;
+  display: flex;
 }
 
 .mainDasboard {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    margin: 30px;
-    overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 30px;
+  overflow-y: auto;
+}
+
+.avisos-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .dash-visao-geral {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 .dash-card-visao-geral {
-    flex: 1;
-    min-width: 200px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+  flex: 1;
+  min-width: 200px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
-
 .dash-card-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: #e3f2fd;
-    border-radius: 8px;
-    font-size: 24px;
-    color: #1976d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  font-size: 24px;
+  color: #1976d2;
 }
 
 .dash-card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .dash-card-label {
-    font-size: 0.85rem;
-    color: #757575;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 0;
+  font-size: 0.85rem;
+  color: #757575;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .dash-card-number {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #0b1c30;
-    margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0b1c30;
+  margin: 0;
 }
 
 .dash-informacoes {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .dash-informacoes * {
-    transition: none !important;
+  transition: none !important;
 }
 
 .dash-dados-alunos {
-    display: flex;
-    flex-direction: column;
-    flex: 1.5;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1.5;
+  gap: 20px;
 }
 
 .dash-acoes-e-aviso {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
 }
 
 /* Card Wrapper */
 .dash-card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
 }
 
 .dash-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dash-card-title {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #0b1c30;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0b1c30;
 }
 
 .dash-btn-semana {
-    background: #f0f0f0;
-    border: 1px solid #e0e0e0;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.85rem;
+  background: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
 }
 
-
 .dashboard-freq-semanal .dash-card-header .filtro {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 6px 14px !important;
-    font-size: 0.85rem !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    background: #757575 !important;
-    border: 1px solid #757575 !important;
-    border-radius: 8px !important;
-    cursor: pointer !important;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.04) !important;
-    white-space: nowrap !important;
-    width: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px 14px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  background: #757575 !important;
+  border: 1px solid #757575 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04) !important;
+  white-space: nowrap !important;
+  width: auto !important;
 }
 
 /* Items de Alunos por Faculdade */
 .dash-faculdade-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
 }
 
 .dash-faculdade-name {
-    font-weight: 500;
-    color: #0b1c30;
+  font-weight: 500;
+  color: #0b1c30;
 }
 
 /* Alert Items */
 .dash-aviso-item {
-    padding: 12px;
-    border-left: 4px solid;
-    border-radius: 6px;
+  padding: 12px;
+  border-left: 4px solid;
+  border-radius: 6px;
 }
 
 .dash-aviso-titulo {
-    font-weight: 600;
-    margin-bottom: 4px;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
 .dash-aviso-desc {
-    font-size: 0.9rem;
-    color: #666;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .dash-aviso-warning {
-    background: #fff3cd;
-    border-left-color: #ff6b6b;
+  background: #fff3cd;
+  border-left-color: #ff6b6b;
 }
 
 .dash-aviso-warning .dash-aviso-titulo {
-    color: #d32f2f;
+  color: #d32f2f;
 }
 
 .dash-aviso-info {
-    background: #e3f2fd;
-    border-left-color: #1976d2;
+  background: #e3f2fd;
+  border-left-color: #1976d2;
 }
 
 .dash-aviso-info .dash-aviso-titulo {
-    color: #1976d2;
+  color: #1976d2;
 }
 
 .dash-aviso-footer {
-    text-align: center;
-    padding-top: 10px;
-    border-top: 1px solid #e0e0e0;
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0;
 }
 
 .dash-aviso-link {
-    color: #1976d2;
-    text-decoration: none;
-    font-weight: 500;
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 /* Actions */
 .dash-btn-menu {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: #999;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #999;
 }
 
 .dash-btn-action {
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .dash-btn-primary-action {
-    background: #1976d2;
-    color: white;
+  background: #1976d2;
+  color: white;
 }
 
 .dash-btn-secondary-action {
-    background: #e3f2fd;
-    color: #1976d2;
-    border: 1px solid #1976d2;
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+
+.mural-avisos {
+  align-items: start;
 }
 
 /* Make the three-dot menu in Mural de Avisos compact and match the small primary look */
 .mural-avisos .dash-card-header .dash-btn-menu {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 6px 14px ;
-    font-size: 1.3rem !important;
-    color: #000000 !important;
-    background: #ffffff !important;
-    border: 1px solid #ffffff !important;
-    border-radius: 8px !important;
-    width: auto ;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 6px 14px;
+  font-size: 1.3rem !important;
+  color: #000000 !important;
+  background: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 8px !important;
+  width: auto;
 }
