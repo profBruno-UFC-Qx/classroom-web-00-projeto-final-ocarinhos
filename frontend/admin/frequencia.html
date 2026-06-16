@@ -117,5 +117,50 @@
             </section>
         </div>
     </main>
+    <div class="modalOverlay" hidden>
+        <section class="modalEditar">
+            <header class="modalHeader">
+                <h2>Editar atribuição</h2>
+
+                <button type="button" class="fecharModal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </header>
+
+            <form class="formEditar">
+                <input type="hidden" id="editarId">
+
+                <div class="formGroup">
+                    <label for="editarMotorista">Motorista</label>
+
+                    <select id="editarMotorista" required>
+                        <option value="">Selecione um motorista</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="editarFaculdade">Instituição</label>
+
+                    <select id="editarFaculdade" required>
+                        <option value="">Selecione uma instituição</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="editarRota">Rota complementar</label>
+
+                    <select id="editarRota">
+                        <option value="">Selecione uma rota</option>
+                    </select>
+                </div>
+
+                <div class="formActions">
+                    <button type="submit">
+                        Salvar alterações
+                    </button>
+                </div>
+            </form>
+        </section>
+    </div>
 </body>
 </html>

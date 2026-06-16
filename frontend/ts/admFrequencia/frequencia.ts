@@ -13,6 +13,15 @@ const faculdadeSelect = document.querySelector<HTMLSelectElement>("#faculdade");
 const rotaSelect = document.querySelector<HTMLSelectElement>("#rota");
 const form = document.querySelector<HTMLFormElement>(".atribuicaoForm");
 
+const modal = document.querySelector<HTMLElement>(".modalOverlay");
+const fecharModal = document.querySelector<HTMLButtonElement>(".fecharModal");
+const editarId = document.querySelector<HTMLInputElement>("#editarId");
+const editarMotorista = document.querySelector<HTMLSelectElement>("#editarMotorista");
+const editarFaculdade = document.querySelector<HTMLSelectElement>("#editarFaculdade");
+const editarRota = document.querySelector<HTMLSelectElement>("#editarRota");
+const formEditar = document.querySelector<HTMLFormElement>(".formEditar");
+const botoesEditar = document.querySelectorAll<HTMLButtonElement>(".edit");
+
 let dataSelecionada = new Date();
 
 if (dataInput) {
@@ -150,10 +159,13 @@ async function renderizarTabela() {
   const { data: atribuicoes, error } = await supabase
     .from("motoristaAssociacao")
     .select(`
-      id,
-      motoristas(nome),
-      faculdades(nome),
-      rotasComplementares(nome)
+        id,
+        Motorista_id,
+        Faculdade_id,
+        RotaComplementar_id,
+        motoristas(nome),
+        faculdades(nome),
+        rotasComplementares(nome)
     `)
     .eq("Data_id", dataRegistro.id);
 
@@ -188,7 +200,13 @@ async function renderizarTabela() {
         <td>${atribuicao.rotasComplementares?.nome ?? "-"}</td>
 
         <td class="actionsCell">
-          <button class="iconButton edit">
+          <button
+            class="iconButton edit"
+            data-id="${atribuicao.id}"
+            data-motorista="${atribuicao.Motorista_id}"
+            data-faculdade="${atribuicao.Faculdade_id}"
+            data-rota="${atribuicao.RotaComplementar_id ?? ""}"
+           >
             <i class="bi bi-pencil"></i>
           </button>
 
@@ -262,6 +280,43 @@ form?.addEventListener("submit", async (e) => {
     await renderizarTabela();
 });
 
+formEditar?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const { error } = await supabase
+        .from("motoristaAssociacao")
+        .update({
+            Motorista_id: Number(
+                editarMotorista?.value
+            ),
+
+            Faculdade_id: Number(
+                editarFaculdade?.value
+            ),
+
+            RotaComplementar_id:
+                editarRota?.value
+                    ? Number(editarRota.value)
+                    : null,
+        })
+        .eq(
+            "id",
+            Number(editarId?.value)
+        );
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    modal?.setAttribute("hidden", "");
+    await renderizarTabela();
+});
+
+fecharModal?.addEventListener("click", () => {
+    modal?.setAttribute("hidden", "");
+});
+
 botaoAnterior?.addEventListener("click", async () => {
   dataSelecionada.setDate(dataSelecionada.getDate() - 1);
 
@@ -279,5 +334,12 @@ botaoProximo?.addEventListener("click", async () => {
 await carregarMotoristas();
 await carregarFaculdades();
 await carregarRotas();
+
+if (editarMotorista && editarFaculdade && editarRota && motoristaSelect && faculdadeSelect &&rotaSelect) {
+    editarMotorista.innerHTML = motoristaSelect.innerHTML;
+    editarFaculdade.innerHTML = faculdadeSelect.innerHTML;
+    editarRota.innerHTML = rotaSelect.innerHTML;
+}
+
 atualizarDataTela();
 await renderizarTabela();
