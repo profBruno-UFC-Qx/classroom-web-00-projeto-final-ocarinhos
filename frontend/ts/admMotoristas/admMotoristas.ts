@@ -51,12 +51,13 @@ if (textoBusca instanceof HTMLFormElement) {
         .ilike("nome", `%${input.value}%`)
         .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1);
 
-      if (error)
+      if (error) {
         showTopMessage(
           "Não foi possível realizar essa pesquisa por texto",
           "error"
         );
-      return;
+        return;
+      }
 
       inserirMotoristas(data);
     }

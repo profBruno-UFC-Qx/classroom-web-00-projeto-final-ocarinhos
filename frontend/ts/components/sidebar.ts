@@ -1,10 +1,10 @@
 import { supabase } from "../supabase/supabase.js";
 
 export function renderizarSidebar(containerId: string, paginaAtiva: string) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-    container.innerHTML = `
+  container.innerHTML = `
         <aside class="sidebar">
             <div class="sidebar-header" onclick="window.location.href='index.html'" style="cursor: pointer;">
                 <img src="../assets/Header/AUO Logo.svg" alt="Logo AUO" class="logo-img">
@@ -15,16 +15,16 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
             </div>
             
             <nav class="sidebar-nav">
-                <a href="dashBoardAluno.html" class="menu-item ${paginaAtiva === 'dashboard' ? 'active' : ''}">
+                <a href="dashBoardAluno.html" class="menu-item ${paginaAtiva === "dashboard" ? "active" : ""}">
                     <i data-lucide="layout-dashboard"></i> Dashboard
                 </a>
-                <a href="consultar-rota.html" class="menu-item ${paginaAtiva === 'rota' ? 'active' : ''}">
+                <a href="consultar-rota.html" class="menu-item ${paginaAtiva === "rota" ? "active" : ""}">
                     <i data-lucide="route"></i> Consultar Rota
                 </a>
-                <a href="formulario-semanal.html" class="menu-item ${paginaAtiva === 'formulario' ? 'active' : ''}">
+                <a href="formulario-semanal.html" class="menu-item ${paginaAtiva === "formulario" ? "active" : ""}">
                     <i data-lucide="calendar-check"></i> Formulário Semanal
                 </a>
-                <a href="perfilAluno.html" class="menu-item ${paginaAtiva === 'perfil' ? 'active' : ''}">
+                <a href="perfilAluno.html" class="menu-item ${paginaAtiva === "perfil" ? "active" : ""}">
                     <i data-lucide="user"></i> Perfil
                 </a>
             </nav>
@@ -37,46 +37,68 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
         </aside>
     `;
 
-    const renderIcons = () => {
-        // @ts-ignore
-        if (window.lucide) {
-            // @ts-ignore
-            lucide.createIcons();
+  const renderIcons = () => {
+    // @ts-ignore
+    if (window.lucide) {
+      // @ts-ignore
+      lucide.createIcons();
+    }
+  };
+
+  const logOut = container.querySelector(".logout");
+  if (logOut instanceof HTMLAnchorElement) {
+    async function signOut() {
+      Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith("sb-")) {
+          localStorage.removeItem(key);
+        } else if (key.startsWith("auo")) {
+          localStorage.removeItem(key);
         }
-    };
+      });
+    }
 
-    supabase.auth.getSession().then((result: Awaited<ReturnType<typeof supabase.auth.getSession>>) => {
-        const user = result.data.session?.user;
+    logOut.addEventListener("click", signOut);
+  }
 
-        if (!user) {
-            window.location.replace("login.html");
-            return;
-        }
+  supabase.auth
+    .getSession()
+    .then((result: Awaited<ReturnType<typeof supabase.auth.getSession>>) => {
+      const user = result.data.session?.user;
 
-        const nomeUsuario = String(
-            user?.user_metadata?.nome ??
-                localStorage.getItem("auo-user-name") ??
-                user?.email ??
-                "Aluno"
-        );
+      if (!user) {
+        window.location.replace("login.html");
+        return;
+      }
 
-        document.querySelectorAll<HTMLElement>(".user-nickname").forEach((element) => {
-            element.textContent = nomeUsuario;
+      const nomeUsuario = String(
+        user?.user_metadata?.nome ??
+          localStorage.getItem("auo-user-name") ??
+          user?.email ??
+          "Aluno"
+      );
+
+      document
+        .querySelectorAll<HTMLElement>(".user-nickname")
+        .forEach((element) => {
+          element.textContent = nomeUsuario;
         });
 
-        renderIcons();
+      renderIcons();
     });
 
-    const existingLoader = document.querySelector<HTMLScriptElement>(
-        'script[data-lucide-loader="true"]'
-    );
+  const existingLoader = document.querySelector<HTMLScriptElement>(
+    'script[data-lucide-loader="true"]'
+  );
 
-    if (!existingLoader && !(window as typeof window & { lucide?: unknown }).lucide) {
-        const script = document.createElement("script");
-        script.src = "https://unpkg.com/lucide@latest";
-        script.defer = true;
-        script.dataset.lucideLoader = "true";
-        script.addEventListener("load", renderIcons, { once: true });
-        document.body.appendChild(script);
-    }
+  if (
+    !existingLoader &&
+    !(window as typeof window & { lucide?: unknown }).lucide
+  ) {
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/lucide@latest";
+    script.defer = true;
+    script.dataset.lucideLoader = "true";
+    script.addEventListener("load", renderIcons, { once: true });
+    document.body.appendChild(script);
+  }
 }
