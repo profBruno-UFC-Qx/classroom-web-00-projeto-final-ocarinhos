@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão de avisos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="../css/AdmAvisos/AdmAvisos.css" />
+  </head>
+  <body>
+    <main class="wrap avisosLayout">
+      <div id="sidebar-container"></div>
+      <div class="avisosMain">
+        <header class="avisosHeader">
+          <h1>Gestão de avisos</h1>
+          <p>Visualize e gerencie os avisos cadastrados no sistema.</p>
+        </header>
+
+        <section class="avisosToolbar" aria-label="Busca e ações de avisos">
+          <form class="avisosSearchForm" autocomplete="off">
+            <label class="avisosSearchField">
+              <span class="srOnly">Buscar por nome</span>
+              <i class="bi bi-search" aria-hidden="true"></i>
+              <input
+                type="search"
+                name="search"
+                placeholder="Buscar por nome"
+              />
+            </label>
+          </form>
+
+          <div class="avisosToolbarActions">
+            <button type="button" class="avisosGhostButton" data-sort-button>
+              <i class="bi bi-funnel" aria-hidden="true"></i>
+              <span>Filtros</span>
+            </button>
+
+            <button type="button" class="avisosGhostButton" data-export-button>
+              <i class="bi bi-download" aria-hidden="true"></i>
+              <span>Exportar</span>
+            </button>
+
+            <button type="button" class="avisosPrimaryButton" data-create-button>
+              <i class="bi bi-plus-lg" aria-hidden="true"></i>
+              <span>Cadastrar aviso</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="avisosTableCard" aria-label="Lista de avisos">
+          <table class="avisosTable">
+            <thead>
+              <tr>
+                <th>TITULO</th>
+                <th>DESCRIÇÃO</th>
+                <th>DATA DE ENVIO</th>
+                <th class="avisosActionsHeader">AÇÕES</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2" class="avisosTableInfo">
+                  Mostrando <span data-page-range>0-0</span> de
+                  <span data-total-count>0</span> avisos
+                </td>
+
+                <td colspan="2" class="avisosTablePagerCell">
+                  <nav class="avisosPager" aria-label="Paginação de avisos">
+                    <button type="button" class="avisosPagerButton" data-prev-page>
+                      <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="avisosPagerPages" data-pagination></div>
+
+                    <button type="button" class="avisosPagerButton" data-next-page>
+                      <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </button>
+                  </nav>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <div class="avisosModalOverlay" hidden>
+      <section
+        class="avisosModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="avisosModalTitle"
+      >
+        <header class="avisosModalHeader">
+          <div>
+            <span class="avisosModalEyebrow" data-modal-eyebrow>
+              Novo aviso
+            </span>
+
+            <h2 id="avisosModalTitle" data-modal-title>Cadastrar aviso</h2>
+
+            <p data-modal-description>
+              Preencha os campos abaixo para publicar um novo aviso ou atualizar
+              um aviso existente.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="avisosModalClose"
+            aria-label="Fechar modal"
+            data-close-modal
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </header>
+
+        <form class="avisosModalForm">
+          <div class="avisosModalGrid">
+            <label>
+              <span>Título</span>
+
+              <input type="text" name="titulo" maxlength="120" required />
+            </label>
+
+            <label>
+              <span>Descrição</span>
+
+              <textarea name="desc" rows="5" maxlength="500" required></textarea>
+            </label>
+
+            <label>
+              <span>Data de envio</span>
+
+              <input type="datetime-local" name="data" required />
+            </label>
+          </div>
+
+          <footer class="avisosModalActions">
+            <button
+              type="button"
+              class="avisosModalButton secondary"
+              data-close-modal
+            >
+              Cancelar
+            </button>
+
+            <button type="submit" class="avisosModalButton primary">
+              Salvar alterações
+            </button>
+          </footer>
+        </form>
+      </section>
+    </div>
+
+    <script type="module" src="../dist/admAvisos/admAvisos.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </body>
+</html>

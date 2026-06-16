@@ -1,20 +1,43 @@
-#app-container {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  background-color: #ffffff;
+/* Estrutura Principal */
+#app-container,
+.aluno-shell {
+    display: flex;
+    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
 }
 
+#sidebar-container {
+    flex: 0 0 250px;
+}
+
+.aluno-content {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-color, #f8f9fc);
+}
+
+/* Sidebar */
 .sidebar {
-  width: 250px;
-  background-color: #0f172a;
-  color: #94a3b8;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 20px 15px;
-  flex-shrink: 0;
+    width: 250px;
+    background-color: #0f172a;
+    color: #94a3b8;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px 15px;
+    flex-shrink: 0;
 }
 
 .sidebar-header {
@@ -49,6 +72,16 @@
   gap: 8px;
 }
 
+.sidebar-nav a,
+.sidebar-footer a {
+    white-space: nowrap;
+}
+
+.sidebar-nav i,
+.sidebar-footer i {
+    flex: 0 0 auto;
+}
+
 .menu-item {
   display: flex;
   align-items: center;
@@ -75,12 +108,89 @@
   margin-top: auto;
 }
 
+/* Cabeçalho do aluno */
+.main-header {
+    background-color: #ffffff;
+    padding: 1rem 3rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.logo-title {
+    font-size: 1.35rem;
+    color: #0264b8;
+    font-weight: 800;
+    margin: 0;
+}
+
+.header-user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.header-icon {
+    color: #6f7180;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.user-nickname {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0264b8;
+    border-left: 1px solid #d1d3e2;
+    padding-left: 15px;
+}
+
+.mini-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 /* Conteúdo Principal (Formulário) */
 .main-content-wrapper {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 40px;
-  background-color: #fff;
+    flex-grow: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.main-content-wrapper.aluno-content {
+    padding: 0;
+}
+
+.dashboard-content {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-content .mainDasboard {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.aluno-content .profile-container {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
 }
 
 /* Ajustes do Formulário */
