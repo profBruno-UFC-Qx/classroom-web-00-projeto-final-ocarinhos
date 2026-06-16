@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUO Sistema</title>
+
+    <script type="module" src="../dist/admFrequencia/frequencia.js"></script>
+
+    <link rel="stylesheet" href="./../css/sidebar.css" />
+    <link rel="stylesheet" href="../css/admFrequencia/frequencia.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+</head>
+
+<body>
+    <main>
+        <div id="sidebar-container"></div>
+
+        <div class="freqMain">
+            <h1>Atribuição de Transporte</h1>
+
+            <p class="subtitle">
+                Gerencie e aloque motoristas para rotas acadêmicas diárias.
+            </p>
+
+            <section class="atribuicaoCard">
+                <header class="atribuicaoHeader">
+                    <i class="bi bi-clipboard-check"></i>
+
+                    <h2>Nova Atribuição</h2>
+                </header>
+
+                <form class="atribuicaoForm">
+                    <div class="formGroup">
+                        <label for="dataEscala">Data</label>
+                        <input type="date" id="dataEscala" name="dataEscala" required />
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="motorista">Motorista</label>
+                        <select id="motorista" name="motorista" required>
+                            <option value="">Selecione um motorista</option>
+                        </select>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="faculdade">Instituição / Campus</label>
+                        <select id="faculdade" name="faculdade" required>
+                            <option value="">Selecione o destino</option>
+                        </select>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="rota">Rota Complementar</label>
+
+                        <select id="rota" name="rota">
+                            <option value="">Selecione a rota</option>
+                        </select>
+                    </div>
+
+                    <div class="formActions">
+                        <button type="submit">Confirmar Atribuição</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="frequenciaTableCard">
+                <header class="frequenciaTableHeader">
+                    <div class="frequenciaTableTitle">
+                        <h2>Atribuições do Dia</h2>
+                        <p id="dataAtual">18 de junho de 2026</p>
+                    </div>
+
+                    <nav class="frequenciaDatePager">
+                        <button type="button" class="datePagerButton prev-day" aria-label="Dia anterior">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+
+                        <span class="datePagerLabel" id="mesAtual">
+                            Junho / 2026
+                        </span>
+
+                        <button type="button" class="datePagerButton next-day" aria-label="Próximo dia">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </nav>
+                </header>
+
+                <table class="frequenciaTable">
+                    <thead>
+                    <tr>
+                        <th>MOTORISTA</th>
+                        <th>INSTITUIÇÃO</th>
+                        <th>ROTA</th>
+                        <th class="alignRight">AÇÕES</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="atribuicoesBody">
+                        
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="tableInfo">Exibindo atribuições do dia selecionado.</td>
+                            <td colspan="2" class="tablePager">
+                                <div class="dateSummary">
+                                    Dia <span id="diaAtual">18</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+        </div>
+    </main>
+    <div class="modalOverlay" hidden>
+        <section class="modalEditar">
+            <header class="modalHeader">
+                <h2>Editar atribuição</h2>
+
+                <button type="button" class="fecharModal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </header>
+
+            <form class="formEditar">
+                <input type="hidden" id="editarId">
+
+                <div class="formGroup">
+                    <label for="editarMotorista">Motorista</label>
+
+                    <select id="editarMotorista" required>
+                        <option value="">Selecione um motorista</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="editarFaculdade">Instituição</label>
+
+                    <select id="editarFaculdade" required>
+                        <option value="">Selecione uma instituição</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="editarRota">Rota complementar</label>
+
+                    <select id="editarRota">
+                        <option value="">Selecione uma rota</option>
+                    </select>
+                </div>
+
+                <div class="formActions">
+                    <button type="submit">
+                        Salvar alterações
+                    </button>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+@import url('../global.css');
+
+body {
+    background-color: #f8f9ff;
+    color: #0b1c30;
+}
+
+main {
+    display: flex;
+}
+
+.freqMain {
+    padding: 30px 50px;
+    width: 100%;
+}
+
+.subtitle {
+    color: #424752;
+    margin-bottom: 32px;
+}
+
+.atribuicaoCard {
+    background: #fff;
+    border: 1px solid #dce1eb;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.atribuicaoHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    background-color: #f1f5fb;
+    border-bottom: 1px solid #dce1eb;
+}
+
+.atribuicaoHeader i {
+    color: #0b4f9c;
+    font-size: 1.3rem;
+}
+
+.atribuicaoHeader h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.atribuicaoForm {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    padding: 24px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formGroup label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.formGroup input,
+.formGroup select {
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid #cfd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #fff;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+    outline: none;
+    border-color: #0b4f9c;
+}
+
+.formActions {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.formActions button {
+    height: 44px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0b4f9c;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.formActions button:hover {
+    background-color: #083b74;
+}
+
+.frequenciaTableCard {
+    margin-top: 24px;
+    background: white;
+    border: 1px solid #cfd7ea;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(16, 35, 61, 0.08);
+}
+
+.frequenciaTableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #d6def0;
+}
+
+.frequenciaTableTitle {
+    display: flex;
+    column-gap: 20px;
+}
+
+.frequenciaTableHeader h2 {
+    margin: 0;
+}
+
+.frequenciaTableHeader p {
+    color: #5d687d;
+    margin-top: 6px;
+}
+
+.frequenciaDatePager {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.datePagerButton {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #d7def0;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+}
+
+.datePagerLabel {
+    font-weight: 600;
+}
+
+.frequenciaTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.frequenciaTable th {
+    background: #f1f5ff;
+    padding: 18px;
+    text-align: left;
+    font-size: 0.8rem;
+    color: #4f5d74;
+    letter-spacing: .05em;
+}
+
+.frequenciaTable td {
+    padding: 18px;
+    border-bottom: 1px solid #edf1f8;
+}
+
+.motoristaCell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.actionsCell {
+    text-align: right;
+}
+
+.iconButton {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.iconButton:hover {
+    background: #f3f6fb;
+}
+
+.tableInfo,
+.tablePager {
+    padding: 16px;
+    color: #5d687d;
+}
+
+.tablePager {
+    text-align: right;
+}
+
+th.alignRight {
+    text-align: right;
+}
