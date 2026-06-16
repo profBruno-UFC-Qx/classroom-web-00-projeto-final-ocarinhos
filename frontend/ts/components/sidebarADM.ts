@@ -25,7 +25,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
     <a href="faculdades.html" class="menu-item ${paginaAtiva === "faculdades" ? "active" : ""}">
         <i data-lucide="landmark"></i> Faculdades
     </a>
-    <a href="/admin/onibus.html" class="menu-item ${paginaAtiva === "onibus" ? "active" : ""}">
+    <a href="onibus.html" class="menu-item ${paginaAtiva === 'onibus' ? 'active' : ''}">
         <i data-lucide="bus"></i> Ônibus
     </a>
     <a href="motoristas.html" class="menu-item ${paginaAtiva === "motoristas" ? "active" : ""}">
