@@ -37,6 +37,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
         </aside>
     `;
 
+    
     const renderIcons = () => {
         // @ts-ignore
         if (window.lucide) {
@@ -44,7 +45,18 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
             lucide.createIcons();
         }
     };
+    
+    const logoutBtn = document.querySelector(".logout");
+    logoutBtn?.addEventListener("click", async (event) => {
+        event.preventDefault();
 
+        await supabase.auth.signOut();
+
+        localStorage.removeItem("auo-user-name");
+
+        window.location.href = "/frontend/aluno/login.html";
+    });
+    
     supabase.auth.getSession().then((result: Awaited<ReturnType<typeof supabase.auth.getSession>>) => {
         const user = result.data.session?.user;
 

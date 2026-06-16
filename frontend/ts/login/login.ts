@@ -79,10 +79,27 @@ if (form instanceof HTMLFormElement) {
       });
 
       if (!error) {
-        const nomeUsuario = String(data.user?.user_metadata?.nome ?? objLogin.email);
-        localStorage.setItem("auo-user-name", nomeUsuario);
-        window.location.href = "aluno/index.html";
+        const { data: usuario, error: erroUsuario } = await supabase
+          .from("usuarios")
+          .select("is_adm")
+          .eq("user_id", data.user.id)
+          .single();
+
+        if (erroUsuario || !usuario) {
+          console.error(erroUsuario);
+          return;
+        }
+
+        const str_redirect = usuario.is_adm
+          ? "/frontend/admin/dashboard.html"
+          : "/frontend/aluno/dashBoardAluno.html";
+
+        console.log(usuario);
+        console.log(str_redirect);
+
+        window.location.href = str_redirect;
       }
+
 
       if (error && error.code == "invalid_credentials") {
         showApiError("Login ou senha incorretos");

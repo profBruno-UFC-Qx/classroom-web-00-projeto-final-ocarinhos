@@ -1,3 +1,5 @@
+import { supabase } from "../supabase/supabase.js";
+
 export function renderizarSidebar(containerId: string, paginaAtiva: string) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -52,4 +54,58 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
     // @ts-ignore
     lucide.createIcons();
   }
+    const logoutBtn = document.querySelector(".logout");
+
+    logoutBtn?.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        await supabase.auth.signOut();
+
+        localStorage.removeItem("auo-user-name");
+
+        window.location.href = "/frontend/aluno/login.html";
+    });
+
+    const renderIcons = () => {
+        // @ts-ignore
+        if (window.lucide) {
+            // @ts-ignore
+            lucide.createIcons();
+        }
+    };
+
+    supabase.auth.getSession().then((result: Awaited<ReturnType<typeof supabase.auth.getSession>>) => {
+        const user = result.data.session?.user;
+
+        if (!user) {
+            window.location.replace("/frontend/aluno/login.html");
+            return;
+        }
+
+        const nomeUsuario = String(
+            user?.user_metadata?.nome ??
+                localStorage.getItem("auo-user-name") ??
+                user?.email ??
+                "Aluno"
+        );
+
+        document.querySelectorAll<HTMLElement>(".user-nickname").forEach((element) => {
+            element.textContent = nomeUsuario;
+        });
+
+        renderIcons();
+    });
+
+    const existingLoader = document.querySelector<HTMLScriptElement>(
+        'script[data-lucide-loader="true"]'
+    );
+
+    if (!existingLoader && !(window as typeof window & { lucide?: unknown }).lucide) {
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/lucide@latest";
+        script.defer = true;
+        script.dataset.lucideLoader = "true";
+        script.addEventListener("load", renderIcons, { once: true });
+        document.body.appendChild(script);
+    }
 }
