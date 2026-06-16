@@ -182,26 +182,35 @@ async function buscarFrequencia() {
       `
       )
       .eq("IDaluno", id)
-      .eq("Datas.data_ocorrencia", hoje)
-      .single()) as { data: ParticipaFreq; error: any };
+      .eq("Datas.data_ocorrencia", hoje)) as {
+      data: ParticipaFreq[];
+      error: any;
+    };
 
     if (error) {
       throw error;
     }
 
-    const motorista = data.Datas[0]?.motoristaAssociacao[0]?.motoristas;
+    if (!data[0]) {
+      const err = {
+        code: "PGRST116",
+      };
+      throw err;
+    }
+
+    const motorista = data[0].Datas[0]?.motoristaAssociacao[0]?.motoristas;
     const rotasComplementar =
-      data.Datas[0]?.motoristaAssociacao[0]?.rotasComplementares;
-    const faculdades = data.Datas[0]?.motoristaAssociacao[0]?.faculdades;
-    const dataHoje = data.Datas[0]?.data_ocorrencia;
+      data[0].Datas[0]?.motoristaAssociacao[0]?.rotasComplementares;
+    const faculdades = data[0].Datas[0]?.motoristaAssociacao[0]?.faculdades;
+    const dataHoje = data[0].Datas[0]?.data_ocorrencia;
     const onibus =
-      data.Datas[0]?.motoristaAssociacao[0]?.motoristas.onibus.nome;
-    const ida_embarque = data.ida_embarque;
-    const volta_destino = data.volta_destino;
-    const ida = data.ida;
-    const volta = data.volta;
-    const ida_destino = await getFaculdadeById(data.ida_destino);
-    const volta_embarque = await getFaculdadeById(data.volta_embarque);
+      data[0].Datas[0]?.motoristaAssociacao[0]?.motoristas.onibus.nome;
+    const ida_embarque = data[0].ida_embarque;
+    const volta_destino = data[0].volta_destino;
+    const ida = data[0].ida;
+    const volta = data[0].volta;
+    const ida_destino = await getFaculdadeById(data[0].ida_destino);
+    const volta_embarque = await getFaculdadeById(data[0].volta_embarque);
 
     return {
       motorista,
@@ -335,3 +344,4 @@ async function inserirInfosDeEmbarque(infos: {
 await buscarAvisosDoSupabase();
 await renderizarNome();
 await inserirFrequencia();
+// await buscarFrequencia();
