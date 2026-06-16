@@ -38,6 +38,20 @@ interface onibusInterface {
   kmAtual: number;
 }
 
+const textoBusca = document.getElementById("textoBusca");
+if (textoBusca instanceof HTMLFormElement) {
+  function query(e: SubmitEvent) {
+    e.preventDefault();
+    const input = textoBusca?.querySelector("input");
+
+    if (input) {
+      console.log(input.value);
+    }
+  }
+
+  textoBusca.addEventListener("submit", query);
+}
+
 async function fetchMotoristas() {
   const { data, error } = (await supabase
     .from("motoristas")
