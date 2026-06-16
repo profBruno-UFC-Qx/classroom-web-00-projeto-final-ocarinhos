@@ -81,7 +81,7 @@ if (form instanceof HTMLFormElement) {
       if (!error) {
         const nomeUsuario = String(data.user?.user_metadata?.nome ?? objLogin.email);
         localStorage.setItem("auo-user-name", nomeUsuario);
-        window.location.href = "aluno/index.html";
+        window.location.href = "index.html";
       }
 
       if (error && error.code == "invalid_credentials") {

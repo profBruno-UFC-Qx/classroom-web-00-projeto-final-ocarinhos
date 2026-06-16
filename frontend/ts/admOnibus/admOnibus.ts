@@ -18,18 +18,35 @@ interface OnibusFormData {
 }
 
 const table = document.querySelector<HTMLTableElement>(".motoristasTable");
-const createButton = document.querySelector<HTMLButtonElement>(".efetuarCadastro");
-const modalOverlay = document.querySelector<HTMLDivElement>(".motoristasModalOverlay");
-const modalForm = document.querySelector<HTMLFormElement>(".motoristasModalForm");
-const modalTitle = document.querySelector<HTMLHeadingElement>("#onibusModalTitle");
-const modalEyebrow = document.querySelector<HTMLElement>(".motoristasModalEyebrow");
-const modalDescription = document.querySelector<HTMLElement>(".motoristasModalHeader p");
-const closeButton = document.querySelector<HTMLButtonElement>(".motoristasModalClose");
-const cancelButton = document.querySelector<HTMLButtonElement>(".motoristasModalCancel");
-const nomeInput = modalForm?.querySelector<HTMLInputElement>('input[name="nome"]') ?? null;
-const placaInput = modalForm?.querySelector<HTMLInputElement>('input[name="placa"]') ?? null;
+const createButton =
+  document.querySelector<HTMLButtonElement>(".efetuarCadastro");
+const modalOverlay = document.querySelector<HTMLDivElement>(
+  ".motoristasModalOverlay"
+);
+const modalForm = document.querySelector<HTMLFormElement>(
+  ".motoristasModalForm"
+);
+const modalTitle =
+  document.querySelector<HTMLHeadingElement>("#onibusModalTitle");
+const modalEyebrow = document.querySelector<HTMLElement>(
+  ".motoristasModalEyebrow"
+);
+const modalDescription = document.querySelector<HTMLElement>(
+  ".motoristasModalHeader p"
+);
+const closeButton = document.querySelector<HTMLButtonElement>(
+  ".motoristasModalClose"
+);
+const cancelButton = document.querySelector<HTMLButtonElement>(
+  ".motoristasModalCancel"
+);
+const nomeInput =
+  modalForm?.querySelector<HTMLInputElement>('input[name="nome"]') ?? null;
+const placaInput =
+  modalForm?.querySelector<HTMLInputElement>('input[name="placa"]') ?? null;
 const disponivelInput =
-  modalForm?.querySelector<HTMLSelectElement>('select[name="disponivel"]') ?? null;
+  modalForm?.querySelector<HTMLSelectElement>('select[name="disponivel"]') ??
+  null;
 
 let editingOnibusId: number | null = null;
 let tableBody = table?.querySelector<HTMLTableSectionElement>("tbody") ?? null;
@@ -77,8 +94,10 @@ function setModalState(mode: "create" | "edit") {
     return;
   }
 
-  modalEyebrow.textContent = mode === "create" ? "Cadastro de ônibus" : "Edição de ônibus";
-  modalTitle.textContent = mode === "create" ? "Cadastrar ônibus" : "Editar ônibus";
+  modalEyebrow.textContent =
+    mode === "create" ? "Cadastro de ônibus" : "Edição de ônibus";
+  modalTitle.textContent =
+    mode === "create" ? "Cadastrar ônibus" : "Editar ônibus";
   modalDescription.textContent =
     mode === "create"
       ? "Preencha os dados abaixo para cadastrar um novo ônibus."
@@ -86,7 +105,13 @@ function setModalState(mode: "create" | "edit") {
 }
 
 function openModal(onibus?: Onibus) {
-  if (!modalOverlay || !modalForm || !nomeInput || !placaInput || !disponivelInput) {
+  if (
+    !modalOverlay ||
+    !modalForm ||
+    !nomeInput ||
+    !placaInput ||
+    !disponivelInput
+  ) {
     return;
   }
 
@@ -121,8 +146,6 @@ function renderRows(onibusList: Onibus[]) {
     showTopMessage("Tabela de ônibus não encontrada.", "error");
     return;
   }
-
-  body.innerHTML = "";
 
   if (onibusList.length === 0) {
     body.innerHTML = `
@@ -188,6 +211,8 @@ async function salvarOnibus(formData: OnibusFormData) {
       .eq("id", editingOnibusId)
       .select("id, nome, placa, disponivel");
 
+    console.log("erro1: ", error);
+
     if (error) {
       throw error;
     }
@@ -202,6 +227,8 @@ async function salvarOnibus(formData: OnibusFormData) {
     .from("onibus")
     .insert(payload)
     .select("id, nome, placa, disponivel");
+
+  console.log("erro1: ", error);
 
   if (error) {
     throw error;
@@ -236,7 +263,11 @@ modalForm?.addEventListener("submit", async (event) => {
 
   const formData = readFormData();
 
-  if (!formData.nome || !formData.placa || typeof formData.disponivel !== "boolean") {
+  if (
+    !formData.nome ||
+    !formData.placa ||
+    typeof formData.disponivel !== "boolean"
+  ) {
     showTopMessage("Preencha todos os campos do ônibus.", "error");
     return;
   }

@@ -20,6 +20,7 @@
   flex-direction: column;
   gap: 32px;
   flex: 1;
+  padding-bottom: 50px;
 }
 
 .dashboard-content .header-bg,
