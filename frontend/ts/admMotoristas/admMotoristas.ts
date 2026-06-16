@@ -40,12 +40,25 @@ interface onibusInterface {
 
 const textoBusca = document.getElementById("textoBusca");
 if (textoBusca instanceof HTMLFormElement) {
-  function query(e: SubmitEvent) {
+  async function query(e: SubmitEvent) {
     e.preventDefault();
     const input = textoBusca?.querySelector("input");
 
     if (input) {
-      console.log(input.value);
+      const { data, error } = await supabase
+        .from("motoristas")
+        .select("id, nome, onibus (nome), kmAtual")
+        .ilike("nome", `%${input.value}%`)
+        .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1);
+
+      if (error)
+        showTopMessage(
+          "Não foi possível realizar essa pesquisa por texto",
+          "error"
+        );
+      return;
+
+      inserirMotoristas(data);
     }
   }
 
