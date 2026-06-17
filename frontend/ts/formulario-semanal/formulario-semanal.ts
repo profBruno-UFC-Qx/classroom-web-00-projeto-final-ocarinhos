@@ -254,7 +254,7 @@ if (form instanceof HTMLFormElement) {
     const formData = new FormData(form);
 
     const tipoUso = String(formData.get("tipoUso") ?? "");
-    const paradaSaida = numSel(formData.get("paradaSaida"));
+    const paradaSaida = String(formData.get("paradaSaida") ?? "").trim();
     const faculdadeDestino = numSel(formData.get("faculdadeDestino"));
     const rotaComplementar = String(formData.get("rotaComplementar") ?? "nao") === "sim";
     const rotaComplementarDestino = numSel(formData.get("rotaComplementarDestino"));
@@ -265,7 +265,7 @@ if (form instanceof HTMLFormElement) {
       return;
     }
 
-    if (paradaSaida === null || faculdadeDestino === null || !paradaSaidaTexto) {
+    if (!paradaSaida || faculdadeDestino === null || !paradaSaidaTexto) {
       showTopMessage("Preencha os campos de rota e faculdade corretamente.", "error");
       return;
     }
@@ -299,6 +299,30 @@ if (form instanceof HTMLFormElement) {
         volta_destino: volta ? paradaSaidaTexto : null,
         rotaComplementar: rotaComplementar && rotaComplementarDestino ? rotaComplementarDestino : null,
       };
+
+      const datasSelecionadas = diasUnicos.map((dia) => proxDataDia(dia));
+
+      const { data: datasExistentes, error: erroDatasExistentes } = await supabase
+        .from("Datas")
+        .select(`
+          data_ocorrencia,
+          ParticipaFreq!inner (
+            IDaluno
+          )
+        `)
+        .eq("ParticipaFreq.IDaluno", alunoId)
+        .in("data_ocorrencia", datasSelecionadas);
+      
+      if (erroDatasExistentes) {
+        throw new Error("Erro ao verificar formulários existentes.");
+      }
+
+      if (datasExistentes && datasExistentes.length > 0) {
+        const diasDuplicados = datasExistentes.map((d: any) => d.data_ocorrencia);
+
+        showTopMessage(`Você já possui formulário cadastrado para: ${diasDuplicados.join(", ")}`, "error");
+        return;
+      }
 
       const { data: participaFreqCriada, error: erroParticipaFreq } = await supabase
         .from("ParticipaFreq")
