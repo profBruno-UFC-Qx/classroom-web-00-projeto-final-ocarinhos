@@ -1,122 +1,118 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perfil do Aluno - AUO</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E"
-    />
-    <link rel="stylesheet" href="../css/perfilAluno/perfilAluno.css" />
-    <link rel="stylesheet" href="../css/loading/loading.css">
-    <script type="module" src="../dist/loading/loading.js"></script>
-  </head>
-  <body>
-    <main class="aluno-shell">
-      <div id="sidebar-container"></div>
 
-      <div class="aluno-content">
-        <div class="profile-container">
-          <div class="profile-grid">
-            <aside class="sidebar-info">
-              <section class="card profile-pic-card">
-                <div class="profile-img-wrapper">
-                  <img src="../assets/profilepic.jpg" alt="Foto do Aluno" />
-                  <button class="edit-photo-btn">
-                    <i class="bi bi-camera"></i>
-                  </button>
-                </div>
-                <h2 class="display-name">Nome do Aluno</h2>
-                <p class="display-major">CURSO DO ALUNO</p>
-                <div class="status-badges">
-                  <span class="badge uni-badge">UFC</span>
-                  <span class="badge status-badge">Ativo</span>
-                </div>
-              </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil do Aluno - AUO</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231d4ed8'/%3E%3Cpath d='M16 40h32l-2 6H18zM22 36V24h20v12h4V20H18v16z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../css/perfilAluno/perfilAluno.css" />
+  <link rel="stylesheet" href="../css/loading/loading.css">
+  <script type="module" src="../dist/loading/loading.js"></script>
+</head>
 
-              <section class="card status-check-card">
-                <div class="status-content-wrapper">
-                  <div class="status-icon-circle">
-                    <i class="bi bi-patch-check"></i>
-                  </div>
-                  <div class="status-text">
-                    <h3>Situação Cadastral</h3>
-                    <p>Seu cadastro está validado para o semestre 2024.2</p>
-                  </div>
-                  <div class="check-mark">
-                    <i class="bi bi-check-lg"></i>
-                  </div>
-                </div>
-              </section>
-            </aside>
+<body>
+  <main class="aluno-shell">
+    <div id="sidebar-container"></div>
 
-            <section class="main-content-info">
-              <div class="card info-form-card">
-                <header class="form-header">
-                  <i class="bi bi-person-vcard"></i>
-                  <h3>Minhas Informações</h3>
-                </header>
-
-                <form class="student-form">
-                  <div class="form-grid">
-                    <div class="input-group">
-                      <label>Nome Completo</label>
-                      <input type="text" placeholder="Nome do Aluno" />
-                    </div>
-                    <div class="input-group">
-                      <label>Email Acadêmico</label>
-                      <input type="email" placeholder="email@exemplo.com" />
-                    </div>
-                    <div class="input-group">
-                      <label>Faculdade</label>
-                      <select>
-                        <option value="UFC">UFC</option>
-                        <option value="UECE">UECE</option>
-                        <option value="IFCE">IFCE</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <label>Telefone / WhatsApp</label>
-                      <input type="text" placeholder="(00) 00000-0000" />
-                    </div>
-                    <div class="input-group full-width">
-                      <label>Curso</label>
-                      <input type="text" placeholder="Seu curso de graduação" />
-                    </div>
-                  </div>
-
-                  <div class="form-actions">
-                    <button type="button" class="btn-cancel">Cancelar</button>
-                    <button type="submit" class="btn-save">
-                      <i class="bi bi-download"></i> Salvar Alterações
-                    </button>
-                  </div>
-                </form>
+    <div class="aluno-content">
+      <div class="profile-container">
+        <div class="profile-grid">
+          <aside class="sidebar-info">
+            <section class="card profile-pic-card">
+              <div class="profile-img-wrapper">
+                <img src="../assets/profilepic.jpg" alt="Foto do Aluno" />
+                <button class="edit-photo-btn">
+                  <i class="bi bi-camera"></i>
+                </button>
               </div>
+              <h2 class="display-name" id="display-nome">Nome do Aluno</h2>
+              <p class="display-major" id="display-curso">CURSO DO ALUNO</p>
+              <div class="status-badges">
+                <span class="badge uni-badge">UFC</span>
+                <span class="badge status-badge">Ativo</span>
+              </div>
+            </section>
 
-              <div class="card virtual-pass-card">
-                <div class="pass-info">
-                  <h3>Passe Estudantil Virtual</h3>
-                  <p>
-                    Apresente seu QR Code ao embarcar para validação rápida.
-                  </p>
-                  <button class="btn-qr-view">VISUALIZAR CÓDIGO</button>
+            <section class="card status-check-card">
+              <div class="status-content-wrapper">
+                <div class="status-icon-circle">
+                  <i class="bi bi-patch-check"></i>
                 </div>
-                <div class="qr-code-wrapper">
-                  <i class="bi bi-qr-code-scan"></i>
+                <div class="status-text">
+                  <h3>Situação Cadastral</h3>
+                  <p>Seu cadastro está validado para o semestre 2024.2</p>
+                </div>
+                <div class="check-mark">
+                  <i class="bi bi-check-lg"></i>
                 </div>
               </div>
             </section>
-          </div>
+          </aside>
+
+          <section class="main-content-info">
+            <div class="card info-form-card">
+              <header class="form-header">
+                <i class="bi bi-person-vcard"></i>
+                <h3>Minhas Informações</h3>
+              </header>
+
+              <form class="student-form" id="form-perfil">
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" placeholder="Nome do Aluno" required />
+                  </div>
+                  <div class="input-group">
+                    <label for="email">Email Acadêmico</label>
+                    <input type="email" id="email" placeholder="email@exemplo.com" disabled />
+                  </div>
+                  <div class="input-group">
+                    <label for="faculdade">Faculdade</label>
+                    <select id="faculdade" required>
+                      <option value="">Carregando...</option>
+                    </select>
+                  </div>
+                  <div class="input-group">
+                    <label for="telefone">Telefone / WhatsApp</label>
+                    <input type="text" id="telefone" required maxlength="11" minlength="11" placeholder="(00) 00000-0000" />
+                  </div>
+                  <div class="input-group full-width">
+                    <label for="curso">Curso</label>
+                    <input type="text" id="curso" placeholder="Seu curso de graduação" required />
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="button" class="btn-cancel">Cancelar</button>
+                  <button type="submit" class="btn-save">
+                    <i class="bi bi-download"></i> Salvar Alterações
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="card virtual-pass-card">
+              <div class="pass-info">
+                <h3>Passe Estudantil Virtual</h3>
+                <p>
+                  Apresente seu QR Code ao embarcar para validação rápida.
+                </p>
+                <button class="btn-qr-view">VISUALIZAR CÓDIGO</button>
+              </div>
+              <div class="qr-code-wrapper">
+                <i class="bi bi-qr-code-scan"></i>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <script type="module" src="../dist/perfilAluno/perfilAluno.js"></script>
-  </body>
+  <script type="module" src="../dist/perfilAluno/perfilAluno.js"></script>
+</body>
+
 </html>
