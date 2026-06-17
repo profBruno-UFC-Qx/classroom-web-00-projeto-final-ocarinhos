@@ -37,12 +37,17 @@ type ParticipaFreq = {
 };
 
 async function getFaculdadeById(id: string) {
+  if (!id) {
+    return "---";
+  }
+
   try {
     const { data, error } = await supabase
       .from("faculdades")
       .select("nome")
       .eq("id", id)
       .single();
+
 
     if (error) {
       throw error;
