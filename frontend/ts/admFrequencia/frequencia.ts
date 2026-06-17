@@ -1,4 +1,5 @@
 import { supabase } from "../supabase/supabase.js";
+import showTopMessage from "../utils/showMsg.js";
 import { renderizarSidebar } from "../components/sidebarADM.js";
 renderizarSidebar("sidebar-container", "frequencia");
 
@@ -291,8 +292,8 @@ form?.addEventListener("submit", async (e) => {
     const dataId = await obterIdData(data);
 
     if (!dataId) {
-    console.log("Erro ao obter a data.");
-    return;
+      showTopMessage("Erro ao obter a data.", "error");
+      return;
     }
 
     const { error } = await supabase
@@ -308,9 +309,11 @@ form?.addEventListener("submit", async (e) => {
 
     if (error) {
         console.error(error);
-        console.log("Erro ao salvar atribuição.");
+        showTopMessage("Erro ao salvar atribuição.", "error");
         return;
     }
+
+    showTopMessage("Atribuição salva com sucesso.", "alert");
 
     form.reset();
     dataSelecionada = new Date();
@@ -348,6 +351,8 @@ formEditar?.addEventListener("submit", async (e) => {
         console.error(error);
         return;
     }
+
+    showTopMessage("Atribuição atualizada com sucesso.", "alert");
 
     modal?.setAttribute("hidden", "");
     await renderizarTabela();
