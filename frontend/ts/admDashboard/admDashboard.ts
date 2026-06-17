@@ -5,6 +5,7 @@ let paginaAtualFaculdade = 0;
 let graficoFaculdades: any = null;
 const btnAnteriorFaculdade = document.getElementById("btnAnteriorFaculdade") as HTMLButtonElement;
 const btnProximaFaculdade = document.getElementById("btnProximaFaculdade") as HTMLButtonElement;
+const paginaFaculdade = document.getElementById("paginaFaculdade") as HTMLSpanElement;
 
 import { supabase } from "../supabase/supabase.js";
 import { renderizarSidebar } from "../components/sidebarADM.js";
@@ -293,6 +294,7 @@ let totalFaculdades = 0;
 btnAnteriorFaculdade?.addEventListener("click", async () => {
   if (paginaAtualFaculdade > 0) {
     paginaAtualFaculdade--;
+    atualizarPagina();
     await carregarGraficoFaculdades();
   }
 });
@@ -302,11 +304,19 @@ btnProximaFaculdade?.addEventListener("click", async () => {
 
   if (paginaAtualFaculdade < totalPaginas - 1) {
     paginaAtualFaculdade++;
+    atualizarPagina();
     await carregarGraficoFaculdades();
   }
 });
 
+function atualizarPagina() {
+  if (paginaFaculdade) {
+    paginaFaculdade.innerText = String(paginaAtualFaculdade + 1);
+  }
+}
+
 totalFaculdades = (await obterFaculdadesComQuantidade()).length;
+atualizarPagina();
 await fetchEstatisticas();
 await inserirAvisos();
 await carregarGrafico();
