@@ -4,7 +4,6 @@ import { renderizarSidebar } from "../components/sidebarADM.js";
 renderizarSidebar("sidebar-container", "motoristas");
 
 let atualPage = 0;
-console.log(atualPage);
 const pageSize = 5;
 
 function validarMotorista(
@@ -38,42 +37,28 @@ interface onibusInterface {
   kmAtual: number;
 }
 
-const textoBusca = document.getElementById("textoBusca");
-if (textoBusca instanceof HTMLFormElement) {
-  async function query(e: SubmitEvent) {
-    e.preventDefault();
-    const input = textoBusca?.querySelector("input");
+const input = document.getElementById("textoBusca") as HTMLInputElement;
+input.addEventListener("input", function (e) {
+  e.preventDefault();
 
-    if (input) {
-      const { data, error } = await supabase
-        .from("motoristas")
-        .select("id, nome, onibus (nome), kmAtual")
-        .ilike("nome", `%${input.value}%`)
-        .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1);
-
-      if (error) {
-        showTopMessage(
-          "Não foi possível realizar essa pesquisa por texto",
-          "error"
-        );
-        return;
-      }
-
-      inserirMotoristas(data);
-    }
-  }
-
-  textoBusca.addEventListener("submit", query);
-}
+  atualPage = 0;
+  fetchMotoristas();
+});
 
 async function fetchMotoristas() {
   const { data, error } = (await supabase
     .from("motoristas")
     .select("id, nome, onibus (nome), kmAtual")
+    .ilike("nome", `%${input.value}%`)
     .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
     data: motoristasInterface[] | null;
     error: any;
   };
+
+  const { count: totalMotorista, error: errmotorista } = await supabase
+    .from("motoristas")
+    .select("*", { count: "exact", head: true })
+    .ilike("nome", `%${input.value}%`);
 
   if (error) {
     showTopMessage("Não foi possível fazer o fetch dos motoristas.", "error");
@@ -81,6 +66,7 @@ async function fetchMotoristas() {
 
   if (data) {
     inserirMotoristas(data);
+    await preencherFooterTable(totalMotorista, error);
   }
 }
 
@@ -153,7 +139,6 @@ async function editarMotorista(id: number) {
 
     if (error) {
       showTopMessage("Nao foi possivel atualizar o motorista", "error");
-      console.log(error);
       return;
     }
 
@@ -168,7 +153,6 @@ btnCadastro?.addEventListener("click", cadastrarMotorista);
 
 async function cadastrarMotorista() {
   const modal = document.getElementById("cadastrar");
-  console.log(modal);
   modal?.removeAttribute("hidden");
 
   const closeEdit = document.querySelectorAll("[aria-label='FecharCadastro']");
@@ -180,37 +164,38 @@ async function cadastrarMotorista() {
 
   const form = modal?.querySelector("form");
 
-  form?.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const newForm = new FormData(form);
-    const objMotorista: Record<string, string | number> = {};
+  if (form) {
+    form.onsubmit = async function (e) {
+      e.preventDefault();
+      const newForm = new FormData(form);
+      const objMotorista: Record<string, string | number> = {};
 
-    newForm.forEach((valor, atributo) => {
-      if (typeof valor == "string" || typeof valor == "number") {
-        objMotorista[atributo] = valor;
+      newForm.forEach((valor, atributo) => {
+        if (typeof valor == "string" || typeof valor == "number") {
+          objMotorista[atributo] = valor;
+        }
+      });
+
+      if (!validarMotorista(objMotorista)) {
+        showTopMessage(
+          "Algum campo esta com valores negativos ou vazio",
+          "error"
+        );
+        return;
       }
-    });
 
-    if (!validarMotorista(objMotorista)) {
-      showTopMessage(
-        "Algum campo esta com valores negativos ou vazio",
-        "error"
-      );
-      return;
-    }
+      const { error } = await supabase.from("motoristas").insert(objMotorista);
 
-    const { error } = await supabase.from("motoristas").insert(objMotorista);
+      if (error) {
+        showTopMessage("Nao foi possivel efetuar o cadastro", "error");
+        return;
+      }
 
-    if (error) {
-      console.log(error);
-      showTopMessage("Nao foi possivel efetuar o cadastro", "error");
-      return;
-    }
-
-    showTopMessage("Cadastro efetuado", "alert");
-    await fetchMotoristas();
-    modal?.setAttribute("hidden", "");
-  });
+      showTopMessage("Cadastro efetuado", "alert");
+      await fetchMotoristas();
+      modal?.setAttribute("hidden", "");
+    };
+  }
 }
 
 function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
@@ -225,7 +210,7 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
 
     tr.innerHTML = `
   <td class='name'>
-    <i class='bi bi-mortarboard' aria-hidden='true'></i>
+    <i class="bi bi-bus-front" aria-hidden="true"></i>
     ${motorista.nome}
   </td>
 
@@ -283,7 +268,6 @@ async function skipPage(totalMotorista: number, page: number) {
   atualPage = page;
 
   await fetchMotoristas();
-  await inserirPaginas(totalMotorista);
 }
 
 async function inserirPaginas(totalMotorista: number) {
@@ -313,36 +297,33 @@ async function inserirPaginas(totalMotorista: number) {
   }
 }
 
-async function preencherFooterTable() {
-  const { count: totalMotorista, error: errmotorista } = await supabase
-    .from("motoristas")
-    .select("*", { count: "exact", head: true });
-
-  if (errmotorista) {
+async function preencherFooterTable(totalMotorista: number, err?: any) {
+  if (err) {
     showTopMessage(
-      "Não foi possível fazer o fetch da quantidade de motoristas.",
+      "Nao foi possivel obter a quantidade de motoristas",
       "error"
     );
-  } else {
-    preencherQTDMotoristas(totalMotorista);
-    await inserirPaginas(totalMotorista);
-    actionButtons(totalMotorista);
+    return;
   }
+
+  preencherQTDMotoristas(totalMotorista);
+  await inserirPaginas(totalMotorista);
+  actionButtons(totalMotorista);
 }
 
 function actionButtons(totalMotorista: number) {
-  const prev = document.querySelector(".prev");
+  const prev = document.querySelector(".prev") as HTMLButtonElement;
   if (prev) {
-    prev?.addEventListener("click", function () {
-      skipPage(totalMotorista, atualPage - 1);
-    });
+    prev.onclick = async function () {
+      await skipPage(totalMotorista, atualPage - 1);
+    };
   }
 
-  const next = document.querySelector(".next");
+  const next = document.querySelector(".next") as HTMLButtonElement;
   if (next) {
-    next?.addEventListener("click", function () {
-      skipPage(totalMotorista, atualPage + 1);
-    });
+    next.onclick = async function () {
+      await skipPage(totalMotorista, atualPage + 1);
+    };
   }
 }
 
@@ -361,4 +342,3 @@ async function preencherFormularioOnibus() {
 
 await preencherFormularioOnibus();
 await fetchMotoristas();
-await preencherFooterTable();

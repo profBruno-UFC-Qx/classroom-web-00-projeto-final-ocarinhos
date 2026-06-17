@@ -97,7 +97,8 @@ async function buscarAvisosDoSupabase(): Promise<void> {
     const { data, error } = await supabase
       .from("avisos")
       .select("id, titulo, desc, data")
-      .order("data", { ascending: false });
+      .order("data", { ascending: false })
+      .range(0, 2);
 
     if (error) {
       throw error;
@@ -186,6 +187,8 @@ async function buscarFrequencia() {
       data: ParticipaFreq[];
       error: any;
     };
+
+    console.log(data);
 
     if (error) {
       throw error;

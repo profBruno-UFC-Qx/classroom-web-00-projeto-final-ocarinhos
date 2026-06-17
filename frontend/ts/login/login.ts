@@ -91,8 +91,8 @@ if (form instanceof HTMLFormElement) {
         }
 
         const str_redirect = usuario.is_adm
-          ? "/frontend/admin/dashboard.html"
-          : "/frontend/aluno/dashBoardAluno.html";
+          ? "../../admin/dashboard.html"
+          : "../../aluno/dashBoardAluno.html";
 
         console.log(usuario);
         console.log(str_redirect);
