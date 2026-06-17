@@ -210,12 +210,52 @@ async function renderizarTabela() {
             <i class="bi bi-pencil"></i>
           </button>
 
-          <button class="iconButton delete">
+          <button class="iconButton delete" data-id="${atribuicao.id}">
             <i class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
     `;
+  });
+
+  const botoesEditar = document.querySelectorAll<HTMLButtonElement>(".edit");
+  const botoesDelete = document.querySelectorAll<HTMLButtonElement>(".delete");
+
+  botoesEditar.forEach((botao) => {
+    botao.addEventListener("click", () => {
+      if (!editarId || !editarMotorista || !editarFaculdade || !editarRota) {
+        return;
+      }
+
+      editarId.value = botao.dataset.id ?? "";
+      editarMotorista.value = botao.dataset.motorista ?? "";
+      editarFaculdade.value = botao.dataset.faculdade ?? "";
+      editarRota.value =botao.dataset.rota ?? "";
+
+      modal?.removeAttribute("hidden");
+    });
+  });
+
+  botoesDelete.forEach((botao) => {
+    botao.addEventListener("click", async () => {
+      const confirmou = confirm("Deseja realmente excluir esta atribuição?");
+      if (!confirmou) {
+        return;
+      }
+
+      const id = Number(botao.dataset.id);
+
+      const { error } = await supabase
+        .from("motoristaAssociacao")
+        .delete()
+        .eq("id", id);
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+      await renderizarTabela();
+    });
   });
 }
 
@@ -315,6 +355,12 @@ formEditar?.addEventListener("submit", async (e) => {
 
 fecharModal?.addEventListener("click", () => {
     modal?.setAttribute("hidden", "");
+});
+
+modal?.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.setAttribute("hidden", "");
+  }
 });
 
 botaoAnterior?.addEventListener("click", async () => {
