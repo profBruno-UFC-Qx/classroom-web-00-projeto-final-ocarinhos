@@ -70,29 +70,17 @@
             </section>
             <section class="aluno-facul dash-card-visao-geral">
               <div class="dash-card-wrapper">
-                <h3 class="dash-card-title">Alunos por Faculdade</h3>
-                <div class="dash-faculdade-item">
-                  <span class="dash-faculdade-name"
-                    >Universidade de Fortaleza (UNIFOR)</span
-                  >
-                </div>
-                <div class="dash-faculdade-item">
-                  <span class="dash-faculdade-name"
-                    >Universidade Federal do Ceará (UFC)</span
-                  >
-                </div>
-                <div class="dash-faculdade-item">
-                  <span class="dash-faculdade-name"
-                    >Centro Universitário Estácio</span
-                  >
-                </div>
-                <div class="dash-faculdade-item">
-                  <span class="dash-faculdade-name">Outras Instituições</span>
-                </div>
+                  <div class="dash-card-header">
+                      <h3 class="dash-card-title">Alunos por Faculdade</h3>
+                      <div class="buttonsprox">
+                          <button id="btnAnteriorFaculdade">&lt;</button>
+                          <button id="btnProximaFaculdade">&gt;</button>
+                      </div>
+                  </div>
+                  <canvas id="graficoFaculdades"></canvas>
               </div>
             </section>
           </section>
-
           <section class="dash-acoes-e-aviso">
             <section class="mural-avisos dash-card-visao-geral">
               <div class="dash-card-wrapper">

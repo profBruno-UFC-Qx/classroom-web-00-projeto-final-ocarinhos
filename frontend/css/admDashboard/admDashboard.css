@@ -253,3 +253,37 @@
   border-radius: 8px !important;
   width: auto;
 }
+
+#graficoFaculdades {
+    max-height: 260px;
+}
+
+.paginacao-faculdades {
+    display: flex;
+    gap: 8px;
+}
+
+.paginacao-faculdades button,
+#btnAnteriorFaculdade,
+#btnProximaFaculdade {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d7def0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aluno-facul canvas {
+    height: 280px !important;
+    width: 100% !important;
+}
+
+.buttonsprox {
+  display: flex;
+  column-gap: 10px;
+}
