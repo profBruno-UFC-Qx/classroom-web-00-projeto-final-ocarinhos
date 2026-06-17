@@ -208,3 +208,43 @@ main {
 th.alignRight {
     text-align: right;
 }
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modalOverlay[hidden] {
+    display: none;
+}
+
+.modalEditar {
+    width: 500px;
+    max-width: 95%;
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fecharModal {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.modalEditar .formActions {
+    margin-top: 20px;
+}
