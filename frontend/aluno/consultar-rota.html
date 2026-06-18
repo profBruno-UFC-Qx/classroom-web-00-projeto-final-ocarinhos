@@ -32,11 +32,11 @@
               </p>
 
               <nav class="weekday-tabs" role="tablist">
-                <button class="tab active">Segunda</button>
-                <button class="tab">Terça</button>
-                <button class="tab">Quarta</button>
-                <button class="tab">Quinta</button>
-                <button class="tab">Sexta</button>
+                <button class="tab active" data-dia="segunda">Segunda</button>
+                <button class="tab" data-dia="terca">Terça</button>
+                <button class="tab" data-dia="quarta">Quarta</button>
+                <button class="tab" data-dia="quinta">Quinta</button>
+                <button class="tab" data-dia="sexta">Sexta</button>
               </nav>
             </section>
 
@@ -62,24 +62,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><strong>Faustino</strong></td>
-                        <td>Unicatólica / IFCE</td>
-                        <td>CE 464</td>
-                        <td class="time">17:30</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Kim</strong></td>
-                        <td>UFC / FECLEARE</td>
-                        <td>CENTRO</td>
-                        <td class="time">18:00</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Balde</strong></td>
-                        <td>Unicatólica</td>
-                        <td>SERRAGEM/CURUPIRA</td>
-                        <td class="time">18:15</td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
@@ -100,11 +83,8 @@
             <section class="filters-and-list">
               <aside class="filter-card">
                 <h3><i class="bi bi-filter"></i> Filtro por Ônibus</h3>
-                <select>
+                <select id="filtroOnibus">
                   <option>Todos os Ônibus</option>
-                  <option>Faustino</option>
-                  <option>Kim</option>
-                  <option>Balde</option>
                 </select>
               </aside>
 
@@ -120,34 +100,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Mariana Silva</td>
-                      <td><span class="tag">ENG. CIVIL</span></td>
-                    </tr>
-                    <tr>
-                      <td>João Pedro Santos</td>
-                      <td><span class="tag">DIREITO</span></td>
-                    </tr>
-                    <tr>
-                      <td>Ana Clara Oliveira</td>
-                      <td><span class="tag">SISTEMAS</span></td>
-                    </tr>
-                    <tr>
-                      <td>Lucas Ferreira</td>
-                      <td><span class="tag">PSICOLOGIA</span></td>
-                    </tr>
-                    <tr>
-                      <td>Beatriz Lima</td>
-                      <td><span class="tag">ARQUITETURA</span></td>
-                    </tr>
-                    <tr>
-                      <td>Ricardo Mota</td>
-                      <td><span class="tag">ADM</span></td>
-                    </tr>
-                    <tr>
-                      <td>Fernanda Costa</td>
-                      <td><span class="tag">ENFERMAGEM</span></td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
