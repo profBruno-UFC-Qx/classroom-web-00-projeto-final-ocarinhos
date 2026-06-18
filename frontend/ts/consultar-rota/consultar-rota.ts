@@ -5,6 +5,7 @@ const tbody = document.querySelector(".transporte-table tbody");
 const filtro = document.getElementById("filtroOnibus") as HTMLSelectElement;
 const tbodyPassageiros = document.querySelector(".passengers-table tbody");
 const badge = document.querySelector(".weekday-badge");
+const infoPassageiros = document.querySelector(".passengers-card .small");
 
 let diaAtual: DiaSemana = "segunda";
 
@@ -135,6 +136,8 @@ async function carregarTransportes(dia: DiaSemana) {
     `)
     .in("Data_id", ids);
 
+    console.log("TRANSPORTES", data);
+
   renderizarTabelaTransportes(data ?? []);
   preencherFiltroOnibus(data ?? []);
   if (!data?.length) {
@@ -153,6 +156,10 @@ function renderizarPassageiros(passageiros: any[]) {
 
   if (!tbodyPassageiros) {
     return;
+  }
+
+  if (infoPassageiros) {
+    infoPassageiros.textContent = `${passageiros.length} aluno(s) alocado(s)`;
   }
 
   tbodyPassageiros.innerHTML = "";
@@ -194,25 +201,32 @@ async function carregarPassageiros(faculdadeId: number, rotaId: number, dia: Dia
       dataSelecionada
     );
 
-  if (!data) {
-    return;
-  }
+    if (!data) {
+        return;
+    }
 
-  const passageiros = data
-    .map((d: any) => d.ParticipaFreq)
-    .filter(
-      (p: any) =>
-        p.ida_destino === faculdadeId &&
-        p.rotaComplementar === rotaId
-    );
+    if (!data?.length) {
+        renderizarPassageiros([]);
+        return;
+    }
 
-  renderizarPassageiros(passageiros);
+    const passageiros = data.map((d: any) => d.ParticipaFreq);
+
+    const filtrados = passageiros.filter((p: any) => {
+        const mesmaFaculdade = p.ida_destino === faculdadeId || p.volta_embarque === faculdadeId;
+        const mesmaRota = p.rotaComplementar === rotaId;
+
+        return mesmaFaculdade && mesmaRota;
+    });
+
+    renderizarPassageiros(filtrados);
 }
 
 filtro.addEventListener("change", async () => {
     const id = Number(filtro.value);
 
     if (!id) {
+        renderizarPassageiros([]);
         return;
     }
 
@@ -268,4 +282,5 @@ document.querySelectorAll(".tab").forEach(btn => {
   });
 });
 
+atualizarBadge("segunda");
 await carregarTransportes("segunda");
