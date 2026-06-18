@@ -107,6 +107,9 @@ async function carregarTransportes(dia: DiaSemana) {
     .eq("data_ocorrencia", dataSelecionada);
 
   if (!registroData?.length) {
+    renderizarTabelaTransportes([]);
+    preencherFiltroOnibus([]);
+    renderizarPassageiros([]);
     return;
   }
 
@@ -134,6 +137,13 @@ async function carregarTransportes(dia: DiaSemana) {
 
   renderizarTabelaTransportes(data ?? []);
   preencherFiltroOnibus(data ?? []);
+  if (!data?.length) {
+    renderizarTabelaTransportes([]);
+    preencherFiltroOnibus([]);
+    renderizarPassageiros([]);
+    return;
+  }
+
   if (data?.length) {
     await carregarPassageiros(data[0].Faculdade_id, data[0].RotaComplementar_id, dia);
   }
