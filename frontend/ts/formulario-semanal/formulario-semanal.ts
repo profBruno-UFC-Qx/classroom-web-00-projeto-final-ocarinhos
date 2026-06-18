@@ -41,28 +41,55 @@ type DatasRegistro = {
   frequencia: number;
 };
 
-function formatarData(date: Date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-function proxDataDia(dia: DiaSemana) {
+function obterDataCorreta(dia: DiaSemana) {
+  const alvo = diaSemanaParaNumero[dia];
   const hoje = new Date();
   const hojeNumero = hoje.getDay();
-  const alvo = diaSemanaParaNumero[dia];
-  let delta = (alvo - hojeNumero + 7) % 7;
-  if (delta === 0) delta = 7;
-  const data = new Date(hoje);
-  data.setHours(0, 0, 0, 0);
-  data.setDate(data.getDate() + delta);
-  return formatarData(data);
+
+  const delta = (alvo - hojeNumero + 7) % 7;
+
+  const data = new Date();
+  data.setDate(hoje.getDate() + delta);
+
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const diaMes = String(data.getDate()).padStart(2, "0");
+
+  return `${ano}-${mes}-${diaMes}`;
+}
+
+function desabilitarDiasPassados() {
+  const hoje = new Date();
+  const diaAtual = hoje.getDay();
+
+  if (diaAtual === 0 || diaAtual === 6) {
+    return;
+  }
+
+  const checkboxes = document.querySelectorAll('input[name="dias"]');
+
+  checkboxes.forEach((checkbox) => {
+    const input = checkbox as HTMLInputElement;
+    const diaValue = input.value as DiaSemana;
+    const numeroDoDia = diaSemanaParaNumero[diaValue];
+
+    if (numeroDoDia < diaAtual) {
+      input.disabled = true;
+      input.title = "Este dia já passou."; 
+      
+      if (input.parentElement) {
+        input.parentElement.style.opacity = "0.5";
+        input.parentElement.style.cursor = "not-allowed";
+      }
+    }
+  });
 }
 
 const form = document.getElementById("formulario-semanal");
 
 if (form instanceof HTMLFormElement) {
+  desabilitarDiasPassados();
+
   const nomeInput = document.getElementById("nome") as HTMLInputElement | null;
   const emailInput = document.getElementById("email") as HTMLInputElement | null;
   const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
@@ -300,7 +327,7 @@ if (form instanceof HTMLFormElement) {
         rotaComplementar: rotaComplementar && rotaComplementarDestino ? rotaComplementarDestino : null,
       };
 
-      const datasSelecionadas = diasUnicos.map((dia) => proxDataDia(dia));
+      const datasSelecionadas = diasUnicos.map((dia) => obterDataCorreta(dia));
 
       const { data: datasExistentes, error: erroDatasExistentes } = await supabase
         .from("Datas")
@@ -339,7 +366,7 @@ if (form instanceof HTMLFormElement) {
       }
 
       const datas: DatasRegistro[] = diasUnicos.map((dia) => ({
-        data_ocorrencia: proxDataDia(dia),
+        data_ocorrencia: obterDataCorreta(dia),
         frequencia: Number(participaFreqCriada.id),
       }));
 
