@@ -187,13 +187,16 @@ function renderizarPassageiros(passageiros: any[]) {
 async function carregarPassageiros(faculdadeId: number | null, rotaId: number | null, dia: DiaSemana) {
   const dataSelecionada = dataDaSemanaAtual(dia);
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("Datas")
     .select(`
-      *,
-      ParticipaFreq(
-        *,
-        usuarios(
+      id,
+      data_ocorrencia,
+      ParticipaFreq (
+        id,
+        ida_destino,
+        rotaComplementar,
+        usuarios (
           nome,
           curso
         )
@@ -201,16 +204,25 @@ async function carregarPassageiros(faculdadeId: number | null, rotaId: number | 
     `)
     .eq("data_ocorrencia", dataSelecionada);
 
+  if (error) {
+    console.error("Erro ao buscar passageiros:", error);
+    renderizarPassageiros([]);
+    return;
+  }
+
   if (!data || !data.length) {
     renderizarPassageiros([]);
     return;
   }
 
-  const passageiros = data.flatMap((d: any) => d.ParticipaFreq || []);
+  const passageiros = data
+    .map((d: any) => d.ParticipaFreq)
+    .filter((p: any) => p !== null);
 
   const filtrados = passageiros.filter((p: any) => {
     const matchFaculdade = faculdadeId === null || Number(p.ida_destino) === Number(faculdadeId);
     const matchRota = rotaId === null || Number(p.rotaComplementar) === Number(rotaId);
+
     return matchFaculdade && matchRota;
   });
 
