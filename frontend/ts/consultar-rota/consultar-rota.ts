@@ -20,6 +20,28 @@ function preencherFiltroOnibus(dados: any[]) {
   });
 }
 
+function dataDaSemanaAtual(dia: DiaSemana) {
+  const mapa: Record<DiaSemana, number> = {
+    segunda: 1,
+    terca: 2,
+    quarta: 3,
+    quinta: 4,
+    sexta: 5
+  };
+
+  const hoje = new Date();
+  const segundaSemana = new Date(hoje);
+  const diff = hoje.getDay() === 0 ? -6 : 1 - hoje.getDay();
+
+  segundaSemana.setDate(hoje.getDate() + diff);
+
+  const data = new Date(segundaSemana);
+
+  data.setDate(segundaSemana.getDate() + (mapa[dia] - 1));
+
+  return data.toISOString().split("T")[0];
+}
+
 function proximaData(dia: "segunda" | "terca" | "quarta" | "quinta" | "sexta") {
   const mapa: Record<DiaSemana, number> = {
     segunda: 1,
@@ -77,7 +99,7 @@ function renderizarTabelaTransportes(dados: any[]) {
 type DiaSemana = | "segunda" | "terca" | "quarta" | "quinta" | "sexta";
 
 async function carregarTransportes(dia: DiaSemana) {
-  const dataSelecionada = proximaData(dia);
+  const dataSelecionada = dataDaSemanaAtual(dia);
 
   const { data: registroData } = await supabase
     .from("Datas")
@@ -143,7 +165,7 @@ function renderizarPassageiros(passageiros: any[]) {
 }
 
 async function carregarPassageiros(faculdadeId: number, rotaId: number, dia: DiaSemana) {
-  const dataSelecionada = proximaData(dia);
+  const dataSelecionada = dataDaSemanaAtual(dia);
 
   const { data } = await supabase
     .from("Datas")
