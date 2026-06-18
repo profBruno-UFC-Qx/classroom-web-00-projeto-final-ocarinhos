@@ -40,7 +40,10 @@ function dataDaSemanaAtual(dia: DiaSemana) {
 
   data.setDate(segundaSemana.getDate() + (mapa[dia] - 1));
 
-  return data.toISOString().split("T")[0];
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const diaMes = String(data.getDate()).padStart(2, "0");
+  return `${ano}-${mes}-${diaMes}`;
 }
 
 function proximaData(dia: "segunda" | "terca" | "quarta" | "quinta" | "sexta") {
@@ -148,7 +151,7 @@ async function carregarTransportes(dia: DiaSemana) {
   }
 
   if (data?.length) {
-    await carregarPassageiros(data[0].Faculdade_id, data[0].RotaComplementar_id, dia);
+    await carregarPassageiros(null, null, dia);
   }
 }
 
@@ -181,7 +184,7 @@ function renderizarPassageiros(passageiros: any[]) {
   });
 }
 
-async function carregarPassageiros(faculdadeId: number, rotaId: number, dia: DiaSemana) {
+async function carregarPassageiros(faculdadeId: number | null, rotaId: number | null, dia: DiaSemana) {
   const dataSelecionada = dataDaSemanaAtual(dia);
 
   const { data } = await supabase
@@ -196,55 +199,44 @@ async function carregarPassageiros(faculdadeId: number, rotaId: number, dia: Dia
         )
       )
     `)
-    .eq(
-      "data_ocorrencia",
-      dataSelecionada
-    );
+    .eq("data_ocorrencia", dataSelecionada);
 
-    if (!data) {
-        return;
-    }
+  if (!data || !data.length) {
+    renderizarPassageiros([]);
+    return;
+  }
 
-    if (!data?.length) {
-        renderizarPassageiros([]);
-        return;
-    }
+  const passageiros = data.flatMap((d: any) => d.ParticipaFreq || []);
 
-    const passageiros = data.map((d: any) => d.ParticipaFreq);
+  const filtrados = passageiros.filter((p: any) => {
+    const matchFaculdade = faculdadeId === null || Number(p.ida_destino) === Number(faculdadeId);
+    const matchRota = rotaId === null || Number(p.rotaComplementar) === Number(rotaId);
+    return matchFaculdade && matchRota;
+  });
 
-    const filtrados = passageiros.filter((p: any) => {
-        const mesmaFaculdade = p.ida_destino === faculdadeId || p.volta_embarque === faculdadeId;
-        const mesmaRota = p.rotaComplementar === rotaId;
-
-        return mesmaFaculdade && mesmaRota;
-    });
-
-    renderizarPassageiros(filtrados);
+  renderizarPassageiros(filtrados);
 }
 
 filtro.addEventListener("change", async () => {
-    const id = Number(filtro.value);
+  const id = Number(filtro.value);
 
-    if (!id) {
-        renderizarPassageiros([]);
-        return;
-    }
-
-    const { data } = await supabase
-        .from(
-          "motoristaAssociacao"
-        )
-        .select("*")
-        .eq("id", id)
-        .single();
-
-    if (!data) {
-        return;
-    }
-
-    carregarPassageiros(data.Faculdade_id, data.RotaComplementar_id, diaAtual);
+  if (!id) {
+    await carregarPassageiros(null, null, diaAtual);
+    return;
   }
-);
+
+  const { data } = await supabase
+    .from("motoristaAssociacao")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (!data) {
+    return;
+  }
+
+  carregarPassageiros(data.Faculdade_id, data.RotaComplementar_id, diaAtual);
+});
 
 function atualizarBadge(dia: DiaSemana) {
   if (!badge) {
