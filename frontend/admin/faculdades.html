@@ -24,7 +24,7 @@
         </p>
 
         <div class="faculdadesSearch">
-          <form action="">
+          <form id="textoBusca" action="">
             <input
               type="text"
               placeholder="Buscar faculdade por nome ou bairro..."
@@ -36,137 +36,118 @@
           </form>
 
           <div class="faculdadesFiltro">
-            <select name="filtro" id="filtro">
-              <option value="default" selected>Filtros</option>
-              <option value="centro">Centro</option>
-              <option value="planalto">Bairro Planalto</option>
-              <option value="cedro">Cedro</option>
-            </select>
+            <button type="button" class="efetuarCadastro" style="background-color: #0d4a99; color: #fff; border: none; border-radius: 8px; height: 100%; min-height: 40px; padding: 0 20px; font-weight: bold; cursor: pointer;">
+              + Adicionar Faculdade
+            </button>
           </div>
         </div>
 
         <table class="faculdadesTable">
-          <tr class="thead">
-            <th>NOME DA FACULDADE</th>
-            <th>BAIRRO</th>
-            <th>QUANTIDADE DE ALUNOS</th>
-            <th class="alignRight">AÇÕES</th>
-          </tr>
+          <thead>
+            <tr class="thead">
+              <th>NOME DA FACULDADE</th>
+              <th>BAIRRO</th>
+              <th>QUANTIDADE DE ALUNOS</th>
+              <th class="alignRight">AÇÕES</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr>
+              <td class="name">
+                <i class="bi bi-mortarboard" aria-hidden="true"></i>
+                Unicatólica
+              </td>
+              <td>Centro</td>
+              <td>
+                <span class="qtdAlunos">120 alunos</span>
+              </td>
+              <td class="buttons">
+                <button type="button" aria-label="Editar" class="edit">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" aria-label="Excluir" class="delete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
 
-          <tr>
-            <td class="name">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              Unicatólica
-            </td>
+            <tr>
+              <td class="name">
+                <i class="bi bi-mortarboard" aria-hidden="true"></i>
+                IFCE Quixadá
+              </td>
+              <td>Bairro Planalto</td>
+              <td>
+                <span class="qtdAlunos">85 alunos</span>
+              </td>
+              <td class="buttons">
+                <button type="button" aria-label="Editar" class="edit">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" aria-label="Excluir" class="delete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
 
-            <td>Centro</td>
+            <tr>
+              <td class="name">
+                <i class="bi bi-mortarboard" aria-hidden="true"></i>
+                UFC Quixadá
+              </td>
+              <td>Cedro</td>
+              <td>
+                <span class="qtdAlunos">150 alunos</span>
+              </td>
+              <td class="buttons">
+                <button type="button" aria-label="Editar" class="edit">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" aria-label="Excluir" class="delete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
 
-            <td>
-              <span class="qtdAlunos">120 alunos</span>
-            </td>
+            <tr>
+              <td class="name">
+                <i class="bi bi-mortarboard" aria-hidden="true"></i>
+                Estácio
+              </td>
+              <td>Centro</td>
+              <td>
+                <span class="qtdAlunos">45 alunos</span>
+              </td>
+              <td class="buttons">
+                <button type="button" aria-label="Editar" class="edit">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" aria-label="Excluir" class="delete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
 
-            <td class="buttons">
-              <button type="button" aria-label="Editar" class="edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <button type="button" aria-label="Excluir" class="delete">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="name">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              IFCE Quixadá
-            </td>
-
-            <td>Bairro Planalto</td>
-
-            <td>
-              <span class="qtdAlunos">85 alunos</span>
-            </td>
-
-            <td class="buttons">
-              <button type="button" aria-label="Editar" class="edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <button type="button" aria-label="Excluir" class="delete">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="name">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              UFC Quixadá
-            </td>
-
-            <td>Cedro</td>
-
-            <td>
-              <span class="qtdAlunos">150 alunos</span>
-            </td>
-
-            <td class="buttons">
-              <button type="button" aria-label="Editar" class="edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <button type="button" aria-label="Excluir" class="delete">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="name">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              Estácio
-            </td>
-
-            <td>Centro</td>
-
-            <td>
-              <span class="qtdAlunos">45 alunos</span>
-            </td>
-
-            <td class="buttons">
-              <button type="button" aria-label="Editar" class="edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <button type="button" aria-label="Excluir" class="delete">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="name">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              FHS
-            </td>
-
-            <td>Bairro X</td>
-
-            <td>
-              <span class="qtdAlunos">30 alunos</span>
-            </td>
-
-            <td class="buttons">
-              <button type="button" aria-label="Editar" class="edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-
-              <button type="button" aria-label="Excluir" class="delete">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
+            <tr>
+              <td class="name">
+                <i class="bi bi-mortarboard" aria-hidden="true"></i>
+                FHS
+              </td>
+              <td>Bairro X</td>
+              <td>
+                <span class="qtdAlunos">30 alunos</span>
+              </td>
+              <td class="buttons">
+                <button type="button" aria-label="Editar" class="edit">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" aria-label="Excluir" class="delete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
 
           <tfoot>
             <tr class="tfoot">
@@ -176,20 +157,14 @@
 
               <td class="tfoot-pager" colspan="2">
                 <nav class="faculdadesFooter-pagination" aria-label="Paginação">
-                  <ul>
+                  <ul style="display: flex; align-items: center; list-style: none; padding: 0;">
                     <li class="prev">
                       <button aria-label="Anterior">
                         <i class="bi bi-chevron-left"></i>
                       </button>
                     </li>
-
-                    <li>
-                      <button class="page active" aria-current="page">1</button>
-                    </li>
-
-                    <li><button class="page">2</button></li>
-
-                    <li><button class="page">3</button></li>
+                    
+                    <div class="pages" style="display: flex; gap: 5px; margin: 0 5px;"></div>
 
                     <li class="next">
                       <button aria-label="Próximo">
@@ -205,6 +180,74 @@
       </div>
     </main>
 
+    <div class="faculdadesModalOverlay" id="cadastrar" hidden>
+      <div class="faculdadesModal">
+        <div class="faculdadesModalHeader">
+          <div>
+            <h2>Cadastrar Nova Faculdade</h2>
+            <p>Preencha os dados básicos da instituição.</p>
+          </div>
+          <button type="button" class="faculdadesModalClose" aria-label="FecharCadastro">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form class="faculdadesModalForm">
+          <div class="faculdadesModalGrid">
+            <label>
+              <span>Nome da Faculdade</span>
+              <input type="text" name="nome" placeholder="Ex: Universidade Federal de Minas Gerais" required>
+            </label>
+            <label>
+              <span>Bairro</span>
+              <input type="text" name="bairro" placeholder="Ex: Pampulha" required>
+            </label>
+            <input type="hidden" name="qtdAlunos" value="0">
+          </div>
+
+          <div class="faculdadesModalActions">
+            <button type="button" class="faculdadesModalButton secondary" aria-label="FecharCadastro">Cancelar</button>
+            <button type="submit" class="faculdadesModalButton primary">Confirmar Cadastro</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="faculdadesModalOverlay" id="editar" hidden>
+      <div class="faculdadesModal">
+        <div class="faculdadesModalHeader">
+          <div>
+            <h2>Editar Faculdade</h2>
+            <p>Atualize os dados da instituição.</p>
+          </div>
+          <button type="button" class="faculdadesModalClose" aria-label="FecharEdit">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form class="faculdadesModalForm">
+          <div class="faculdadesModalGrid">
+            <label>
+              <span>Nome da Faculdade</span>
+              <input type="text" name="nome" required>
+            </label>
+            <label>
+              <span>Bairro</span>
+              <input type="text" name="bairro" required>
+            </label>
+            <label>
+              <span>Quantidade de Alunos</span>
+              <input type="number" name="qtdAlunos" min="0" required>
+            </label>
+          </div>
+
+          <div class="faculdadesModalActions">
+            <button type="button" class="faculdadesModalButton secondary" aria-label="FecharEdit">Cancelar</button>
+            <button type="submit" class="faculdadesModalButton primary">Salvar Alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <script type="module" src="../dist/admin/faculdades.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
