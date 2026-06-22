@@ -7,10 +7,10 @@ import showTopMessage from "../utils/showMsg.js";
 let atualPage = 0;
 const pageSize = 5;
 
-function validarMotorista(
-  objMotorista: Record<string, string | number>
+function validarRota(
+  objRota: Record<string, string | number>
 ): boolean {
-  for (const valor of Object.values(objMotorista)) {
+  for (const valor of Object.values(objRota)) {
     if (typeof valor === "string" && valor.trim() === "") {
       return false;
     }
@@ -77,7 +77,7 @@ async function excluirRota(id: number) {
   return data;
 }
 
-async function editarMotorista(id: number) {
+async function editarRota(id: number) {
   const { data, error } = await supabase
     .from("rotasComplementares")
     .select()
@@ -87,7 +87,6 @@ async function editarMotorista(id: number) {
     return error;
   }
 
-  // Trazendo os dados ja cadastrados e inserindo nos inputs. isso aki nao foi feito pelo GPT, =D
   const modal = document.getElementById("editar");
   modal?.removeAttribute("hidden");
 
@@ -112,33 +111,45 @@ async function editarMotorista(id: number) {
         input.value = data[0][el[0]];
       }
     });
-  }
 
-  form?.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const newForm = new FormData(form);
-    const objMotorista: Record<string, string | number> = {};
+    form.onsubmit = async function (e) {
+      e.preventDefault();
+      const newForm = new FormData(form);
+      const objRota: Record<string, string | number> = {};
 
-    newForm.forEach((valor, atributo) => {
-      if (typeof valor == "string" || typeof valor == "number") {
-        objMotorista[atributo] = valor;
+      newForm.forEach((valor, atributo) => {
+        if (typeof valor == "string" || typeof valor == "number") {
+          if (atributo === "km") {
+            objRota[atributo] = Number(valor);
+          } else {
+            objRota[atributo] = valor;
+          }
+        }
+      });
+
+      if (!validarRota(objRota)) {
+        showTopMessage(
+          "Algum campo está com valores negativos ou vazio",
+          "error"
+        );
+        return;
       }
-    });
 
-    const { error } = await supabase
-      .from("rotasComplementares")
-      .update(objMotorista)
-      .eq("id", id);
+      const { error } = await supabase
+        .from("rotasComplementares")
+        .update(objRota)
+        .eq("id", id);
 
-    if (error) {
-      showTopMessage("Nao foi possivel atualizar o motorista", "error");
-      return;
-    }
+      if (error) {
+        showTopMessage("Não foi possível atualizar a rota", "error");
+        return;
+      }
 
-    showTopMessage("Motorista atualizado", "alert");
-    await fetchRotas();
-    modal?.setAttribute("hidden", "");
-  });
+      showTopMessage("Rota atualizada com sucesso", "alert");
+      await fetchRotas();
+      modal?.setAttribute("hidden", "");
+    };
+  }
 }
 
 const btnCadastro = document.querySelector(".efetuarCadastro");
@@ -161,30 +172,34 @@ async function cadastrarRota() {
     form.onsubmit = async function (e) {
       e.preventDefault();
       const newForm = new FormData(form);
-      const objMotorista: Record<string, string | number> = {};
+      const objRota: Record<string, string | number> = {};
 
       newForm.forEach((valor, atributo) => {
         if (typeof valor == "string" || typeof valor == "number") {
-          objMotorista[atributo] = valor;
+          if (atributo === "km") {
+            objRota[atributo] = Number(valor);
+          } else {
+            objRota[atributo] = valor;
+          }
         }
       });
 
-      if (!validarMotorista(objMotorista)) {
+      if (!validarRota(objRota)) {
         showTopMessage(
-          "Algum campo esta com valores negativos ou vazio",
+          "Algum campo está com valores negativos ou vazio",
           "error"
         );
         return;
       }
 
-      const { error } = await supabase.from("rotasComplementares").insert(objMotorista);
+      const { error } = await supabase.from("rotasComplementares").insert(objRota);
 
       if (error) {
-        showTopMessage("Nao foi possivel efetuar o cadastro", "error");
+        showTopMessage("Não foi possível efetuar o cadastro", "error");
         return;
       }
 
-      showTopMessage("Cadastro efetuado", "alert");
+      showTopMessage("Cadastro efetuado com sucesso", "alert");
       await fetchRotas();
       modal?.setAttribute("hidden", "");
     };
@@ -233,7 +248,7 @@ function inserirRotas(listaRotas: Array<rotasInterface>) {
     const btnEditar = tr.querySelector("[aria-label='Editar']");
     if (btnEditar instanceof HTMLButtonElement) {
       btnEditar.addEventListener("click", function () {
-        editarMotorista(Number(this.getAttribute("id")));
+        editarRota(Number(this.getAttribute("id")));
       });
     }
 
