@@ -281,7 +281,7 @@ async function inserirPaginas(totalMotorista: number) {
     for (let index = 0; index < Math.ceil(totalMotorista / 5); index++) {
       const uniquePage = document.createElement("li");
       uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
-                          ${index}
+                          ${index+1}
                         </button>`;
 
       const btn = uniquePage.querySelector("button") as HTMLButtonElement;
