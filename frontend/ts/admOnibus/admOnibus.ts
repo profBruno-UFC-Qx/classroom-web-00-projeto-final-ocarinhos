@@ -223,25 +223,22 @@ async function fetchOnibus() {
 
 async function preencherFooterTable(totalOnibus: number, err?: any) {
   if (err) {
-    showTopMessage(
-      "Nao foi possivel obter a quantidade de motoristas",
-      "error"
-    );
+    showTopMessage("Nao foi possivel obter a quantidade de onibus", "error");
     return;
   }
 
-  preencherQTDMotoristas(totalOnibus);
+  preencherQTDOnibus(totalOnibus);
   await inserirPaginas(totalOnibus);
   actionButtons(totalOnibus);
 }
 
-async function skipPage(totalMotorista: number, page: number) {
+async function skipPage(totalOnibus: number, page: number) {
   if (page < 0) {
     page = 0;
   }
 
-  if (page >= Math.floor(totalMotorista / pageSize)) {
-    page = Math.floor(totalMotorista / pageSize);
+  if (page >= Math.floor(totalOnibus / pageSize)) {
+    page = Math.floor(totalOnibus / pageSize);
   }
 
   atualPage = page;
@@ -249,23 +246,23 @@ async function skipPage(totalMotorista: number, page: number) {
   await fetchOnibus();
 }
 
-function actionButtons(totalMotorista: number) {
+function actionButtons(totalOnibus: number) {
   const prev = document.querySelector(".prev") as HTMLButtonElement;
   if (prev) {
     prev.onclick = async function () {
-      await skipPage(totalMotorista, atualPage - 1);
+      await skipPage(totalOnibus, atualPage - 1);
     };
   }
 
   const next = document.querySelector(".next") as HTMLButtonElement;
   if (next) {
     next.onclick = async function () {
-      await skipPage(totalMotorista, atualPage + 1);
+      await skipPage(totalOnibus, atualPage + 1);
     };
   }
 }
 
-async function inserirPaginas(totalMotorista: number) {
+async function inserirPaginas(totalOnibus: number) {
   const listPages = document.querySelector(".pages");
 
   if (listPages) {
@@ -273,7 +270,7 @@ async function inserirPaginas(totalMotorista: number) {
   }
 
   if (listPages instanceof HTMLDivElement) {
-    for (let index = 0; index < Math.ceil(totalMotorista / 5); index++) {
+    for (let index = 0; index < Math.ceil(totalOnibus / 5); index++) {
       const uniquePage = document.createElement("li");
       uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
                           ${index + 1}
@@ -283,7 +280,7 @@ async function inserirPaginas(totalMotorista: number) {
       btn.addEventListener("click", async function () {
         const id = btn.getAttribute("id");
         if (id) {
-          await skipPage(totalMotorista, Number(id));
+          await skipPage(totalOnibus, Number(id));
         }
       });
 
@@ -292,11 +289,11 @@ async function inserirPaginas(totalMotorista: number) {
   }
 }
 
-function preencherQTDMotoristas(totalMotorista: number) {
+function preencherQTDOnibus(totalOnibus: number) {
   const span = document.querySelector(".qtdMotorista");
 
-  if (totalMotorista && span instanceof HTMLSpanElement) {
-    span.innerText = String(totalMotorista);
+  if (totalOnibus && span instanceof HTMLSpanElement) {
+    span.innerText = String(totalOnibus);
   }
 }
 
