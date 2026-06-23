@@ -207,12 +207,97 @@ async function fetchOnibus() {
     error: any;
   };
 
+  const { count: totalOnibus, error: erroOnibus } = await supabase
+    .from("onibus")
+    .select("*", { count: "exact", head: true })
+    .ilike("nome", `%${input.value}%`);
+
   if (error) {
     showTopMessage("Não foi possível carregar os ônibus.", "error");
     return;
   }
 
+  await preencherFooterTable(totalOnibus, error);
   renderRows((data ?? []) as onibusInterface[]);
+}
+
+async function preencherFooterTable(totalOnibus: number, err?: any) {
+  if (err) {
+    showTopMessage(
+      "Nao foi possivel obter a quantidade de motoristas",
+      "error"
+    );
+    return;
+  }
+
+  preencherQTDMotoristas(totalOnibus);
+  await inserirPaginas(totalOnibus);
+  actionButtons(totalOnibus);
+}
+
+async function skipPage(totalMotorista: number, page: number) {
+  if (page < 0) {
+    page = 0;
+  }
+
+  if (page >= Math.floor(totalMotorista / pageSize)) {
+    page = Math.floor(totalMotorista / pageSize);
+  }
+
+  atualPage = page;
+
+  await fetchOnibus();
+}
+
+function actionButtons(totalMotorista: number) {
+  const prev = document.querySelector(".prev") as HTMLButtonElement;
+  if (prev) {
+    prev.onclick = async function () {
+      await skipPage(totalMotorista, atualPage - 1);
+    };
+  }
+
+  const next = document.querySelector(".next") as HTMLButtonElement;
+  if (next) {
+    next.onclick = async function () {
+      await skipPage(totalMotorista, atualPage + 1);
+    };
+  }
+}
+
+async function inserirPaginas(totalMotorista: number) {
+  const listPages = document.querySelector(".pages");
+
+  if (listPages) {
+    listPages.innerHTML = "";
+  }
+
+  if (listPages instanceof HTMLDivElement) {
+    for (let index = 0; index < Math.ceil(totalMotorista / 5); index++) {
+      const uniquePage = document.createElement("li");
+      uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
+                          ${index + 1}
+                        </button>`;
+
+      const btn = uniquePage.querySelector("button") as HTMLButtonElement;
+      btn.addEventListener("click", async function () {
+        const id = btn.getAttribute("id");
+        if (id) {
+          await skipPage(totalMotorista, Number(id));
+        }
+      });
+
+      listPages.appendChild(uniquePage);
+    }
+  }
+}
+
+function preencherQTDMotoristas(totalMotorista: number) {
+  const span = document.querySelector(".qtdMotorista");
+
+  if (totalMotorista && span instanceof HTMLSpanElement) {
+    span.innerText = String(totalMotorista);
+  }
 }
 
 async function salvarOnibus(formData: OnibusFormData) {
@@ -338,11 +423,8 @@ table?.addEventListener("click", async (event) => {
       return;
     }
 
-    console.log(onibusId);
-
     const { error } = await supabase.from("onibus").delete().eq("id", onibusId);
 
-    console.log(error);
     if (error) {
       showTopMessage("Não foi possível excluir o ônibus.", "error");
       return;
