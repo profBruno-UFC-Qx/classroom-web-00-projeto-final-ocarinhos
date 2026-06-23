@@ -552,3 +552,110 @@ th {
     width: 100%;
   }
 }
+/* Estilos para os Modais */
+.faculdadesModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 28, 48, 0.6);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.faculdadesModalOverlay[hidden] {
+  display: none;
+}
+
+.faculdadesModal {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+}
+
+.faculdadesModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.faculdadesModalHeader h2 {
+  font-size: 1.4rem;
+  margin: 0 0 6px 0;
+  color: #0b1c30;
+}
+
+.faculdadesModalHeader p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.faculdadesModalClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.faculdadesModalForm {
+  display: grid;
+  gap: 20px;
+}
+
+.faculdadesModalGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.faculdadesModalGrid label {
+  display: grid;
+  gap: 8px;
+}
+
+.faculdadesModalGrid span {
+  color: #0b1c30;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.faculdadesModalGrid input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #c2c6d3;
+  border-radius: 8px;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+.faculdadesModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.faculdadesModalButton {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.faculdadesModalButton.secondary {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.faculdadesModalButton.primary {
+  background-color: #0d4a99;
+  color: #fff;
+}
