@@ -4,7 +4,10 @@ import { supabase } from "../supabase/supabase.js";
 
 renderizarSidebar("sidebar-container", "onibus");
 
-interface Onibus {
+let atualPage = 0;
+const pageSize = 5;
+
+interface onibusInterface {
   id: number;
   nome: string;
   placa: string;
@@ -104,7 +107,7 @@ function setModalState(mode: "create" | "edit") {
       : "Atualize as informações do ônibus selecionado.";
 }
 
-function openModal(onibus?: Onibus) {
+function openModal(onibus?: onibusInterface) {
   if (
     !modalOverlay ||
     !modalForm ||
@@ -139,13 +142,15 @@ function closeModal() {
   setModalState("create");
 }
 
-function renderRows(onibusList: Onibus[]) {
+function renderRows(onibusList: onibusInterface[]) {
   const body = ensureTableBody();
 
   if (!body) {
     showTopMessage("Tabela de ônibus não encontrada.", "error");
     return;
   }
+
+  body.innerHTML = "";
 
   if (onibusList.length === 0) {
     body.innerHTML = `
@@ -183,18 +188,31 @@ function renderRows(onibusList: Onibus[]) {
   });
 }
 
-async function carregarOnibus() {
-  const { data, error } = await supabase
+const input = document.getElementById("textoBusca") as HTMLInputElement;
+console.log(input);
+input.addEventListener("input", function (e) {
+  e.preventDefault();
+
+  atualPage = 0;
+  fetchOnibus();
+});
+
+async function fetchOnibus() {
+  const { data, error } = (await supabase
     .from("onibus")
     .select("id, nome, placa, disponivel")
-    .order("id", { ascending: false });
+    .ilike("nome", `%${input.value}%`)
+    .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
+    data: onibusInterface[] | null;
+    error: any;
+  };
 
   if (error) {
     showTopMessage("Não foi possível carregar os ônibus.", "error");
     return;
   }
 
-  renderRows((data ?? []) as Onibus[]);
+  renderRows((data ?? []) as onibusInterface[]);
 }
 
 async function salvarOnibus(formData: OnibusFormData) {
@@ -219,7 +237,7 @@ async function salvarOnibus(formData: OnibusFormData) {
 
     showTopMessage("Ônibus atualizado com sucesso.", "alert");
     closeModal();
-    await carregarOnibus();
+    await fetchOnibus();
     return;
   }
 
@@ -236,7 +254,7 @@ async function salvarOnibus(formData: OnibusFormData) {
 
   showTopMessage("Ônibus cadastrado com sucesso.", "alert");
   closeModal();
-  await carregarOnibus();
+  await fetchOnibus();
 }
 
 createButton?.addEventListener("click", () => {
@@ -310,7 +328,7 @@ table?.addEventListener("click", async (event) => {
   }
 
   if (action === "edit") {
-    openModal(data as Onibus);
+    openModal(data as onibusInterface);
   }
 
   if (action === "delete") {
@@ -320,16 +338,19 @@ table?.addEventListener("click", async (event) => {
       return;
     }
 
+    console.log(onibusId);
+
     const { error } = await supabase.from("onibus").delete().eq("id", onibusId);
 
+    console.log(error);
     if (error) {
       showTopMessage("Não foi possível excluir o ônibus.", "error");
       return;
     }
 
     showTopMessage("Ônibus excluído com sucesso.", "alert");
-    await carregarOnibus();
+    await fetchOnibus();
   }
 });
 
-void carregarOnibus();
+void fetchOnibus();
