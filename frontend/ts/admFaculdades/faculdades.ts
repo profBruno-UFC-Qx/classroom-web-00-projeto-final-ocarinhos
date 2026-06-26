@@ -65,6 +65,7 @@ if (textoBusca) {
       );
 
       inserirFaculdades(faculdades);
+      await preencherFooterTable();
     } else {
       atualPage = 0;
       await fetchFaculdades();
@@ -388,20 +389,31 @@ async function inserirPaginas(totalFaculdade: number) {
 }
 
 async function preencherFooterTable() {
-  const { count: totalFaculdade, error: errfaculdade } = await supabase
+  const input = document.querySelector("#textoBusca input") as HTMLInputElement;
+
+  let query = supabase
     .from("faculdades")
     .select("*", { count: "exact", head: true });
+
+  if (input.value.trim() !== "") {
+    query = query.or(
+      `nome.ilike.%${input.value}%,bairro.ilike.%${input.value}%`
+    );
+  }
+
+  const { count: totalFaculdade, error: errfaculdade } = await query;
 
   if (errfaculdade) {
     showTopMessage(
       "Não foi possível fazer o fetch da quantidade de faculdades.",
       "error"
     );
-  } else if (totalFaculdade !== null) {
-    preencherQTDFaculdades(totalFaculdade);
-    await inserirPaginas(totalFaculdade);
-    actionButtons(totalFaculdade);
+    return;
   }
+
+  preencherQTDFaculdades(totalFaculdade ?? 0);
+  await inserirPaginas(totalFaculdade ?? 0);
+  actionButtons(totalFaculdade ?? 0);
 }
 
 function actionButtons(totalFaculdade: number) {
