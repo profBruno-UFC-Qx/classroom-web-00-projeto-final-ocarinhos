@@ -32,8 +32,7 @@ interface faculdadesInterface {
 
 const textoBusca = document.getElementById("textoBusca") as HTMLFormElement | null;
 if (textoBusca) {
-  async function query(e: SubmitEvent) {
-    e.preventDefault();
+  async function query() {
     const input = textoBusca?.querySelector("input");
 
     if (input && input.value.trim() !== "") {
@@ -51,7 +50,21 @@ if (textoBusca) {
         return;
       }
 
-      inserirFaculdades(data);
+      const faculdades = await Promise.all(
+        data.map(async (faculdade: any) => {
+          const { count } = await supabase
+            .from("usuarios")
+            .select("*", { count: "exact", head: true })
+            .eq("ies", faculdade.id);
+
+          return {
+            ...faculdade,
+            qtdAlunos: count ?? 0,
+          };
+        })
+      );
+
+      inserirFaculdades(faculdades);
     } else {
       atualPage = 0;
       await fetchFaculdades();
@@ -59,7 +72,17 @@ if (textoBusca) {
     }
   }
 
-  textoBusca.addEventListener("submit", query);
+  const input = textoBusca.querySelector("input") as HTMLInputElement;
+
+  textoBusca.addEventListener("submit", (e) => {
+    e.preventDefault();
+    query();
+  });
+
+  input.addEventListener("input", () => {
+    atualPage = 0;
+    query();
+  });
 }
 
 async function fetchFaculdades() {
