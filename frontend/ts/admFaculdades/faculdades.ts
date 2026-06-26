@@ -27,7 +27,7 @@ interface faculdadesInterface {
   id: number;
   nome: string;
   bairro: string;
-  qtdAlunos: number;
+  qtdAlunos?: number;
 }
 
 const textoBusca = document.getElementById("textoBusca") as HTMLFormElement | null;
@@ -39,7 +39,7 @@ if (textoBusca) {
     if (input && input.value.trim() !== "") {
       const { data, error } = await supabase
         .from("faculdades")
-        .select("id, nome, bairro, qtdAlunos")
+        .select("id, nome, bairro")
         .or(`nome.ilike.%${input.value}%,bairro.ilike.%${input.value}%`)
         .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1);
 
@@ -65,7 +65,7 @@ if (textoBusca) {
 async function fetchFaculdades() {
   const { data, error } = (await supabase
     .from("faculdades")
-    .select("id, nome, bairro, qtdAlunos")
+    .select("id, nome, bairro")
     .order('id', { ascending: false })
     .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
     data: faculdadesInterface[] | null;
@@ -77,7 +77,21 @@ async function fetchFaculdades() {
   }
 
   if (data) {
-    inserirFaculdades(data);
+    const faculdades = await Promise.all(
+      data.map(async (faculdade) => {
+        const { count } = await supabase
+          .from("usuarios")
+          .select("*", { count: "exact", head: true })
+          .eq("ies", faculdade.id);
+
+        return {
+          ...faculdade,
+          qtdAlunos: count ?? 0,
+        };
+      })
+    );
+
+    inserirFaculdades(faculdades);
   }
 }
 
