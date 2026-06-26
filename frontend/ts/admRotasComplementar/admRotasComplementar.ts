@@ -218,7 +218,7 @@ function inserirRotas(listaRotas: Array<rotasInterface>) {
 
     tr.innerHTML = `
   <td class='name'>
-    <i class="bi bi-bus-front" aria-hidden="true"></i>
+    <i class="bi bi-sign-turn-right" aria-hidden="true"></i>
     ${rota.nome}
   </td>
 
