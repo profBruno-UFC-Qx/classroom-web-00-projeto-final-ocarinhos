@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/consultar-rota/consultar-rota.css" />
     <link rel="stylesheet" href="../css/loading/loading.css">
-    <script type="module" src="../dist/loading/loading.js"></script> 
+    <script type="module" src="../dist/loading/loading.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> 
   </head>
   <body>
     <main class="aluno-shell">
@@ -68,9 +70,7 @@
                 </div>
 
                 <div class="map-card">
-                  <div class="map-visual">
-                    <!-- futuro mapa desenhado :) -->
-                  </div>
+                  <div id="map" class="map-visual"></div>
                   <div class="map-caption">
                     Visualização da Rota Ativa<br /><span class="muted"
                       >Quixadá - Campus Integrados</span
