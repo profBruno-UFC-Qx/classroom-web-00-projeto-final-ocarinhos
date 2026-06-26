@@ -289,7 +289,7 @@ async function inserirPaginas(totalRotas: number) {
     for (let index = 0; index < Math.ceil(totalRotas / 5); index++) {
       const uniquePage = document.createElement("li");
       uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
-                          ${index}
+                          ${index+1}
                         </button>`;
 
       const btn = uniquePage.querySelector("button") as HTMLButtonElement;
