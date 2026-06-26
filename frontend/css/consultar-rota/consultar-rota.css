@@ -219,6 +219,12 @@
   font-weight: 600;
 }
 
+#map{
+    width:100%;
+    height:350px;
+    border-radius:12px;
+}
+
 @media (max-width: 1000px) {
   .transporte-grid {
     grid-template-columns: 1fr;

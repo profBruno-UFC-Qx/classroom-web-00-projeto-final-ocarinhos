@@ -1,6 +1,7 @@
 import { supabase } from "../supabase/supabase.js";
 import { renderizarSidebar } from "../components/sidebar.js";
 renderizarSidebar("sidebar-container", "rota");
+declare const L: any;
 const tbody = document.querySelector(".transporte-table tbody");
 const filtro = document.getElementById("filtroOnibus") as HTMLSelectElement;
 const tbodyPassageiros = document.querySelector(".passengers-table tbody");
@@ -143,6 +144,7 @@ async function carregarTransportes(dia: DiaSemana) {
 
   renderizarTabelaTransportes(data ?? []);
   preencherFiltroOnibus(data ?? []);
+  await mostrarMapa(data ?? []);
   if (!data?.length) {
     renderizarTabelaTransportes([]);
     preencherFiltroOnibus([]);
@@ -285,6 +287,53 @@ document.querySelectorAll(".tab").forEach(btn => {
     await carregarTransportes(diaAtual);
   });
 });
+
+async function mostrarMapa(rotas: any[]) {
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+
+  for (const rota of rotas) {
+    const resultado = await localizarRota(rota.rotasComplementares.nome);
+
+    if (!resultado.length) {
+      continue;
+    }
+
+    const local = resultado[0];
+
+    const marker = L.marker([
+      Number(local.lat),
+      Number(local.lon)
+    ]).addTo(map);
+
+    marker.bindPopup(rota.rotasComplementares.nome);
+    markers.push(marker);
+  }
+
+  if (markers.length) {
+    const group = L.featureGroup(markers);
+    map.fitBounds(group.getBounds(), {
+      padding: [30,30]
+    });
+  }
+}
+
+async function localizarRota(nome: string) {
+  const resposta = await fetch(
+    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(nome + ", Ocara, Ceará, Brasil")}`
+  );
+
+  return await resposta.json();
+}
+
+const map = L.map("map").setView([-4.49, -38.60], 12);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "&copy; OpenStreetMap"
+}).addTo(map);
+
+let markers: any[] = [];
+let rotaLinha: any = null;
 
 atualizarBadge("segunda");
 await carregarTransportes("segunda");
