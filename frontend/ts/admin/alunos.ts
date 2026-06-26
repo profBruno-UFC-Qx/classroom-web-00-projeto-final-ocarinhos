@@ -268,9 +268,6 @@ function renderizarPagina() {
         <button type="button" aria-label="Editar" class="edit">
           <i class="bi bi-pencil"></i>
         </button>
-        <button type="button" aria-label="Excluir" class="delete">
-          <i class="bi bi-trash"></i>
-        </button>
       </td>
     `;
 
@@ -399,6 +396,10 @@ form?.addEventListener("submit", (event) => {
   });
 
   closeModal();
+});
+
+document.querySelectorAll("[aria-label='FecharEdit']").forEach((btn) => {
+  btn.addEventListener("click", closeModal);
 });
 
 export {};

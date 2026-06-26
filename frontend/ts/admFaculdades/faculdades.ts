@@ -27,19 +27,18 @@ interface faculdadesInterface {
   id: number;
   nome: string;
   bairro: string;
-  qtdAlunos: number;
+  qtdAlunos?: number;
 }
 
 const textoBusca = document.getElementById("textoBusca") as HTMLFormElement | null;
 if (textoBusca) {
-  async function query(e: SubmitEvent) {
-    e.preventDefault();
+  async function query() {
     const input = textoBusca?.querySelector("input");
 
     if (input && input.value.trim() !== "") {
       const { data, error } = await supabase
         .from("faculdades")
-        .select("id, nome, bairro, qtdAlunos")
+        .select("id, nome, bairro")
         .or(`nome.ilike.%${input.value}%,bairro.ilike.%${input.value}%`)
         .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1);
 
@@ -51,7 +50,22 @@ if (textoBusca) {
         return;
       }
 
-      inserirFaculdades(data);
+      const faculdades = await Promise.all(
+        data.map(async (faculdade: any) => {
+          const { count } = await supabase
+            .from("usuarios")
+            .select("*", { count: "exact", head: true })
+            .eq("ies", faculdade.id);
+
+          return {
+            ...faculdade,
+            qtdAlunos: count ?? 0,
+          };
+        })
+      );
+
+      inserirFaculdades(faculdades);
+      await preencherFooterTable();
     } else {
       atualPage = 0;
       await fetchFaculdades();
@@ -59,13 +73,23 @@ if (textoBusca) {
     }
   }
 
-  textoBusca.addEventListener("submit", query);
+  const input = textoBusca.querySelector("input") as HTMLInputElement;
+
+  textoBusca.addEventListener("submit", (e) => {
+    e.preventDefault();
+    query();
+  });
+
+  input.addEventListener("input", () => {
+    atualPage = 0;
+    query();
+  });
 }
 
 async function fetchFaculdades() {
   const { data, error } = (await supabase
     .from("faculdades")
-    .select("id, nome, bairro, qtdAlunos")
+    .select("id, nome, bairro")
     .order('id', { ascending: false })
     .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
     data: faculdadesInterface[] | null;
@@ -77,7 +101,21 @@ async function fetchFaculdades() {
   }
 
   if (data) {
-    inserirFaculdades(data);
+    const faculdades = await Promise.all(
+      data.map(async (faculdade) => {
+        const { count } = await supabase
+          .from("usuarios")
+          .select("*", { count: "exact", head: true })
+          .eq("ies", faculdade.id);
+
+        return {
+          ...faculdade,
+          qtdAlunos: count ?? 0,
+        };
+      })
+    );
+
+    inserirFaculdades(faculdades);
   }
 }
 
@@ -351,20 +389,31 @@ async function inserirPaginas(totalFaculdade: number) {
 }
 
 async function preencherFooterTable() {
-  const { count: totalFaculdade, error: errfaculdade } = await supabase
+  const input = document.querySelector("#textoBusca input") as HTMLInputElement;
+
+  let query = supabase
     .from("faculdades")
     .select("*", { count: "exact", head: true });
+
+  if (input.value.trim() !== "") {
+    query = query.or(
+      `nome.ilike.%${input.value}%,bairro.ilike.%${input.value}%`
+    );
+  }
+
+  const { count: totalFaculdade, error: errfaculdade } = await query;
 
   if (errfaculdade) {
     showTopMessage(
       "Não foi possível fazer o fetch da quantidade de faculdades.",
       "error"
     );
-  } else if (totalFaculdade !== null) {
-    preencherQTDFaculdades(totalFaculdade);
-    await inserirPaginas(totalFaculdade);
-    actionButtons(totalFaculdade);
+    return;
   }
+
+  preencherQTDFaculdades(totalFaculdade ?? 0);
+  await inserirPaginas(totalFaculdade ?? 0);
+  actionButtons(totalFaculdade ?? 0);
 }
 
 function actionButtons(totalFaculdade: number) {

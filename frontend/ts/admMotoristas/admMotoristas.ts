@@ -328,14 +328,26 @@ function actionButtons(totalMotorista: number) {
 }
 
 async function preencherFormularioOnibus() {
-  const { data, error } = (await supabase
+  const { data, error } = await supabase
     .from("onibus")
-    .select("id, nome")) as { data: Array<onibusInterface>; error: any };
+    .select("id, nome")
+    .eq("disponivel", true);
+
+  if (error) {
+    showTopMessage("Não foi possível carregar os ônibus.", "error");
+    return;
+  }
 
   const selects = document.querySelectorAll("#onibus");
+
   selects.forEach((select) => {
-    data.forEach((onibus) => {
-      select.innerHTML += `<option value=${onibus.id}>${onibus.nome}</option>`;
+    select.innerHTML = "";
+
+    data?.forEach((onibus: any) => {
+      select.innerHTML += `
+        <option value="${onibus.id}">
+          ${onibus.nome}
+        </option>`;
     });
   });
 }

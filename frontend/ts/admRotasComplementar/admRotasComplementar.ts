@@ -1,6 +1,8 @@
 import { renderizarSidebar } from "../components/sidebarADM.js";
 renderizarSidebar("sidebar-container", "rotas");
 
+const formBusca = document.getElementById("formBusca") as HTMLFormElement;
+
 import { supabase } from "../supabase/supabase.js";
 import showTopMessage from "../utils/showMsg.js";
 
@@ -30,9 +32,15 @@ interface rotasInterface {
   bairro: string;
 }
 
+formBusca.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  atualPage = 0;
+  await fetchRotas();
+});
+
 const input = document.getElementById("textoBusca") as HTMLInputElement;
 input.addEventListener("input", function (e) {
-  e.preventDefault();
 
   atualPage = 0;
   fetchRotas();
@@ -289,7 +297,7 @@ async function inserirPaginas(totalRotas: number) {
     for (let index = 0; index < Math.ceil(totalRotas / 5); index++) {
       const uniquePage = document.createElement("li");
       uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
-                          ${index}
+                          ${index+1}
                         </button>`;
 
       const btn = uniquePage.querySelector("button") as HTMLButtonElement;

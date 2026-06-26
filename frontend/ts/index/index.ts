@@ -94,7 +94,10 @@ function inserirTotalOnibus(totalOnibus: number) {
 fetchEstatisticas();
 
 async function fetchAvisos() {
-  const { data, error } = (await supabase.from("avisos").select("*")) as {
+  const { data, error } = (await supabase
+  .from("avisos")
+  .select("*")
+  .order("data", { ascending: false })) as {
     data: Array<Aviso>;
     error: any;
   };
