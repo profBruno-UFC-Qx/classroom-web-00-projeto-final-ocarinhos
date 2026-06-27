@@ -79,7 +79,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
 
         localStorage.removeItem("auo-user-name");
 
-        window.location.href = "/frontend/aluno/login.html";
+        window.location.href = "../../aluno/login.html";
     });
 
     const renderIcons = () => {
@@ -94,7 +94,7 @@ export function renderizarSidebar(containerId: string, paginaAtiva: string) {
         const user = result.data.session?.user;
 
         if (!user) {
-            window.location.replace("/frontend/aluno/login.html");
+            window.location.replace("../../aluno/login.html");
             return;
         }
 
