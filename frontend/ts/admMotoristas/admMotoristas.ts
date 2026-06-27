@@ -210,7 +210,7 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
 
     tr.innerHTML = `
   <td class='name'>
-    <i class="bi bi-bus-front" aria-hidden="true"></i>
+    <i class="bi bi-person" aria-hidden="true"></i>
     ${motorista.nome}
   </td>
 
