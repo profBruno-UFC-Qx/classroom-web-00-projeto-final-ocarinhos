@@ -2,7 +2,7 @@ import showTopMessage from "../utils/showMsg.js";
 import { supabase } from "../supabase/supabase.js";
 
 const formRecuperacao = document.getElementById(
-  "esquecisenha-form"
+  "esquecisenha-form",
 ) as HTMLFormElement;
 
 formRecuperacao.addEventListener("submit", async function (event) {
@@ -11,12 +11,12 @@ formRecuperacao.addEventListener("submit", async function (event) {
 
   if (inputEmail && inputEmail.value) {
     await supabase.auth.resetPasswordForEmail(inputEmail.value, {
-      redirectTo: "http://127.0.0.1:5500/redefinirSenha.html",
+      redirectTo: "http://127.0.0.1:5501/aluno/redefinirSenha.html",
     });
 
     showTopMessage(
       "Link de recuperação enviado para: " + inputEmail.value,
-      "alert"
+      "alert",
     );
   }
 });

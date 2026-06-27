@@ -25,6 +25,7 @@ async function mudarSenha(event: SubmitEvent) {
 
     if (!error) {
       showTopMessage("Senha redefinida com sucesso!", "alert");
+      window.location.href = "../../aluno/login.html";
     }
 
     if (error) {
