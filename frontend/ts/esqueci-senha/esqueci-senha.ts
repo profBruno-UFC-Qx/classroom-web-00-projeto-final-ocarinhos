@@ -14,6 +14,8 @@ formRecuperacao.addEventListener("submit", async function (event) {
       redirectTo: "http://127.0.0.1:5501/aluno/redefinirSenha.html",
     });
 
+    window.location.href = "../../aluno/verifiqueEmail.html";
+
     showTopMessage(
       "Link de recuperação enviado para: " + inputEmail.value,
       "alert",
