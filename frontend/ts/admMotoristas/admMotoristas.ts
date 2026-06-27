@@ -7,7 +7,7 @@ let atualPage = 0;
 const pageSize = 5;
 
 function validarMotorista(
-  objMotorista: Record<string, string | number>
+  objMotorista: Record<string, string | number>,
 ): boolean {
   for (const valor of Object.values(objMotorista)) {
     if (typeof valor === "string" && valor.trim() === "") {
@@ -28,6 +28,7 @@ interface motoristasInterface {
   kmAtual: number;
   onibus: {
     nome: string;
+    disponivel: boolean;
   };
 }
 
@@ -48,7 +49,7 @@ input.addEventListener("input", function (e) {
 async function fetchMotoristas() {
   const { data, error } = (await supabase
     .from("motoristas")
-    .select("id, nome, onibus (nome), kmAtual")
+    .select("id, nome, onibus (nome, disponivel), kmAtual")
     .ilike("nome", `%${input.value}%`)
     .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
     data: motoristasInterface[] | null;
@@ -94,7 +95,6 @@ async function editarMotorista(id: number) {
     return error;
   }
 
-  // Trazendo os dados ja cadastrados e inserindo nos inputs. isso aki nao foi feito pelo GPT, =D
   const modal = document.getElementById("editar");
   modal?.removeAttribute("hidden");
 
@@ -179,7 +179,7 @@ async function cadastrarMotorista() {
       if (!validarMotorista(objMotorista)) {
         showTopMessage(
           "Algum campo esta com valores negativos ou vazio",
-          "error"
+          "error",
         );
         return;
       }
@@ -200,7 +200,7 @@ async function cadastrarMotorista() {
 
 function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
   const motoristasTable = document.querySelector(
-    ".motoristasTable tbody"
+    ".motoristasTable tbody",
   ) as HTMLTableSectionElement;
 
   motoristasTable.innerHTML = "";
@@ -214,7 +214,7 @@ function inserirMotoristas(listaMotoristas: Array<motoristasInterface>) {
     ${motorista.nome}
   </td>
 
-  <td>${motorista.onibus ? motorista.onibus.nome : "---"}</td>
+  <td>${motorista.onibus && motorista.onibus.disponivel ? motorista.onibus.nome : "---"}</td>
 
   <td>
     <span class='qtdKm'>${motorista.kmAtual} KM</span>
@@ -301,7 +301,7 @@ async function preencherFooterTable(totalMotorista: number, err?: any) {
   if (err) {
     showTopMessage(
       "Nao foi possivel obter a quantidade de motoristas",
-      "error"
+      "error",
     );
     return;
   }

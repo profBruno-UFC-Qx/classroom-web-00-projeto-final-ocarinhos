@@ -96,12 +96,13 @@ if (form instanceof HTMLFormElement) {
 
         console.log(usuario);
         console.log(str_redirect);
-        const nomeUsuario = String(data.user?.user_metadata?.nome ?? objLogin.email);
+        const nomeUsuario = String(
+          data.user?.user_metadata?.nome ?? objLogin.email,
+        );
         localStorage.setItem("auo-user-name", nomeUsuario);
 
         window.location.href = str_redirect;
       }
-
 
       if (error && error.code == "invalid_credentials") {
         showApiError("Login ou senha incorretos");
