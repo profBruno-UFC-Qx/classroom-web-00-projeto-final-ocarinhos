@@ -27,19 +27,18 @@ interface faculdadesInterface {
   id: number;
   nome: string;
   bairro: string;
-  qtdAlunos: number;
+  qtdAlunos?: number;
 }
 
-const textoBusca = document.querySelector(".faculdadesSearch form");
-if (textoBusca instanceof HTMLFormElement) {
-  async function query(e: SubmitEvent) {
-    e.preventDefault();
+const textoBusca = document.getElementById("textoBusca") as HTMLFormElement | null;
+if (textoBusca) {
+  async function query() {
     const input = textoBusca?.querySelector("input");
 
-    if (input) {
+    if (input && input.value.trim() !== "") {
       const { data, error } = await supabase
         .from("faculdades")
-        .select("id, nome, bairro, qtdAlunos")
+        .select("id, nome, bairro")
         .or(`nome.ilike.%${input.value}%,bairro.ilike.%${input.value}%`)
         .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1);
 
@@ -51,17 +50,47 @@ if (textoBusca instanceof HTMLFormElement) {
         return;
       }
 
-      inserirFaculdades(data);
+      const faculdades = await Promise.all(
+        data.map(async (faculdade: any) => {
+          const { count } = await supabase
+            .from("usuarios")
+            .select("*", { count: "exact", head: true })
+            .eq("ies", faculdade.id);
+
+          return {
+            ...faculdade,
+            qtdAlunos: count ?? 0,
+          };
+        })
+      );
+
+      inserirFaculdades(faculdades);
+      await preencherFooterTable();
+    } else {
+      atualPage = 0;
+      await fetchFaculdades();
+      await preencherFooterTable();
     }
   }
 
-  textoBusca.addEventListener("submit", query);
+  const input = textoBusca.querySelector("input") as HTMLInputElement;
+
+  textoBusca.addEventListener("submit", (e) => {
+    e.preventDefault();
+    query();
+  });
+
+  input.addEventListener("input", () => {
+    atualPage = 0;
+    query();
+  });
 }
 
 async function fetchFaculdades() {
   const { data, error } = (await supabase
     .from("faculdades")
-    .select("id, nome, bairro, qtdAlunos")
+    .select("id, nome, bairro")
+    .order('id', { ascending: false })
     .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
     data: faculdadesInterface[] | null;
     error: any;
@@ -72,7 +101,21 @@ async function fetchFaculdades() {
   }
 
   if (data) {
-    inserirFaculdades(data);
+    const faculdades = await Promise.all(
+      data.map(async (faculdade) => {
+        const { count } = await supabase
+          .from("usuarios")
+          .select("*", { count: "exact", head: true })
+          .eq("ies", faculdade.id);
+
+        return {
+          ...faculdade,
+          qtdAlunos: count ?? 0,
+        };
+      })
+    );
+
+    inserirFaculdades(faculdades);
   }
 }
 
@@ -83,6 +126,7 @@ async function excluirFaculdade(id: number) {
     .eq("id", id);
 
   if (error) {
+    showTopMessage("Erro ao excluir faculdade", "error");
     return error;
   }
 
@@ -125,39 +169,43 @@ async function editarFaculdade(id: number) {
         input.value = data[0][el[0]];
       }
     });
-  }
 
-  form?.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const newForm = new FormData(form);
-    const objFaculdade: Record<string, string | number> = {};
+    // Clona o formulário para remover event listeners antigos e evitar múltiplos envios
+    const newFormClone = form.cloneNode(true) as HTMLFormElement;
+    form.parentNode?.replaceChild(newFormClone, form);
 
-    newForm.forEach((valor, atributo) => {
-      if (typeof valor == "string" || typeof valor == "number") {
-        objFaculdade[atributo] = valor;
+    newFormClone.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const newForm = new FormData(newFormClone);
+      const objFaculdade: Record<string, string | number> = {};
+
+      newForm.forEach((valor, atributo) => {
+        if (typeof valor == "string" || typeof valor == "number") {
+          objFaculdade[atributo] = valor;
+        }
+      });
+
+      const { error } = await supabase
+        .from("faculdades")
+        .update(objFaculdade)
+        .eq("id", id);
+
+      if (error) {
+        showTopMessage("Nao foi possivel atualizar a faculdade", "error");
+        return;
       }
+
+      showTopMessage("Faculdade atualizada", "alert");
+      await fetchFaculdades();
+      modal?.setAttribute("hidden", "");
     });
-
-    const { error } = await supabase
-      .from("faculdades")
-      .update(objFaculdade)
-      .eq("id", id);
-
-    if (error) {
-      showTopMessage("Nao foi possivel atualizar a faculdade", "error");
-      return;
-    }
-
-    showTopMessage("Faculdade atualizada", "alert");
-    await fetchFaculdades();
-    modal?.setAttribute("hidden", "");
-  }, { once: true });
+  }
 }
 
-const btnCadastro = document.querySelector(".efetuarCadastro");
-if (btnCadastro) {
-  btnCadastro.addEventListener("click", cadastrarFaculdade);
-}
+const btnCadastroGeral = document.querySelectorAll(".efetuarCadastro");
+btnCadastroGeral.forEach((btn) => {
+  btn.addEventListener("click", cadastrarFaculdade);
+});
 
 async function cadastrarFaculdade() {
   const modal = document.getElementById("cadastrar");
@@ -172,53 +220,72 @@ async function cadastrarFaculdade() {
 
   const form = modal?.querySelector("form");
 
-  form?.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const newForm = new FormData(form);
-    const objFaculdade: Record<string, string | number> = {};
+  if (form instanceof HTMLFormElement) {
+    // Clona o formulário para remover event listeners antigos e evitar múltiplos envios
+    const newFormClone = form.cloneNode(true) as HTMLFormElement;
+    form.parentNode?.replaceChild(newFormClone, form);
 
-    newForm.forEach((valor, atributo) => {
-      if (typeof valor == "string" || typeof valor == "number") {
-        objFaculdade[atributo] = valor;
+    newFormClone.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const newForm = new FormData(newFormClone);
+      const objFaculdade: Record<string, string | number> = {};
+
+      newForm.forEach((valor, atributo) => {
+        if (typeof valor == "string" || typeof valor == "number") {
+          objFaculdade[atributo] = valor;
+        }
+      });
+
+      // Se a quantidade de alunos vier vazia do HTML, define como 0
+      if (!objFaculdade.hasOwnProperty('qtdAlunos') || objFaculdade['qtdAlunos'] === "") {
+        objFaculdade['qtdAlunos'] = 0;
       }
+
+      if (!validarFaculdade(objFaculdade)) {
+        showTopMessage(
+          "Algum campo esta com valores negativos ou vazio",
+          "error"
+        );
+        return;
+      }
+
+      const { error } = await supabase.from("faculdades").insert(objFaculdade);
+
+      if (error) {
+        showTopMessage("Nao foi possivel efetuar o cadastro", "error");
+        return;
+      }
+
+      showTopMessage("Cadastro efetuado", "alert");
+      newFormClone.reset();
+      await fetchFaculdades();
+      await preencherFooterTable();
+      modal?.setAttribute("hidden", "");
     });
-
-    if (!validarFaculdade(objFaculdade)) {
-      showTopMessage(
-        "Algum campo esta com valores negativos ou vazio",
-        "error"
-      );
-      return;
-    }
-
-    const { error } = await supabase.from("faculdades").insert(objFaculdade);
-
-    if (error) {
-      showTopMessage("Nao foi possivel efetuar o cadastro", "error");
-      return;
-    }
-
-    showTopMessage("Cadastro efetuado", "alert");
-    if(form instanceof HTMLFormElement) form.reset();
-    await fetchFaculdades();
-    await preencherFooterTable();
-    modal?.setAttribute("hidden", "");
-  }, { once: true });
+  }
 }
 
 function inserirFaculdades(listaFaculdades: Array<faculdadesInterface>) {
-  let tbody = document.querySelector(".faculdadesTable tbody") as HTMLTableSectionElement;
-  
+  const table = document.querySelector(".faculdadesTable") as HTMLTableElement;
+  if (!table) return;
+
+  let tbody = table.querySelector("tbody");
   if (!tbody) {
-    const table = document.querySelector(".faculdadesTable");
     tbody = document.createElement("tbody");
-    const thead = table?.querySelector(".thead");
+    const thead = table.querySelector(".thead") || table.rows[0];
     if (thead && thead.parentNode) {
       thead.parentNode.insertBefore(tbody, thead.nextSibling);
     } else {
-      table?.appendChild(tbody);
+      table.appendChild(tbody);
     }
   }
+
+  // Remove as linhas antigas antes de renderizar as novas (ignorando thead e tfoot)
+  Array.from(table.rows).forEach((row) => {
+    if (!row.classList.contains("thead") && !row.closest("tfoot") && row.parentNode === table) {
+      row.remove();
+    }
+  });
 
   tbody.innerHTML = "";
 
@@ -294,58 +361,59 @@ async function skipPage(totalFaculdade: number, page: number) {
 }
 
 async function inserirPaginas(totalFaculdade: number) {
-  let listPages = document.querySelector(".pages");
+  const navList = document.querySelector(".faculdadesFooter-pagination ul");
+  if (!navList) return;
 
-  if (!listPages) {
-    const nav = document.querySelector(".faculdadesFooter-pagination ul");
-    if (nav) {
-      listPages = document.createElement("div");
-      listPages.className = "pages";
-      listPages.setAttribute("style", "display: flex; gap: 5px;");
-      
-      const lis = nav.querySelectorAll("li:not(.prev):not(.next)");
-      lis.forEach(li => li.remove());
-      
-      const nextBtn = nav.querySelector(".next");
-      if (nextBtn) {
-        nav.insertBefore(listPages, nextBtn);
-      } else {
-        nav.appendChild(listPages);
-      }
-    }
-  }
+  const lis = navList.querySelectorAll("li:not(.prev):not(.next)");
+  lis.forEach((li) => li.remove());
 
-  if (listPages instanceof HTMLDivElement) {
-    listPages.innerHTML = "";
-    for (let index = 0; index < Math.ceil(totalFaculdade / pageSize); index++) {
-      const uniquePage = document.createElement("li");
-      uniquePage.innerHTML = `<button id="page-${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">${index + 1}</button>`;
+  const nextBtn = navList.querySelector(".next");
 
-      const btn = uniquePage.querySelector("button") as HTMLButtonElement;
-      btn.addEventListener("click", async function () {
-        await skipPage(totalFaculdade, index);
-      });
+  for (let index = 0; index < Math.ceil(totalFaculdade / pageSize); index++) {
+    const li = document.createElement("li");
+    li.innerHTML = `<button id="page-${index}" class="page ${
+      atualPage == index ? "active" : ""
+    }" aria-current="page">${index + 1}</button>`;
 
-      listPages.appendChild(uniquePage);
+    const btn = li.querySelector("button") as HTMLButtonElement;
+    btn.addEventListener("click", async function () {
+      await skipPage(totalFaculdade, index);
+    });
+
+    if (nextBtn) {
+      navList.insertBefore(li, nextBtn);
+    } else {
+      navList.appendChild(li);
     }
   }
 }
 
 async function preencherFooterTable() {
-  const { count: totalFaculdade, error: errfaculdade } = await supabase
+  const input = document.querySelector("#textoBusca input") as HTMLInputElement;
+
+  let query = supabase
     .from("faculdades")
     .select("*", { count: "exact", head: true });
+
+  if (input.value.trim() !== "") {
+    query = query.or(
+      `nome.ilike.%${input.value}%,bairro.ilike.%${input.value}%`
+    );
+  }
+
+  const { count: totalFaculdade, error: errfaculdade } = await query;
 
   if (errfaculdade) {
     showTopMessage(
       "Não foi possível fazer o fetch da quantidade de faculdades.",
       "error"
     );
-  } else if (totalFaculdade !== null) {
-    preencherQTDFaculdades(totalFaculdade);
-    await inserirPaginas(totalFaculdade);
-    actionButtons(totalFaculdade);
+    return;
   }
+
+  preencherQTDFaculdades(totalFaculdade ?? 0);
+  await inserirPaginas(totalFaculdade ?? 0);
+  actionButtons(totalFaculdade ?? 0);
 }
 
 function actionButtons(totalFaculdade: number) {

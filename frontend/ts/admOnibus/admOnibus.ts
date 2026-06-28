@@ -4,7 +4,10 @@ import { supabase } from "../supabase/supabase.js";
 
 renderizarSidebar("sidebar-container", "onibus");
 
-interface Onibus {
+let atualPage = 0;
+const pageSize = 5;
+
+interface onibusInterface {
   id: number;
   nome: string;
   placa: string;
@@ -104,7 +107,7 @@ function setModalState(mode: "create" | "edit") {
       : "Atualize as informações do ônibus selecionado.";
 }
 
-function openModal(onibus?: Onibus) {
+function openModal(onibus?: onibusInterface) {
   if (
     !modalOverlay ||
     !modalForm ||
@@ -139,13 +142,15 @@ function closeModal() {
   setModalState("create");
 }
 
-function renderRows(onibusList: Onibus[]) {
+function renderRows(onibusList: onibusInterface[]) {
   const body = ensureTableBody();
 
   if (!body) {
     showTopMessage("Tabela de ônibus não encontrada.", "error");
     return;
   }
+
+  body.innerHTML = "";
 
   if (onibusList.length === 0) {
     body.innerHTML = `
@@ -183,18 +188,113 @@ function renderRows(onibusList: Onibus[]) {
   });
 }
 
-async function carregarOnibus() {
-  const { data, error } = await supabase
+const input = document.getElementById("textoBusca") as HTMLInputElement;
+console.log(input);
+input.addEventListener("input", function (e) {
+  e.preventDefault();
+
+  atualPage = 0;
+  fetchOnibus();
+});
+
+async function fetchOnibus() {
+  const { data, error } = (await supabase
     .from("onibus")
     .select("id, nome, placa, disponivel")
-    .order("id", { ascending: false });
+    .ilike("nome", `%${input.value}%`)
+    .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
+    data: onibusInterface[] | null;
+    error: any;
+  };
+
+  const { count: totalOnibus, error: erroOnibus } = await supabase
+    .from("onibus")
+    .select("*", { count: "exact", head: true })
+    .ilike("nome", `%${input.value}%`);
 
   if (error) {
     showTopMessage("Não foi possível carregar os ônibus.", "error");
     return;
   }
 
-  renderRows((data ?? []) as Onibus[]);
+  await preencherFooterTable(totalOnibus, error);
+  renderRows((data ?? []) as onibusInterface[]);
+}
+
+async function preencherFooterTable(totalOnibus: number, err?: any) {
+  if (err) {
+    showTopMessage("Nao foi possivel obter a quantidade de onibus", "error");
+    return;
+  }
+
+  preencherQTDOnibus(totalOnibus);
+  await inserirPaginas(totalOnibus);
+  actionButtons(totalOnibus);
+}
+
+async function skipPage(totalOnibus: number, page: number) {
+  if (page < 0) {
+    page = 0;
+  }
+
+  if (page >= Math.floor(totalOnibus / pageSize)) {
+    page = Math.floor(totalOnibus / pageSize);
+  }
+
+  atualPage = page;
+
+  await fetchOnibus();
+}
+
+function actionButtons(totalOnibus: number) {
+  const prev = document.querySelector(".prev") as HTMLButtonElement;
+  if (prev) {
+    prev.onclick = async function () {
+      await skipPage(totalOnibus, atualPage - 1);
+    };
+  }
+
+  const next = document.querySelector(".next") as HTMLButtonElement;
+  if (next) {
+    next.onclick = async function () {
+      await skipPage(totalOnibus, atualPage + 1);
+    };
+  }
+}
+
+async function inserirPaginas(totalOnibus: number) {
+  const listPages = document.querySelector(".pages");
+
+  if (listPages) {
+    listPages.innerHTML = "";
+  }
+
+  if (listPages instanceof HTMLDivElement) {
+    for (let index = 0; index < Math.ceil(totalOnibus / 5); index++) {
+      const uniquePage = document.createElement("li");
+      uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
+                          ${index + 1}
+                        </button>`;
+
+      const btn = uniquePage.querySelector("button") as HTMLButtonElement;
+      btn.addEventListener("click", async function () {
+        const id = btn.getAttribute("id");
+        if (id) {
+          await skipPage(totalOnibus, Number(id));
+        }
+      });
+
+      listPages.appendChild(uniquePage);
+    }
+  }
+}
+
+function preencherQTDOnibus(totalOnibus: number) {
+  const span = document.querySelector(".qtdMotorista");
+
+  if (totalOnibus && span instanceof HTMLSpanElement) {
+    span.innerText = String(totalOnibus);
+  }
 }
 
 async function salvarOnibus(formData: OnibusFormData) {
@@ -219,7 +319,7 @@ async function salvarOnibus(formData: OnibusFormData) {
 
     showTopMessage("Ônibus atualizado com sucesso.", "alert");
     closeModal();
-    await carregarOnibus();
+    await fetchOnibus();
     return;
   }
 
@@ -236,7 +336,7 @@ async function salvarOnibus(formData: OnibusFormData) {
 
   showTopMessage("Ônibus cadastrado com sucesso.", "alert");
   closeModal();
-  await carregarOnibus();
+  await fetchOnibus();
 }
 
 createButton?.addEventListener("click", () => {
@@ -310,7 +410,7 @@ table?.addEventListener("click", async (event) => {
   }
 
   if (action === "edit") {
-    openModal(data as Onibus);
+    openModal(data as onibusInterface);
   }
 
   if (action === "delete") {
@@ -328,8 +428,8 @@ table?.addEventListener("click", async (event) => {
     }
 
     showTopMessage("Ônibus excluído com sucesso.", "alert");
-    await carregarOnibus();
+    await fetchOnibus();
   }
 });
 
-void carregarOnibus();
+void fetchOnibus();

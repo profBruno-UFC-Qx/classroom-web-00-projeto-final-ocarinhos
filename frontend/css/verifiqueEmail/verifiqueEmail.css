@@ -1,0 +1,52 @@
+.verificar-bg {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #e5e7eb;
+  padding: 10px 0;
+  position: relative;
+}
+
+.verificar {
+  background: #f9fafb;
+  padding: 30px;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background: #e0e7ff;
+  color: #1e3a8a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  font-size: 24px;
+}
+
+.verificar h2 {
+  margin-bottom: 8px;
+}
+
+.sub-text {
+  font-size: 14px;
+  color: #424752;
+  margin-bottom: 20px;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 13px;
+}
+
+.footer a {
+  color: #1d4ed8;
+}

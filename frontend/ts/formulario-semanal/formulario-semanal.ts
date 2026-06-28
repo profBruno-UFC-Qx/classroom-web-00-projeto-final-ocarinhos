@@ -41,28 +41,55 @@ type DatasRegistro = {
   frequencia: number;
 };
 
-function formatarData(date: Date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-function proxDataDia(dia: DiaSemana) {
+function obterDataCorreta(dia: DiaSemana) {
+  const alvo = diaSemanaParaNumero[dia];
   const hoje = new Date();
   const hojeNumero = hoje.getDay();
-  const alvo = diaSemanaParaNumero[dia];
-  let delta = (alvo - hojeNumero + 7) % 7;
-  if (delta === 0) delta = 7;
-  const data = new Date(hoje);
-  data.setHours(0, 0, 0, 0);
-  data.setDate(data.getDate() + delta);
-  return formatarData(data);
+
+  const delta = (alvo - hojeNumero + 7) % 7;
+
+  const data = new Date();
+  data.setDate(hoje.getDate() + delta);
+
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const diaMes = String(data.getDate()).padStart(2, "0");
+
+  return `${ano}-${mes}-${diaMes}`;
+}
+
+function desabilitarDiasPassados() {
+  const hoje = new Date();
+  const diaAtual = hoje.getDay();
+
+  if (diaAtual === 0 || diaAtual === 6) {
+    return;
+  }
+
+  const checkboxes = document.querySelectorAll('input[name="dias"]');
+
+  checkboxes.forEach((checkbox) => {
+    const input = checkbox as HTMLInputElement;
+    const diaValue = input.value as DiaSemana;
+    const numeroDoDia = diaSemanaParaNumero[diaValue];
+
+    if (numeroDoDia < diaAtual) {
+      input.disabled = true;
+      input.title = "Este dia já passou."; 
+      
+      if (input.parentElement) {
+        input.parentElement.style.opacity = "0.5";
+        input.parentElement.style.cursor = "not-allowed";
+      }
+    }
+  });
 }
 
 const form = document.getElementById("formulario-semanal");
 
 if (form instanceof HTMLFormElement) {
+  desabilitarDiasPassados();
+
   const nomeInput = document.getElementById("nome") as HTMLInputElement | null;
   const emailInput = document.getElementById("email") as HTMLInputElement | null;
   const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
@@ -254,7 +281,7 @@ if (form instanceof HTMLFormElement) {
     const formData = new FormData(form);
 
     const tipoUso = String(formData.get("tipoUso") ?? "");
-    const paradaSaida = numSel(formData.get("paradaSaida"));
+    const paradaSaida = String(formData.get("paradaSaida") ?? "").trim();
     const faculdadeDestino = numSel(formData.get("faculdadeDestino"));
     const rotaComplementar = String(formData.get("rotaComplementar") ?? "nao") === "sim";
     const rotaComplementarDestino = numSel(formData.get("rotaComplementarDestino"));
@@ -265,7 +292,7 @@ if (form instanceof HTMLFormElement) {
       return;
     }
 
-    if (paradaSaida === null || faculdadeDestino === null || !paradaSaidaTexto) {
+    if (!paradaSaida || faculdadeDestino === null || !paradaSaidaTexto) {
       showTopMessage("Preencha os campos de rota e faculdade corretamente.", "error");
       return;
     }
@@ -300,6 +327,30 @@ if (form instanceof HTMLFormElement) {
         rotaComplementar: rotaComplementar && rotaComplementarDestino ? rotaComplementarDestino : null,
       };
 
+      const datasSelecionadas = diasUnicos.map((dia) => obterDataCorreta(dia));
+
+      const { data: datasExistentes, error: erroDatasExistentes } = await supabase
+        .from("Datas")
+        .select(`
+          data_ocorrencia,
+          ParticipaFreq!inner (
+            IDaluno
+          )
+        `)
+        .eq("ParticipaFreq.IDaluno", alunoId)
+        .in("data_ocorrencia", datasSelecionadas);
+      
+      if (erroDatasExistentes) {
+        throw new Error("Erro ao verificar formulários existentes.");
+      }
+
+      if (datasExistentes && datasExistentes.length > 0) {
+        const diasDuplicados = datasExistentes.map((d: any) => d.data_ocorrencia);
+
+        showTopMessage(`Você já possui formulário cadastrado para: ${diasDuplicados.join(", ")}`, "error");
+        return;
+      }
+
       const { data: participaFreqCriada, error: erroParticipaFreq } = await supabase
         .from("ParticipaFreq")
         .insert(registroParticipaFreq)
@@ -315,7 +366,7 @@ if (form instanceof HTMLFormElement) {
       }
 
       const datas: DatasRegistro[] = diasUnicos.map((dia) => ({
-        data_ocorrencia: proxDataDia(dia),
+        data_ocorrencia: obterDataCorreta(dia),
         frequencia: Number(participaFreqCriada.id),
       }));
 

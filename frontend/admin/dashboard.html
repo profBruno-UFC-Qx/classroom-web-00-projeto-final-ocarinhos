@@ -9,142 +9,121 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="./../css/AdmFaculdades/AdmFaculdades.css" />
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="./../css/admDashboard/admDashboard.css" />
     <link rel="stylesheet" href="../css/loading/loading.css">
     <script type="module" src="../dist/loading/loading.js"></script> 
   </head>
   <body>
-    <!-- <header class="faculdadesHeader">
-      <h2>Gestão de Logística</h2>
-
-      <div class="faculdadesProfile">
-        <div class="faculdadesProfileInfo">
-          <p>Gestor Ocara</p>
-          <p>Administrador Master</p>
-        </div>
-
-        <div class="faculdadesProfileImage">
-          <img
-            src="./../assets/Admin/adminprofile.png"
-            alt="Imagem de administrador"
-          />
-        </div>
-      </div>
-    </header> -->
-
     <main class="dashboard-tela">
-        <div id="sidebar-container"></div>
-        <div class="mainDasboard">
+      <div id="sidebar-container"></div>
+      <div class="mainDasboard">
         <section class="container dash-visao-geral">
-            <div class="dash-card-visao-geral">
-                <div class="dash-card-icon">
-                    <i class="bi bi-people-fill"></i>
-                </div>
-                <div class="dash-card-content">
-                    <p class="dash-card-label">TOTAL DE ALUNOS</p>
-                    <p class="dash-card-number">450</p>
-                </div>
+          <div class="dash-card-visao-geral">
+            <div class="dash-card-icon">
+              <i class="bi bi-people-fill"></i>
             </div>
-            <div class="dash-card-visao-geral">
-                <div class="dash-card-icon">
-                    <i class="bi bi-bus-front-fill"></i>
-                </div>
-                <div class="dash-card-content">
-                    <p class="dash-card-label">ONIBUS DISPONÍVEIS</p>
-                    <p class="dash-card-number">12</p>
-                </div>
+            <div class="dash-card-content">
+              <p class="dash-card-label">TOTAL DE ALUNOS</p>
+              <p class="dash-card-number qtd-alunos">--</p>
             </div>
-            <div class="dash-card-visao-geral">
-                <div class="dash-card-icon">
-                    <i class="bi bi-person-fill"></i>
-                </div>
-                <div class="dash-card-content">
-                    <p class="dash-card-label">MOTORISTAS ATIVOS</p>
-                    <p class="dash-card-number">8</p>
-                </div>
+          </div>
+          <div class="dash-card-visao-geral">
+            <div class="dash-card-icon">
+              <i class="bi bi-bus-front-fill"></i>
             </div>
-            <div class="dash-card-visao-geral">
-                <div class="dash-card-icon">
-                    <i class="bi bi-signpost-split"></i>
-                </div>
-                <div class="dash-card-content">
-                    <p class="dash-card-label">ROTAS ATIVAS</p>
-                    <p class="dash-card-number">5</p>
-                </div>
+            <div class="dash-card-content">
+              <p class="dash-card-label">ONIBUS DISPONÍVEIS</p>
+              <p class="dash-card-number qtd-onibus">--</p>
             </div>
+          </div>
+          <div class="dash-card-visao-geral">
+            <div class="dash-card-icon">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="dash-card-content">
+              <p class="dash-card-label">MOTORISTAS ATIVOS</p>
+              <p class="dash-card-number qtd-motoristas">--</p>
+            </div>
+          </div>
+          <div class="dash-card-visao-geral">
+            <div class="dash-card-icon">
+              <i class="bi bi-signpost-split"></i>
+            </div>
+            <div class="dash-card-content">
+              <p class="dash-card-label">ROTAS ATIVAS</p>
+              <p class="dash-card-number qtd-rotas">--</p>
+            </div>
+          </div>
         </section>
 
         <section class="container dash-informacoes">
-            <section class="dash-dados-alunos">
-                <section class="dashboard-freq-semanal dash-card-visao-geral">
-                    <div class="dash-card-wrapper">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title">Frequência por Dia</h3>
-                            <button class="filtro">Esta Semana</button>
-                        </div>
-                        <canvas id="dashboard"></canvas>
-                    </div>
-                </section>
-                <section class="aluno-facul dash-card-visao-geral">
-                    <div class="dash-card-wrapper">
-                        <h3 class="dash-card-title">Alunos por Faculdade</h3>
-                        <div class="dash-faculdade-item">
-                            <span class="dash-faculdade-name">Universidade de Fortaleza (UNIFOR)</span>
-                        </div>
-                        <div class="dash-faculdade-item">
-                            <span class="dash-faculdade-name">Universidade Federal do Ceará (UFC)</span>
-                        </div>
-                        <div class="dash-faculdade-item">
-                            <span class="dash-faculdade-name">Centro Universitário Estácio</span>
-                        </div>
-                        <div class="dash-faculdade-item">
-                            <span class="dash-faculdade-name">Outras Instituições</span>
-                        </div>
-                    </div>
-                </section>
+          <section class="dash-dados-alunos">
+            <section class="dashboard-freq-semanal dash-card-visao-geral">
+              <div class="dash-card-wrapper">
+                <div class="dash-card-header">
+                  <h3 class="dash-card-title">Frequência por Dia</h3>
+                  <button class="filtro">Esta Semana</button>
+                </div>
+                <canvas id="dashboard"></canvas>
+              </div>
             </section>
+            <section class="aluno-facul dash-card-visao-geral">
+              <div class="dash-card-wrapper">
+                  <div class="dash-card-header">
+                      <h3 class="dash-card-title">Alunos por Faculdade</h3>
+                      <div class="buttonsprox">
+                          <button id="btnAnteriorFaculdade">&lt;</button>
+                          <span id="paginaFaculdade">1</span>
+                          <button id="btnProximaFaculdade">&gt;</button>
+                      </div>
+                  </div>
+                  <canvas id="graficoFaculdades"></canvas>
+              </div>
+            </section>
+          </section>
+          <section class="dash-acoes-e-aviso">
+            <section class="mural-avisos dash-card-visao-geral">
+              <div class="dash-card-wrapper">
+                <div class="dash-card-header">
+                  <h3 class="dash-card-title">Mural de Avisos</h3>
+                </div>
 
-            <section class="dash-acoes-e-aviso">
-                <section class="mural-avisos dash-card-visao-geral">
-                    <div class="dash-card-wrapper">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title">Mural de Avisos</h3>
-                            <button class="dash-btn-menu">⋮</button>
-                        </div>
-                        <div class="dash-aviso-item dash-aviso-warning">
-                            <div class="dash-aviso-titulo">⚠ Manutenção na Via</div>
-                            <div class="dash-aviso-desc">Interdição na BR-116 afetará rota da noite. Verifique desvios.</div>
-                        </div>
-                        <div class="dash-aviso-item dash-aviso-info">
-                            <div class="dash-aviso-titulo">ℹ Renovação de Carteirinhas</div>
-                            <div class="dash-aviso-desc">Prazo limite até dia 20 para novos cadastros sem multa.</div>
-                        </div>
-                        <div class="dash-aviso-item dash-aviso-info">
-                            <div class="dash-aviso-titulo">✦ Novo Ônibus - Rota 04</div>
-                            <div class="dash-aviso-desc">Veículo 2024 entregue para reforçar horário das 18h.</div>
-                        </div>
-                        <div class="dash-aviso-footer">
-                            <a href="#" class="dash-aviso-link">Ver todos os avisos</a>
-                        </div>
-                    </div>
-                </section>
-                <section class="acoes dash-card-visao-geral">
-                    <div class="dash-card-wrapper">
-                        <h3 class="dash-card-title">Ações Rápidas</h3>
-                        <button class="dash-btn-action dash-btn-primary-action">
-                            Acessar rotas
-                        </button>
-                        <button class="dash-btn-action dash-btn-secondary-action">
-                            Cadastrar Motorista
-                        </button>
-                        <button class="dash-btn-action dash-btn-secondary-action">
-                            Criar Aviso
-                        </button>
-                    </div>
-                </section>
+                <div class="avisos-group"></div>
+
+                <div class="dash-aviso-footer">
+                  <a href="./avisos.html" class="dash-aviso-link"
+                    >Ver todos os avisos</a
+                  >
+                </div>
+              </div>
             </section>
-        </div>
+            <section class="acoes dash-card-visao-geral">
+              <div class="dash-card-wrapper">
+                <h3 class="dash-card-title">Ações Rápidas</h3>
+                <a
+                  href="./rotas-complementares.html"
+                  class="dash-btn-action dash-btn-primary-action"
+                >
+                  Acessar rotas
+                </a>
+                <a
+                  href="./motoristas.html"
+                  class="dash-btn-action dash-btn-secondary-action"
+                >
+                  Cadastrar Motorista
+                </a>
+                <a
+                  href="./avisos.html"
+                  class="dash-btn-action dash-btn-secondary-action"
+                >
+                  Criar Aviso
+                </a>
+              </div>
+            </section>
+          </section>
+        </section>
+      </div>
     </main>
 
     <script

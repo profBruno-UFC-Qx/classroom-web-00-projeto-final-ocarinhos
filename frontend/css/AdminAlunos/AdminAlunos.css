@@ -156,16 +156,15 @@ th {
   color: #64748b;
 }
 
-.edit,
-.delete {
-  background-color: rgb(75, 54, 181);
-  color: #fff;
-  border-radius: 4px;
-  font-size: 1.2rem;
+.edit {
+  background-color: #f3f6fb;
+  color: #667085;
+  border: 1px solid #d7def0;
 }
 
-.delete {
-  background-color: rgb(215, 68, 68);
+.edit:hover {
+  background-color: #e9eef7;
+  color: #10233d;
 }
 
 .buttons {

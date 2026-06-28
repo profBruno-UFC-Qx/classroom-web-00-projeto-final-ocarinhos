@@ -118,9 +118,9 @@ body {
   min-height: 48px;
   padding: 0 18px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--avisos-primary) 0%, #0d5dba 100%);
+  background-color: #0d5dba;
   color: #fff;
-  box-shadow: 0 12px 24px rgba(10, 77, 151, 0.24);
+  box-shadow: 0 12px 24px rgba(10, 77, 151, 0.03);
   display: inline-flex;
   align-items: center;
   gap: 10px;

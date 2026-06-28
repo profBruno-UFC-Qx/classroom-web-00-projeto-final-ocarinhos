@@ -10,12 +10,10 @@
     />
     <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/AdmMotoristas/AdmMotoristas.css" />
-    <link rel="stylesheet" href="../css/loading/loading.css">
+    <link rel="stylesheet" href="../css/loading/loading.css" />
     <script type="module" src="../dist/loading/loading.js"></script>
   </head>
   <body>
-
-
     <main class="wrap">
       <div id="sidebar-container"></div>
       <div class="motoristasMain">
@@ -26,10 +24,11 @@
         </p>
 
         <div class="motoristasSearch">
-          <form action="">
+          <form action="" id="formBusca">
             <input
-              type="text"
-              placeholder="Buscar nome do ônibus"
+              id="textoBusca"
+              type="search"
+              placeholder="Buscar ônibus por nome"
             />
 
             <button type="submit" aria-label="Buscar">
@@ -38,31 +37,24 @@
           </form>
 
           <div class="listActions">
-            <div class="motoristasFiltro">
-              <select name="filtro" id="filtro">
-                <option value="default" selected>Filtros</option>
-                <option value="centro">Centro</option>
-                <option value="planalto">Bairro Planalto</option>
-                <option value="cedro">Cedro</option>
-              </select>
-            </div>
-
             <button class="efetuarCadastro">+ Cadastrar ônibus</button>
           </div>
         </div>
 
         <table class="motoristasTable">
-          <tr class="thead">
+          <thead class="thead">
             <th>NOME DO ÔNIBUS</th>
             <th>PLACA</th>
             <th>DISPONÍVEL</th>
             <th class="alignRight">AÇÕES</th>
-          </tr>
+          </thead>
+
+          <tbody></tbody>
 
           <tfoot>
             <tr class="tfoot">
               <td class="tfoot-info" colspan="2">
-                Mostrando 1-5 de 12 ônibus
+                Mostrando 1-5 de <span class="qtdMotorista"></span> ônibus
               </td>
 
               <td class="tfoot-pager" colspan="2">
@@ -74,13 +66,7 @@
                       </button>
                     </li>
 
-                    <li>
-                      <button class="page active" aria-current="page">1</button>
-                    </li>
-
-                    <li><button class="page">2</button></li>
-
-                    <li><button class="page">3</button></li>
+                    <div class="pages"></div>
 
                     <li class="next">
                       <button aria-label="Próximo">

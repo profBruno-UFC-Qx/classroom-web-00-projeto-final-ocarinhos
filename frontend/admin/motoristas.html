@@ -10,8 +10,8 @@
     />
     <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/AdmMotoristas/AdmMotoristas.css" />
-    <link rel="stylesheet" href="../css/loading/loading.css">
-    <script type="module" src="../dist/loading/loading.js"></script> 
+    <link rel="stylesheet" href="../css/loading/loading.css" />
+    <script type="module" src="../dist/loading/loading.js"></script>
   </head>
   <body>
     <div class="wrap">
@@ -24,8 +24,12 @@
         </p>
 
         <div class="motoristasSearch">
-          <form action="" id="textoBusca">
-            <input type="text" placeholder="Buscar motoristas por nome" />
+          <form action="" id="formBusca">
+            <input
+              id="textoBusca"
+              type="search"
+              placeholder="Buscar ônibus por nome"
+            />
 
             <button type="submit" aria-label="Buscar">
               <i class="bi bi-search"></i>
@@ -33,7 +37,7 @@
           </form>
 
           <div class="listActions">
-            <button class="efetuarCadastro">+ Cadastrar motorista</button>
+            <button class="efetuarCadastro">+ Cadastrar ônibus</button>
           </div>
         </div>
 

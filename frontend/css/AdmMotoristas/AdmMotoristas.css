@@ -149,12 +149,26 @@ th {
   color: #424752;
 }
 
+.name i {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: #dbe8fb;
+  color: #0a4d97;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 0.95rem;
+}
+
 .motoristasTable td.name {
   font-weight: 700;
   color: #0b1c30;
 }
 
 .motoristasTable td > .qtdKm {
+  font-size: 0.8rem;
   background-color: #dbeafe;
   color: #1e40af;
   border-radius: 12px;
@@ -171,14 +185,16 @@ th {
 
 .edit,
 .delete {
-  background-color: rgb(75, 54, 181);
-  color: #fff;
-  border-radius: 4px;
   font-size: 1.2rem;
-}
-
-.delete {
-  background-color: rgb(215, 68, 68);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #667085;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .buttons {
@@ -206,6 +222,17 @@ th {
   color: #424752;
   font-size: 1rem;
   text-align: left;
+}
+
+.motoristasTable thead th {
+  background: #f1f5ff;
+  color: #4f5d74;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+  text-align: left;
+  padding: 18px 18px;
+  border-bottom: 1px solid #d6def0;
 }
 
 .motoristasTable tfoot tr.tfoot {
