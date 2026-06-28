@@ -10,7 +10,9 @@
 }
 
 #sidebar-container {
-    flex: 0 0 250px;
+    width: clamp(80px, 20vw, 250px);
+    flex-shrink: 0;
+    transition: width 0.3s ease;
 }
 
 .aluno-content {
@@ -26,7 +28,7 @@
 
 /* Sidebar */
 .sidebar {
-    width: 250px;
+    width: 100%;
     background-color: #0f172a;
     color: #94a3b8;
     display: flex;
@@ -35,9 +37,9 @@
     top: 0;
     min-height: 100vh;
     height: 100vh;
+    overflow-x: hidden;
     overflow-y: auto;
     padding: 20px 15px;
-    flex-shrink: 0;
 }
 
 .sidebar-header {
@@ -207,4 +209,82 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+}
+
+@media (max-width: 850px) {
+    /* CORREÇÃO 1: Força a largura máxima de 105px e DESATIVA o bloqueio de encolhimento do Flexbox */
+    #sidebar-container {
+        width: 105px !important; 
+        min-width: 0 !important; /* Remove o min-width: auto que causava o espaço morto */
+    }
+
+    /* Ajusta a barra interna para ocupar os 105px perfeitamente */
+    .sidebar {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 15px 6px; /* Reduz o padding lateral para o botão colar na borda */
+    }
+
+    /* Alinha a logo e a sigla "A.U.O" lado a lado bem compactos */
+    .sidebar-header {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 25px;
+        padding-left: 4px;
+    }
+
+    .sidebar-header .logo-img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+    }
+    
+    .logo-text {
+        display: block; 
+    }
+
+    .logo-text h2 {
+        font-size: 0.85rem;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    /* Esconde o "Portal Universitário" para poupar espaço horizontal */
+    .logo-text p {
+        display: none;
+    }
+
+    /* CORREÇÃO 2: Usa o mesmo seletor do CSS original para GANHAR da especificidade antiga */
+    .sidebar-nav a,
+    .sidebar-footer a {
+        white-space: normal !important; /* Força TOTAL a quebra de linha (Ex: "Consultar" na linha 1, "Rota" na linha 2) */
+    }
+
+    /* Deixa os botões ultra-justos e elimina qualquer margem invisível à direita */
+    .menu-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;          /* Espaço mínimo entre o ícone e o texto */
+        padding: 10px 6px;  /* Preenchimento interno bem magro */
+        font-size: 0.72rem; /* Tamanho ideal para as palavras quebrarem perfeitamente */
+        text-align: left;
+        line-height: 1.2;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .menu-item i {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0; /* Impede o ícone de ser esmagado pela falta de espaço */
+        margin: 0;
+    }
+
+    /* Dá mais espaço livre para o seu formulário e tabelas na parte branca */
+    .main-content-wrapper {
+        padding: 15px;
+    }
 }
