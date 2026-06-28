@@ -250,44 +250,6 @@ body {
   gap: 8px;
 }
 
-/* Passe Virtual */
-.virtual-pass-card {
-  background: #1a202c;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 3rem;
-  margin-top: 1.5rem;
-}
-.pass-info h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
-}
-.pass-info p {
-  opacity: 0.8;
-  font-size: 0.85rem;
-  margin-bottom: 1.5rem;
-}
-.btn-qr-view {
-  background: #fff;
-  color: #1a202c;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.25rem;
-  font-weight: 800;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-.qr-code-wrapper {
-  background: #fff;
-  color: #1a202c;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 3.5rem;
-  display: flex;
-  align-items: center;
-}
 
 @media (max-width: 992px) {
   .profile-grid {
