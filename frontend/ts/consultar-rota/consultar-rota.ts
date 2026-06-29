@@ -33,7 +33,7 @@ function dataDaSemanaAtual(dia: DiaSemana) {
 
   const hoje = new Date();
   const segundaSemana = new Date(hoje);
-  const diff = hoje.getDay() === 0 ? -6 : 1 - hoje.getDay();
+  const diff = hoje.getDay() === 0 ? 1 : 1 - hoje.getDay();
 
   segundaSemana.setDate(hoje.getDate() + diff);
 
@@ -105,6 +105,7 @@ type DiaSemana = | "segunda" | "terca" | "quarta" | "quinta" | "sexta";
 
 async function carregarTransportes(dia: DiaSemana) {
   const dataSelecionada = dataDaSemanaAtual(dia);
+  console.log("Data pesquisada:", dataSelecionada);
 
   const { data: registroData } = await supabase
     .from("Datas")
