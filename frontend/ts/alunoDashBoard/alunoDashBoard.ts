@@ -17,6 +17,7 @@ type ParticipaFreq = {
   volta_embarque: string;
   ida: boolean;
   volta: boolean;
+  rotaComplementar: number;
   Datas: {
     data_ocorrencia: string;
     motoristaAssociacao: {
@@ -166,24 +167,11 @@ async function buscarFrequencia() {
         ida_destino,
         volta_destino,
         volta_embarque,
+        rotaComplementar,
         ida,
         volta,
         Datas!inner (
-          data_ocorrencia,
-          motoristaAssociacao (
-            faculdades(
-              nome
-            ),
-            motoristas(
-              nome,
-              onibus(
-                nome
-              )
-            ),
-            rotasComplementares(
-              nome
-            )
-          )
+          data_ocorrencia
         )
       `
       )
@@ -206,19 +194,52 @@ async function buscarFrequencia() {
       throw err;
     }
 
-    const motorista = data[0].Datas[0]?.motoristaAssociacao[0]?.motoristas;
-    const rotasComplementar =
-      data[0].Datas[0]?.motoristaAssociacao[0]?.rotasComplementares;
-    const faculdades = data[0].Datas[0]?.motoristaAssociacao[0]?.faculdades;
-    const dataHoje = data[0].Datas[0]?.data_ocorrencia;
-    const onibus =
-      data[0].Datas[0]?.motoristaAssociacao[0]?.motoristas.onibus.nome;
-    const ida_embarque = data[0].ida_embarque;
-    const volta_destino = data[0].volta_destino;
-    const ida = data[0].ida;
-    const volta = data[0].volta;
-    const ida_destino = await getFaculdadeById(data[0].ida_destino);
-    const volta_embarque = await getFaculdadeById(data[0].volta_embarque);
+    const registro = data[0];
+
+    const { data: datasMesmoDia } = await supabase
+      .from("Datas")
+      .select("id")
+      .eq("data_ocorrencia", registro.Datas?.[0]?.data_ocorrencia);
+
+    const idsDatas = datasMesmoDia?.map((d: any) => d.id) ?? [];
+
+    const { data: motoristasDia } = await supabase
+    .from("motoristaAssociacao")
+    .select(`
+      Faculdade_id,
+      RotaComplementar_id,
+      faculdades(
+        nome
+      ),
+      motoristas(
+        nome,
+        onibus(
+          nome
+        )
+      ),
+      rotasComplementares(
+        nome
+      )
+    `)
+    .in("Data_id", idsDatas);
+
+    const associacao = motoristasDia?.find(
+      (m: any) =>
+        Number(m.Faculdade_id) === Number(registro.ida_destino) &&
+        Number(m.RotaComplementar_id) === Number(registro.rotaComplementar)
+    );
+
+    const motorista = associacao?.motoristas;
+    const rotasComplementar = associacao?.rotasComplementares;
+    const faculdades = associacao?.faculdades;
+    const dataHoje = registro.Datas[0]?.data_ocorrencia;
+    const onibus = associacao?.motoristas?.onibus?.nome;
+    const ida_embarque = registro.ida_embarque;
+    const volta_destino = registro.volta_destino;
+    const ida = registro.ida;
+    const volta = registro.volta;
+    const ida_destino = await getFaculdadeById(registro.ida_destino);
+    const volta_embarque = await getFaculdadeById(registro.volta_embarque);
 
     return {
       motorista,
