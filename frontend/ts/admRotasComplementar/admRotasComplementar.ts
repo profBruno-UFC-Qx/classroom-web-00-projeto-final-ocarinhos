@@ -6,7 +6,7 @@ const formBusca = document.getElementById("formBusca") as HTMLFormElement;
 import { supabase } from "../supabase/supabase.js";
 import showTopMessage from "../utils/showMsg.js";
 
-let atualPage = 0;
+let atualPage = 1;
 const pageSize = 5;
 
 function validarRota(
@@ -35,14 +35,14 @@ interface rotasInterface {
 formBusca.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  atualPage = 0;
+  atualPage = 1;
   await fetchRotas();
 });
 
 const input = document.getElementById("textoBusca") as HTMLInputElement;
 input.addEventListener("input", function (e) {
 
-  atualPage = 0;
+  atualPage = 1;
   fetchRotas();
 });
 
@@ -51,7 +51,7 @@ async function fetchRotas() {
     .from("rotasComplementares")
     .select("id, nome, bairro, km")
     .ilike("nome", `%${input.value}%`)
-    .range(atualPage * pageSize, atualPage * pageSize + pageSize - 1)) as {
+    .range((atualPage - 1) * pageSize, (atualPage - 1) * pageSize + pageSize - 1)) as {
     data: rotasInterface[] | null;
     error: any;
   };
@@ -273,12 +273,13 @@ function preencherQTDRotas(totalRotas: number) {
 }
 
 async function skipPage(totalRotas: number, page: number) {
-  if (page < 0) {
-    page = 0;
+  const maxPage = Math.ceil(totalRotas / pageSize) || 1;
+  if (page < 1) {
+    page = 1;
   }
 
-  if (page >= Math.floor(totalRotas / pageSize)) {
-    page = Math.floor(totalRotas / pageSize);
+  if (page > maxPage) {
+    page = maxPage;
   }
 
   atualPage = page;
@@ -294,10 +295,11 @@ async function inserirPaginas(totalRotas: number) {
   }
 
   if (listPages instanceof HTMLDivElement) {
-    for (let index = 0; index < Math.ceil(totalRotas / 5); index++) {
+    const totalPages = Math.ceil(totalRotas / pageSize) || 1;
+    for (let index = 1; index <= totalPages; index++) {
       const uniquePage = document.createElement("li");
       uniquePage.innerHTML = `<button id="${index}" class="page ${atualPage == index ? "active" : ""}" aria-current="page">
-                          ${index+1}
+                          ${index}
                         </button>`;
 
       const btn = uniquePage.querySelector("button") as HTMLButtonElement;
