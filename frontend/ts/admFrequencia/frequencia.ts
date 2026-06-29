@@ -25,8 +25,16 @@ const botoesEditar = document.querySelectorAll<HTMLButtonElement>(".edit");
 
 let dataSelecionada = new Date();
 
+function formatarDataLocal(data: Date) {
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const dia = String(data.getDate()).padStart(2, "0");
+
+  return `${ano}-${mes}-${dia}`;
+}
+
 if (dataInput) {
-  dataInput.value = new Date().toISOString().slice(0, 10);
+  dataInput.value = formatarDataLocal(new Date());
 }
 
 async function carregarMotoristas() {
@@ -106,7 +114,8 @@ async function obterIdData(data: string) {
     .from("Datas")
     .select("id")
     .eq("data_ocorrencia", data)
-    .single();
+    .limit(1)
+    .maybeSingle();
 
   if (existente) {
     return existente.id;
@@ -137,13 +146,14 @@ async function renderizarTabela() {
 
   tbody.innerHTML = "";
 
-  const dataFiltro = dataSelecionada.toISOString().slice(0, 10);
+  const dataFiltro = formatarDataLocal(dataSelecionada);
 
   const { data: dataRegistro } = await supabase
     .from("Datas")
     .select("id")
     .eq("data_ocorrencia", dataFiltro)
-    .single();
+    .limit(1)
+    .maybeSingle();
 
   if (!dataRegistro) {
     tbody.innerHTML = `
@@ -317,7 +327,7 @@ form?.addEventListener("submit", async (e) => {
 
     form.reset();
     dataSelecionada = new Date();
-    dataInput.value = dataSelecionada.toISOString().slice(0, 10);
+    dataInput.value = formatarDataLocal(dataSelecionada);
 
     atualizarDataTela();
     await renderizarTabela();
